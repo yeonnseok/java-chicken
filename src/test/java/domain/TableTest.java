@@ -13,14 +13,18 @@ public class TableTest {
     @DisplayName("테이블 번호가 존재하는지 매칭하는 기능 테스트")
     void isPresentTableNumberTest(int tableNumber, int testTableNumber, boolean status) {
         Table table = new Table(tableNumber);
-        assertThat(table.isPresentTableNumber(testTableNumber)).isEqualTo(status);
+        assertThat(table.isMatchTableNumber(testTableNumber)).isEqualTo(status);
     }
 
-//    @Test
-//    @DisplayName("주문받은 메뉴와 수량을 등록하는 기능 확인")
-//    void isFinishPayTest() {
-//        Table table = new Table(1);
-//        table.registerMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), quantity);
-//        assertThat()
-//    }
+    @Test
+    @DisplayName("주문받은 메뉴와 수량을 등록하는 기능 확인")
+    void isFinishPayTest() {
+        Table table = new Table(1);
+        table.registerMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), 1);
+
+        OrderList testOrderList = new OrderList();
+        testOrderList.registerMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), 1);
+
+        assertThat(table.getOrderList()).isEqualTo(testOrderList);
+    }
 }

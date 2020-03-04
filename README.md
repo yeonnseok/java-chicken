@@ -68,6 +68,7 @@
     - int paymentWay
 - PaymentDiscount : 현금과 신용카드 할인률에 대한 정보를 가진 enum이다.
     - CARD(1), CASH(0.95)
+- TotalMoneyCalculator : 적용할 수 있는 할인을 적용하여 최종 금액을 계산을 한다.
 
 ### view
 - InputView

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TableRepository {
+public class Tables {
     private static final List<Table> tables = new ArrayList<>();
 
     static {
@@ -22,6 +22,18 @@ public class TableRepository {
 
     public static boolean isPresentTableNumber(int tableNumber) {
         return tables.stream()
-                .anyMatch(o -> o.isPresentTableNumber(tableNumber));
+                .anyMatch(o -> o.isMatchTableNumber(tableNumber));
+    }
+
+    public void registerMenu(int tableNumber, Menu menu, int quantity) {
+        tables().stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
+                .forEach(o -> o.registerMenu(menu,quantity));
+    }
+
+    public int countChickenMenu(int tableNumber) {
+        return tables.stream()
+                .mapToInt(o -> o.countChickenMenu())
+                .sum();
     }
 }

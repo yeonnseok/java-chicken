@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MenuRepository {
+public class Menus {
     private static final List<Menu> menus = new ArrayList<>();
 
     static {
