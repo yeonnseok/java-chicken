@@ -53,8 +53,20 @@ isOrder() → boolean : bill.hasOrder()
 
 Tables (List Table) → Tables : null 처리  
 
-### PosMachine
+### PaymentCalculator
 
-pay(Bill) → void : 빌을 계산해서 할인도 적용 총 금액을 축적하는 방법도 있을듯
+discount에 관한 List를 만들어서 멤버로 두기
 
-discount() → 인터페이스로 해볼까????
+pay(Table) → void : 테이블을 전달받아서 돈 계산 시작하기 
+
+### Discountable    
+인터페이스  
+discount()가 있음
+
+### DiscountChickenStrategy 
+implements Discountable 
+치킨에 관한 할인 전략 
+
+### DiscountCardStrategy
+implements Discountable
+카드에 관한 할인 전략 
