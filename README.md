@@ -49,6 +49,10 @@ Table () → Table : Bill을 생성해서 포함시키기
 
 isOrder() → boolean : bill.hasOrder()
 
+### Tables
+
+Tables (List Table) → Tables : null 처리  
+
 ### PosMachine
 
 pay(Bill) → void : 빌을 계산해서 할인도 적용 총 금액을 축적하는 방법도 있을듯
