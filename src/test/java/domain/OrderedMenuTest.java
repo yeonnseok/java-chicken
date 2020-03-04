@@ -9,7 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class OrderedMenuTest {
-    @Test
+    @ParameterizedTest
+    @CsvSource({"0,0", "1,16000", "3,48000", "10,1600000", "53, 848000", "93,1488000"})
     @DisplayName("주문한 메뉴와 수량을 곱하여 합계를 잘 반환하는지 확인")
     void calculateMenuPriceTest() {
         Menu menu = new Menu(1,"후라이드", Category.CHICKEN, 16000);
@@ -18,16 +19,15 @@ public class OrderedMenuTest {
         assertThat(orderedMenu.calculateMenuPriceSum());
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({"2,3,5", "0,9,9", "10,10,20", "80,9,89", "50,30,80"})
     @DisplayName("추가한 수량이 제대로 더해지는지 확인")
-    void addQuantityTest() {
+    void addQuantityTest(int nowQuantity, int addQuantity, int totalQuantity) {
         Menu menu = new Menu(1,"후라이드", Category.CHICKEN, 16000);
-        int firstQuantity = 2;
-        OrderedMenu orderedMenu = new OrderedMenu(menu, firstQuantity);
-        int addQuantity = 3;
+        OrderedMenu orderedMenu = new OrderedMenu(menu, nowQuantity);
 
         orderedMenu.addQuantity(addQuantity);
-        assertThat(orderedMenu.getQuantity()).isEqualTo(5);
+        assertThat(orderedMenu.getQuantity()).isEqualTo(totalQuantity);
     }
 
     @ParameterizedTest
