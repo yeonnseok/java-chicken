@@ -11,4 +11,8 @@ public class Table {
     public String toString() {
         return Integer.toString(number);
     }
+
+    public boolean isPresentTableNumber(int tableNumber) {
+        return this.number == tableNumber;
+    }
 }
