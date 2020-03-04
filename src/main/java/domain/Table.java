@@ -10,9 +10,11 @@ package domain;
  */
 public class Table {
 	private final int number;
+	private Orders orders;
 
 	public Table(final int number) {
 		this.number = number;
+		this.orders = Orders.createOrders();
 	}
 
 	@Override
