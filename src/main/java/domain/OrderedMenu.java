@@ -12,4 +12,19 @@ public class OrderedMenu {
     public int calculateMenuPriceSum() {
         return menu.calculateMenuPriceSum(quantity);
     }
+
+    public void addQuantity(int quantity) {
+        checkMaxQuantity(quantity);
+        this.quantity += quantity;
+    }
+
+    private void checkMaxQuantity(int quantity) {
+        if (this.quantity + quantity > 99) {
+            throw new IllegalArgumentException(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. 현재 주문량 : %d", this.quantity));
+        }
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
 }
