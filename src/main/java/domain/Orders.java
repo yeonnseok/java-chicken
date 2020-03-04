@@ -15,6 +15,7 @@ public class Orders {
 	private List<Order> orders;
 
 	public Orders(List<Order> inputOrders) {
+		Objects.requireNonNull(inputOrders, "메뉴들은 null일 수 없습니다.");
 		this.orders = inputOrders;
 	}
 
