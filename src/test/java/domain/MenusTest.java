@@ -12,7 +12,7 @@ public class MenusTest {
     void getMenuTest(int input) {
         Menus menus = new Menus(MenuRepository.menus());
 
-        Assertions.assertThat(menus.getMenu(input)).isInstanceOf(Menu.class);
+        Assertions.assertThat(menus.getMenuByMenuNumber(input)).isInstanceOf(Menu.class);
     }
 
     @DisplayName("유효하지 않은 메뉴를 가져올 때 예외 처리 테스트")
@@ -22,7 +22,7 @@ public class MenusTest {
         Menus menus = new Menus(MenuRepository.menus());
 
         Assertions.assertThatThrownBy(() -> {
-            menus.getMenu(input);
+            menus.getMenuByMenuNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

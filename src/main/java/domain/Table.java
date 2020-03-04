@@ -13,12 +13,16 @@ public class Table {
         this.order.addMenu(menu, quantity);
     }
 
-    public Order getOrder() {
-        return this.order;
-    }
-
     public boolean isSameTableNumber(int tableNumber) {
         return this.number == tableNumber;
+    }
+
+    public boolean hasOrder() {
+        return this.order.getOrder().size() != 0;
+    }
+
+    public Order getOrder() {
+        return this.order;
     }
 
     @Override

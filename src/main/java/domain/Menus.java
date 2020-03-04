@@ -9,11 +9,14 @@ public class Menus {
         this.menus = menus;
     }
 
-
-    public Menu getMenu(int menuNumber) {
+    public Menu getMenuByMenuNumber(int menuNumber) {
         return this.menus.stream()
                 .filter(menu -> menu.isSameMenuNumber(menuNumber))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 메뉴 번호를 입력하였습니다."));
+    }
+
+    public List<Menu> getMenus() {
+        return this.menus;
     }
 }

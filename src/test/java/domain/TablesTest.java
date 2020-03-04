@@ -12,7 +12,7 @@ public class TablesTest {
     void getTableTest(int input) {
         Tables tables = new Tables(TableRepository.tables());
 
-        Assertions.assertThat(tables.getTable(input)).isInstanceOf(Table.class);
+        Assertions.assertThat(tables.getTableByTableNumber(input)).isInstanceOf(Table.class);
     }
 
     @DisplayName("유효하지 않은 테이블을 가져올 때 예외 처리 테스트")
@@ -22,7 +22,7 @@ public class TablesTest {
         Tables tables = new Tables(TableRepository.tables());
 
         Assertions.assertThatThrownBy(() -> {
-            tables.getTable(input);
+            tables.getTableByTableNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
