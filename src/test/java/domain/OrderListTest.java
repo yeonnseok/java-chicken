@@ -33,4 +33,16 @@ public class OrderListTest {
 
         assertThat(orderList.calculateMenuPriceSum()).isEqualTo(142000);
     }
+
+    @Test
+    @DisplayName("Category가 치킨인 메뉴의 개수 반환하는 기능 확인")
+    void countChickenMenuTest() {
+        OrderList orderList = new OrderList();
+        orderList.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 3);
+        orderList.registerMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5);
+        orderList.registerMenu(new Menu(6, "반반", Category.CHICKEN, 17000), 1);
+        orderList.registerMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2);
+
+        assertThat(orderList.countChickenMenu()).isEqualTo(9);
+    }
 }

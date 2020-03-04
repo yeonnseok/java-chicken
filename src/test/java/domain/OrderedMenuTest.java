@@ -1,6 +1,7 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -40,5 +41,21 @@ public class OrderedMenuTest {
             orderedMenu.addQuantity(addQuantity);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. 현재 주문량 : %d", nowQuantity));
+    }
+
+    @Test
+    @DisplayName("Category가 Chicken인 메뉴 개수 반환 테스트")
+    void isChickenCategoryTest() {
+        Menu menu = new Menu(1,"후라이드", Category.CHICKEN, 16000);
+        OrderedMenu orderedMenu = new OrderedMenu(menu, 2);
+        assertThat(orderedMenu.getChickenCategoryQuantity()).isEqualTo(2);
+
+        Menu menu2 = new Menu(2,"양념", Category.CHICKEN, 17000);
+        OrderedMenu orderedMenu2 = new OrderedMenu(menu, 1);
+        assertThat(orderedMenu2.getChickenCategoryQuantity()).isEqualTo(1);
+
+        Menu menu3 = new Menu(4,"콜라", Category.BEVERAGE, 1600);
+        OrderedMenu orderedMenu3 = new OrderedMenu(menu3, 11);
+        assertThat(orderedMenu3.getChickenCategoryQuantity()).isEqualTo(0);
     }
 }

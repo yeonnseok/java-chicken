@@ -19,4 +19,10 @@ public class OrderList {
                 .mapToInt(o -> o.calculateMenuPriceSum())
                 .sum();
     }
+
+    public int countChickenMenu() {
+        return orderList.stream()
+                .mapToInt(OrderedMenu::getChickenCategoryQuantity)
+                .sum();
+    }
 }

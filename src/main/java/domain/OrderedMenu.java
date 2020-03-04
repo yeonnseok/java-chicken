@@ -3,7 +3,6 @@ package domain;
 import java.util.Objects;
 
 public class OrderedMenu {
-    private static final int MIN_QUANTITY = 0;
     private static final int MAX_QUANTITY = 99;
 
     private Menu menu;
@@ -45,5 +44,12 @@ public class OrderedMenu {
     @Override
     public int hashCode() {
         return Objects.hash(menu, quantity);
+    }
+
+    public int getChickenCategoryQuantity() {
+        if (this.menu.isChickenCategory()) {
+            return quantity;
+        }
+        return 0;
     }
 }
