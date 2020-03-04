@@ -20,9 +20,10 @@ public class QuantityTest {
     @Test
     void addQuantityTest() {
         Quantity quantity = new Quantity(50);
+        Quantity otherQuantity = new Quantity(50);
 
         Assertions.assertThatThrownBy(() -> {
-            quantity.addQuantity(50);
+            quantity.addQuantity(otherQuantity);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
