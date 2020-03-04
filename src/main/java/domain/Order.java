@@ -39,4 +39,8 @@ public class Order {
 	public int getAmount() {
 		return this.amount;
 	}
+
+	public boolean isSameMenu(Menu targetMenu) {
+		return this.menu.equals(targetMenu);
+	}
 }

@@ -43,4 +43,35 @@ public class OrdersTest {
 		}).withMessage("메뉴들은 null일 수 없습니다.");
 	}
 
+	@DisplayName("createOrders 정적 팩토리 메서드 생성 테스트")
+	@Test
+	void createOrders() {
+		assertThat(Orders.createOrders()).isInstanceOf(Orders.class);
+	}
+
+	@DisplayName("hasOrderedMenu 입력받은 메뉴가 있으면 true 반환")
+	@Test
+	void hasOrderedMenu_true() {
+		Orders orders = new Orders(
+				Arrays.asList(
+						new Order(MenuRepository.getMenu(1), 1),
+						new Order(MenuRepository.getMenu(2), 2),
+						new Order(MenuRepository.getMenu(3), 3)
+				)
+		);
+		assertThat(orders.hasOrderedMenu(MenuRepository.getMenu(1))).isEqualTo(true);
+	}
+
+	@DisplayName("hasOrderedMenu 입력받은 메뉴가 없으면 false 반환")
+	@Test
+	void hasOrderedMenu_false() {
+		Orders orders = new Orders(
+				Arrays.asList(
+						new Order(MenuRepository.getMenu(1), 1),
+						new Order(MenuRepository.getMenu(2), 2),
+						new Order(MenuRepository.getMenu(3), 3)
+				)
+		);
+		assertThat(orders.hasOrderedMenu(MenuRepository.getMenu(4))).isEqualTo(false);
+	}
 }

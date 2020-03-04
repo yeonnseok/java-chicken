@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 /**
  * 클래스 이름 : .java
  *
@@ -29,5 +31,22 @@ public class Menu {
 	@Override
 	public String toString() {
 		return category + " " + number + " - " + name + " : " + price + "원";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		Menu that = (Menu)obj ;
+		return this.number == that.number;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.number);
 	}
 }

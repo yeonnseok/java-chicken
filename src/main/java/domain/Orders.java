@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,4 +20,12 @@ public class Orders {
 		this.orders = inputOrders;
 	}
 
+	public static Orders createOrders() {
+		return new Orders(new ArrayList<Order>());
+	}
+
+	public boolean hasOrderedMenu(Menu targetMenu) {
+		return orders.stream()
+				.anyMatch(order -> order.isSameMenu(targetMenu));
+	}
 }
