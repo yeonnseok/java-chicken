@@ -1,6 +1,7 @@
 package domain;
 
 public class OrderedMenu {
+    private static final int MIN_QUANTITY = 0;
     private static final int MAX_QUANTITY = 99;
 
     private Menu menu;
@@ -16,8 +17,15 @@ public class OrderedMenu {
     }
 
     public void addQuantity(int quantity) {
+        checkNegativeNumber(quantity);
         checkMaxQuantity(quantity);
         this.quantity += quantity;
+    }
+
+    private void checkNegativeNumber(int quantity) {
+        if (quantity < MIN_QUANTITY) {
+            throw new IllegalArgumentException(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", quantity));
+        }
     }
 
     private void checkMaxQuantity(int quantity) {
