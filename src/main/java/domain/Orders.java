@@ -34,11 +34,6 @@ public class Orders {
 		orders.stream()
 				.filter(order -> order.hasSameMenu(inputOrder.getMenu()))
 				.forEach(order -> order.orderMore(inputOrder.getAmount()));
-
-
-//				.peek(order -> System.out.println("!!" + order.getAmount()))
-//				.findAny()
-//				.ifPresent(order -> order.orderMore(inputOrder.getAmount()));
 	}
 
 	public boolean hasOrderedMenu(Menu targetMenu) {

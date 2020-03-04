@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,6 +48,42 @@ public class OrdersTest {
 	@Test
 	void createOrders() {
 		assertThat(Orders.createOrders()).isInstanceOf(Orders.class);
+	}
+
+	@DisplayName("addNewMenuOrder 처음 주문되는 메뉴에 대해 정상 작동 확인")
+	@Test
+	void addNewMenuOrder() {
+		ArrayList<Order> newOrders = new ArrayList<>();
+		newOrders.add(new Order(MenuRepository.getMenu(1), 1));
+		newOrders.add(new Order(MenuRepository.getMenu(2), 2));
+		newOrders.add(new Order(MenuRepository.getMenu(3), 3));
+
+		Orders orders = new Orders(newOrders);
+		Menu newMenu = MenuRepository.getMenu(4);
+		Order newOrder = new Order(newMenu, 4);
+
+		orders.addNewMenuOrder(newOrder);
+
+		assertThat(orders.hasOrderedMenu(newMenu)).isEqualTo(true);
+		assertThat(orders.getAmountOfOrderedMenu(newMenu)).isEqualTo(4);
+	}
+
+	@DisplayName("addPresentMenuOrder 추가 주문되는 메뉴에 대해 정상 작동 확인")
+	@Test
+	void addPresentMenuOrder() {
+		ArrayList<Order> newOrders = new ArrayList<>();
+		newOrders.add(new Order(MenuRepository.getMenu(1), 1));
+		newOrders.add(new Order(MenuRepository.getMenu(2), 2));
+		newOrders.add(new Order(MenuRepository.getMenu(3), 3));
+
+		Orders orders = new Orders(newOrders);
+		Menu againMenu = MenuRepository.getMenu(3);
+		Order newOrder = new Order(againMenu, 4);
+
+		orders.addPresentMenuOrder(newOrder);
+
+		assertThat(orders.hasOrderedMenu(againMenu)).isEqualTo(true);
+		assertThat(orders.getAmountOfOrderedMenu(againMenu)).isEqualTo(7);
 	}
 
 	@DisplayName("hasOrderedMenu 입력받은 메뉴가 있으면 true 반환")
