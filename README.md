@@ -63,10 +63,10 @@ pay(Table) → void : 테이블을 전달받아서 돈 계산 시작하기
 인터페이스  
 discount()가 있음
 
-### DiscountChickenStrategy 
+### ChickenDiscountStrategy 
 implements Discountable 
 치킨에 관한 할인 전략 
 
-### DiscountCardStrategy
+### CardDiscountStrategy
 implements Discountable
 카드에 관한 할인 전략 

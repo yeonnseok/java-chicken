@@ -42,6 +42,18 @@ public class Order {
 		return this.menu.equals(targetMenu);
 	}
 
+	public boolean isChickenMenu() {
+		return this.menu.isChickenCategory();
+	}
+
+	public int calculatePurePrice() {
+		return this.menu.getPrice() * this.amount;
+	}
+
+	public int getDividedAmountByUnit(int divideUnit) {
+		return this.amount / divideUnit;
+	}
+
 	public Menu getMenu() {
 		return this.menu;
 	}

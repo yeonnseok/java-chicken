@@ -23,8 +23,16 @@ public class Menu {
 		this.price = price;
 	}
 
+	public boolean isChickenCategory() {
+		return category.isChicken();
+	}
+
 	public int getNumber() {
 		return this.number;
+	}
+
+	public int getPrice() {
+		return this.price;
 	}
 
 	@Override
