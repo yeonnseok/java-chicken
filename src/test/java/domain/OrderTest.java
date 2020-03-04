@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -75,5 +76,14 @@ public class OrderTest {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			order.orderMore(70);
 		}).withMessage("메뉴는 총 1개에서 99개 사이로 주문해야합니다.");
+	}
+
+	@DisplayName("hasSameMenu 입력된 메뉴와 같은 메뉴가 order에 있다면 true 반환, 없다면 false 반환")
+	@ParameterizedTest
+	@CsvSource(value = {"1,true", "2,false"})
+	void hasSameMenu(int inputMenuNumber, boolean expected) {
+		Order order = new Order(MenuRepository.getMenu(1), 10);
+		assertThat(order.hasSameMenu(MenuRepository.getMenu(inputMenuNumber)))
+				.isEqualTo(expected);
 	}
 }

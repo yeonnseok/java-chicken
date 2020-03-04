@@ -26,7 +26,6 @@ public class Table {
 			orders.addPresentMenuOrder(inputOrder);
 			return;
 		}
-		System.out.println("NEW!");
 		orders.addNewMenuOrder(inputOrder);
 	}
 
