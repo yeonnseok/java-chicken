@@ -19,4 +19,9 @@ public class TableRepository {
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
     }
+
+    public static boolean isPresentTableNumber(int tableNumber) {
+        return tables.stream()
+                .anyMatch(o -> o.isPresentTableNumber(tableNumber));
+    }
 }
