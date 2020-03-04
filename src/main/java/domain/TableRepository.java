@@ -27,4 +27,11 @@ public class TableRepository {
 	public static List<Table> tables() {
 		return Collections.unmodifiableList(tables);
 	}
+
+	public static Table getTable(int inputNumber) {
+		return tables.stream()
+				.filter(menu -> menu.getNumber() == inputNumber)
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException("해당되는 번호의 테이블이 없습니다."));
+	}
 }
