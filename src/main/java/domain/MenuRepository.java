@@ -30,4 +30,11 @@ public class MenuRepository {
 	public static List<Menu> menus() {
 		return Collections.unmodifiableList(menus);
 	}
+
+	public static Menu getMenu(int inputNumber) {
+		return menus.stream()
+				.filter(menu -> menu.getNumber() == inputNumber)
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException("해당되는 번호의 메뉴가 없습니다."));
+	}
 }
