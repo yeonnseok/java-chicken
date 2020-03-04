@@ -40,7 +40,7 @@ public class OrdersTest {
 	void Orders_null_input(List<Order> nullInput) {
 		assertThatNullPointerException().isThrownBy(() -> {
 			new Orders(nullInput);
-		}).withMessage("메뉴들은 null일 수 없습니다.");
+		}).withMessage("주문들은 null일 수 없습니다.");
 	}
 
 	@DisplayName("createOrders 정적 팩토리 메서드 생성 테스트")

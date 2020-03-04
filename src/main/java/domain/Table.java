@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 /**
  * 클래스 이름 : .java
  *
@@ -15,6 +17,21 @@ public class Table {
 	public Table(final int number) {
 		this.number = number;
 		this.orders = Orders.createOrders();
+	}
+
+	public void order(Order inputOrder) {
+		Objects.requireNonNull(inputOrder, "주문은 null일 수 없습니다.");
+
+		if (orders.hasOrderedMenu(inputOrder.getMenu())) {
+			orders.addPresentMenuOrder(inputOrder);
+			return;
+		}
+		System.out.println("NEW!");
+		orders.addNewMenuOrder(inputOrder);
+	}
+
+	public Orders getOrders() {
+		return this.orders;
 	}
 
 	@Override

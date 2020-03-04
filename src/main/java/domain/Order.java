@@ -24,23 +24,27 @@ public class Order {
 		this.amount = inputAmount;
 	}
 
+	public void orderMore(int inputAmount) {
+		validateAmount(inputAmount);
+		validateAmount(this.amount + inputAmount);
+		this.amount = this.amount + inputAmount;
+	}
+
 	private void validateAmount(int inputAmount) {
 		if (inputAmount < MIN_AMOUNT || inputAmount > MAX_AMOUNT) {
 			throw new IllegalArgumentException("메뉴는 총 1개에서 99개 사이로 주문해야합니다.");
 		}
 	}
 
-	public void orderMore(int inputAmount) {
-		validateAmount(inputAmount);
-		validateAmount(this.amount + inputAmount);
-		this.amount += inputAmount;
+	public boolean hasSameMenu(Menu targetMenu) {
+		return this.menu.equals(targetMenu);
+	}
+
+	public Menu getMenu() {
+		return this.menu;
 	}
 
 	public int getAmount() {
 		return this.amount;
-	}
-
-	public boolean isSameMenu(Menu targetMenu) {
-		return this.menu.equals(targetMenu);
 	}
 }
