@@ -1,16 +1,15 @@
-package domain;
+package domain.menu;
 
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 치킨집이 판매하는 메뉴 객체
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
  */
-
 public class Menu {
 	private final int number;
 	private final String name;

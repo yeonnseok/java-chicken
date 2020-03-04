@@ -1,13 +1,13 @@
-package domain;
+package domain.table;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * 클래스 이름 : .java
+ * 치킨집에 있는 모든 테이블들을 생성해둔 테이블 레포지토리
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
@@ -28,7 +28,7 @@ public class TableRepository {
 		return Collections.unmodifiableList(tables);
 	}
 
-	public static Table getTable(int inputNumber) {
+	public static Table getTable(int inputNumber) { // TODO: 2020/03/05 프로덕션에서 사용하는지 여부
 		return tables.stream()
 				.filter(table -> table.isSameNumber(inputNumber))
 				.findAny()

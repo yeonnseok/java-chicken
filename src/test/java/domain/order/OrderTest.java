@@ -1,5 +1,8 @@
-package domain;
+package domain.order;
 
+import domain.menu.Menu;
+import domain.menu.MenuRepository;
+import domain.order.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,9 +13,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 /**
- * 클래스 이름 : .java
+ * Order test
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04

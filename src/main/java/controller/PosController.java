@@ -1,15 +1,20 @@
 package controller;
 
-import domain.*;
+import domain.menu.Menu;
+import domain.menu.MenuRepository;
+import domain.order.Order;
+import domain.table.Table;
+import domain.table.TableRepository;
+import domain.table.Tables;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
 
 /**
- * 클래스 이름 : .java
+ * 치킨집 포스기 컨트롤러
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04

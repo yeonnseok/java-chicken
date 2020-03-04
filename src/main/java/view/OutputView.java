@@ -1,14 +1,14 @@
 package view;
 
-import domain.Menu;
-import domain.Table;
+import domain.menu.Menu;
+import domain.table.Table;
 
 import java.util.List;
 
 /**
- * 클래스 이름 : .java
+ * 출력을 담당하는 클래스
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
@@ -18,9 +18,12 @@ public class OutputView {
 	private static final String TABLE_FORMAT = "| %s |";
 	private static final String BOTTOM_LINE = "└ ─ ┘";
 	private static final String ORDERED_BOTTOM_LINE = "└ ₩ ┘";
+	private static final String TABLE_LIST = "## 테이블 목록";
 	private static final String CHOOSE_ORDER_TABLE_GUIDE_MESSAGE = "## 주문할 테이블을 선택하세요.";
 	private static final String CHOOSE_ORDER_MENU_GUIDE_MESSAGE = "## 등록할 메뉴를 선택하세요.";
 	private static final String ENTER_ORDER_AMOUNT_GUIDE_MESSAGE = "## 메뉴의 수량을 입력하세요.";
+
+	private OutputView() {}
 
 	public static void askInputTableNumber() {
 		System.out.println(CHOOSE_ORDER_TABLE_GUIDE_MESSAGE);
@@ -39,14 +42,13 @@ public class OutputView {
 	}
 
 	public static void printTables(final List<Table> tables) {
-		System.out.println("## 테이블 목록");
+		System.out.println(TABLE_LIST);
 		final int size = tables.size();
 
 		printTopLines(size);
 		printTableNumbers(tables);
 		printBottomLines(tables);
 	}
-
 
 	private static void printTopLines(final int count) {
 		for (int index = 0; index < count; index++) {
@@ -65,9 +67,9 @@ public class OutputView {
 	}
 
 	private static String createBottomLine(final boolean isOrdered) {
-		String bottomLine = "└ ─ ┘";
+		String bottomLine = BOTTOM_LINE;
 		if (isOrdered) {
-			bottomLine = "└ ₩ ┘";
+			bottomLine = ORDERED_BOTTOM_LINE;
 		}
 		return bottomLine;
 	}

@@ -1,22 +1,22 @@
-package domain;
+package domain.table;
 
+import domain.table.Table;
+import domain.table.TableRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 /**
- * 클래스 이름 : .java
+ * TableRepository test
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
  */
-public class TableReopsitoryTest {
+public class TableRepositoryTest {
 
 	@DisplayName("getTable 입력한 table번호와 같은 테이블을 반환하는지 확인")
 	@Test

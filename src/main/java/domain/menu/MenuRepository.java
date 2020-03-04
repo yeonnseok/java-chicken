@@ -1,18 +1,17 @@
-package domain;
+package domain.menu;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * 클래스 이름 : .java
+ * 치킨집에서 판매하는 메뉴들을 캐시로 모아둔 메뉴 레포지토리
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
  */
-
 public class MenuRepository {
 	private static final List<Menu> menus = new ArrayList<>();
 

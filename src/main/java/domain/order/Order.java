@@ -1,11 +1,13 @@
-package domain;
+package domain.order;
+
+import domain.menu.Menu;
 
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 메뉴와 수량이 담긴 주문 객체
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04

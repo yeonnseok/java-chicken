@@ -1,11 +1,14 @@
-package domain;
+package domain.table;
+
+import domain.order.Order;
+import domain.order.Orders;
 
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 가게의 테이블 객체 : 고유의 테이블 번호와 주문들을 받을 수 있는 orders을 멤버로 가지고 있다.
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
@@ -26,6 +29,7 @@ public class Table {
 			orders.addPresentMenuOrder(inputOrder);
 			return;
 		}
+
 		orders.addNewMenuOrder(inputOrder);
 	}
 

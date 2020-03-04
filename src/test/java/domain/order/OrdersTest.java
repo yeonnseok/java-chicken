@@ -1,5 +1,9 @@
-package domain;
+package domain.order;
 
+import domain.menu.Menu;
+import domain.menu.MenuRepository;
+import domain.order.Order;
+import domain.order.Orders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,15 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 /**
- * 클래스 이름 : .java
+ * Orders test
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
  */
 public class OrdersTest {
-
 	@DisplayName("Orders 생성자 정상 동작")
 	@Test
 	void Orders() {

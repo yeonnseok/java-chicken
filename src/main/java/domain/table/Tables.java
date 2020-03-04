@@ -1,12 +1,12 @@
-package domain;
+package domain.table;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * 클래스 이름 : .java
+ * 테이블들의 일급 컬렉션
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04

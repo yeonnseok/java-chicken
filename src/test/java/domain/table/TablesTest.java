@@ -1,5 +1,8 @@
-package domain;
+package domain.table;
 
+import domain.table.Table;
+import domain.table.TableRepository;
+import domain.table.Tables;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,9 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 /**
- * 클래스 이름 : .java
+ * Tables test
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04

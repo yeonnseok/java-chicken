@@ -1,13 +1,15 @@
-package domain;
+package domain.order;
+
+import domain.menu.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * 클래스 이름 : .java
+ * 주문들의 일급 컬렉션
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/04
@@ -15,7 +17,7 @@ import java.util.Objects;
 public class Orders {
 	private List<Order> orders;
 
-	public Orders(List<Order> inputOrders) {
+	public Orders(List<Order> inputOrders) { // TODO: 2020/03/05 옵셔널을 통한 리팩토링
 		Objects.requireNonNull(inputOrders, "주문들은 null일 수 없습니다.");
 		this.orders = inputOrders;
 	}
