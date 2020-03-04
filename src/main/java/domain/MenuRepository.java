@@ -18,6 +18,11 @@ public class MenuRepository {
         menus.add(new Menu(22, "사이다", Category.BEVERAGE, 1_000));
     }
 
+    public boolean isPresentMenu(int menuNumber) {
+        return menus.stream()
+                .anyMatch(o -> o.isPresentMenu(menuNumber));
+    }
+
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
