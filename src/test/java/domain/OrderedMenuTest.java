@@ -1,7 +1,6 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -41,16 +40,5 @@ public class OrderedMenuTest {
             orderedMenu.addQuantity(addQuantity);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. 현재 주문량 : %d", nowQuantity));
-    }
-
-    @Test
-    @DisplayName("음수의 수량이 입력될 경우 예외 발생하는지 확인")
-    void validateNegativeNumberTest() {
-        OrderedMenu orderedMenu = new OrderedMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), 0);
-        int addQuantity = -1;
-        assertThatThrownBy(() -> {
-            orderedMenu.addQuantity(addQuantity);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", addQuantity));
     }
 }

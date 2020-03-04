@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class OrderedMenu {
     private static final int MIN_QUANTITY = 0;
     private static final int MAX_QUANTITY = 99;
@@ -12,20 +14,9 @@ public class OrderedMenu {
         this.quantity = quantity;
     }
 
-    public int calculateMenuPriceSum() {
-        return menu.calculateMenuPriceSum(quantity);
-    }
-
     public void addQuantity(int quantity) {
-        checkNegativeNumber(quantity);
         checkMaxQuantity(quantity);
         this.quantity += quantity;
-    }
-
-    private void checkNegativeNumber(int quantity) {
-        if (quantity < MIN_QUANTITY) {
-            throw new IllegalArgumentException(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", quantity));
-        }
     }
 
     private void checkMaxQuantity(int quantity) {
@@ -34,7 +25,25 @@ public class OrderedMenu {
         }
     }
 
+    public int calculateMenuPriceSum() {
+        return menu.calculateMenuPriceSum(quantity);
+    }
+
     public int getQuantity() {
         return this.quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderedMenu that = (OrderedMenu) o;
+        return quantity == that.quantity &&
+                Objects.equals(menu, that.menu);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menu, quantity);
     }
 }
