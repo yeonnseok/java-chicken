@@ -21,6 +21,10 @@ public class Order {
         this.order.put(menu, originalQuantity);
     }
 
+    public Map<Menu, Quantity> getOrder() {
+        return this.order;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

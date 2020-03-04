@@ -20,7 +20,7 @@ public class PaymentTypeTest {
     @Test
     void getPaymentTypeWithInvalidInput() {
         Assertions.assertThatThrownBy(() -> {
-            PaymentType paymentType = PaymentType.getPaymentType(3);
+            PaymentType.getPaymentType(3);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

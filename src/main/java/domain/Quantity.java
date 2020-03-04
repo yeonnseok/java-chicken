@@ -30,6 +30,10 @@ public class Quantity {
         }
     }
 
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
