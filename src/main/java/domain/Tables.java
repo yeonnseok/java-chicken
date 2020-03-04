@@ -19,4 +19,14 @@ public class Tables {
 				.orElseThrow(() -> new IllegalArgumentException("Tables에 잘못된 입력이 들어왔습니다."));
 	}
 
+	public List<Table> getTables() {
+		return this.tables;
+	}
+
+	public Table getTable(final int inputNumber) {
+		return tables.stream()
+				.filter(table -> table.isSameNumber(inputNumber))
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException("해당되는 번호의 테이블이 없습니다."));
+	}
 }

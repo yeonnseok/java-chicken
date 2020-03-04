@@ -11,10 +11,32 @@ import java.util.Scanner;
  * 날짜 : 2020/03/04
  */
 public class InputView {
-	private static final Scanner scanner = new Scanner(System.in);
+	private static final Scanner SCANNER = new Scanner(System.in);
 
-	public static int inputTableNumber() {
-		System.out.println("## 주문할 테이블을 선택하세요.");
-		return scanner.nextInt();
+	public static int askTableNumber() { // TODO: 2020/03/04 아래와 겹치네?
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			OutputView.printExceptionMessage("정수만 입력해주세요");
+			return askTableNumber();
+		}
+	}
+
+	public static int askMenuNumber() {
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			OutputView.printExceptionMessage("정수만 입력해주세요");
+			return askMenuNumber();
+		}
+	}
+
+	public static int askAmount() {
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			OutputView.printExceptionMessage("정수만 입력해주세요");
+			return askAmount();
+		}
 	}
 }

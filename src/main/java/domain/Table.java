@@ -29,6 +29,14 @@ public class Table {
 		orders.addNewMenuOrder(inputOrder);
 	}
 
+	public boolean isSameNumber(int inputTableNumber) {
+		return this.number == inputTableNumber;
+	}
+
+	public boolean isOrdered() {
+		return !this.orders.isEmpty();
+	}
+
 	public Orders getOrders() {
 		return this.orders;
 	}

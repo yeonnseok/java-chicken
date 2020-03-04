@@ -49,4 +49,7 @@ public class Orders {
 				.orElse(0); // TODO: 2020/03/04 0이 맞을까 예외가 맞을까?
 	}
 
+	public boolean isEmpty() {
+		return orders.isEmpty();
+	}
 }
