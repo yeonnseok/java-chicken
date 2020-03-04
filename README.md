@@ -54,6 +54,8 @@
     - List<Table> tables
     - 테이블 번호가 존재하는지 매치하는 기능
 - OrderedMenu : 주문된 메뉴에 대한 정보를 담고 있다.
+    - 수량이 추가되는 기능
+    - 수량이 99가 넘는 경우 예외 발생시키는 기능
 - Menu : 한 메뉴에 대한 정보를 가지고 있다.
 - MenuRepository : 모든 메뉴의 List를 갖는다.
     - List<Menu> menus
