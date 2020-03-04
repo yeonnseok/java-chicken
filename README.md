@@ -43,8 +43,8 @@
 
 ### controller(main)
 - Application : 주문 등록, 결제, 프로그램 종료에 따른 기능을 수행한다.
-- RegisterMenu : 손님에게 주문을 받는 기능을 한다.
-- Pay : 주문 내역에 대한 결제를 한다.
+- RegisterController : 손님에게 주문을 받는 기능을 한다.
+- PayController : 주문 내역에 대한 결제를 한다.
 
 ### domain
 - Table : 한 테이블에 대한 정보를 담고 있다.
@@ -63,7 +63,10 @@
     - List<Menu> menus
     - 메뉴 번호가 존재하는지 매치하는 기능
 - Category : 치킨과 음료에 대한 정보를 가진 enum이다.
-- Payment : 현금과 신용카드 할인률에 대한 정보를 가진 enum이다.
+
+- paymentWay : 결제 수단(현금, 카드)에 대한 정보를 가지고 있다.
+    - int paymentWay
+- PaymentDiscount : 현금과 신용카드 할인률에 대한 정보를 가진 enum이다.
     - CARD(1), CASH(0.95)
 
 ### view
