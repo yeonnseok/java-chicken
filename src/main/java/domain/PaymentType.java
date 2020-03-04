@@ -6,15 +6,15 @@ public enum PaymentType {
     CREDIT(1),
     CASH(2);
 
-    private int type;
+    private int paymentType;
 
-    PaymentType(int type) {
-        this.type = type;
+    PaymentType(int paymentType) {
+        this.paymentType = paymentType;
     }
 
-    public static PaymentType getPaymentType(int type) {
+    public static PaymentType getPaymentType(int paymentType) {
         return Arrays.stream(values())
-                .filter(pt -> pt.type == type)
+                .filter(pt -> pt.paymentType == paymentType)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 결제 수단 입니다."));
     }
