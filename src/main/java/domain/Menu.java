@@ -13,6 +13,10 @@ public class Menu {
         this.price = price;
     }
 
+    public int priceTimesCount(int count) {
+        return price * count;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";

@@ -18,4 +18,8 @@ public class Order {
             throw new IllegalArgumentException(String.format("주문 가능한 수량이 아닙니다. 현재 입력 : %d", count));
         }
     }
+
+    public int calculateMenuPrice() {
+        return menu.priceTimesCount(count);
+    }
 }

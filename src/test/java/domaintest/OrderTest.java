@@ -4,9 +4,11 @@ import domain.Category;
 import domain.Menu;
 import domain.Order;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class OrderTest {
@@ -20,4 +22,14 @@ public class OrderTest {
             new Order(menu, count);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("해당 메뉴의 주문 가격 계산")
+    @Test
+    void calculateMenuPriceTest() {
+        Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
+        Order order = new Order(menu, 4);
+        int menuPrice = order.calculateMenuPrice();
+        assertThat(menuPrice).isEqualTo(64_000);
+    }
+
 }
