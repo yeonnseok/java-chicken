@@ -63,7 +63,7 @@ public class Application {
         }
     }
 
-    private static TableNumber inputTableNumberWithValidation(TableNumber tableNumber) {
+    private static TableNumber inputTableNumberWithValidation(final TableNumber tableNumber) {
         try {
             int inputNumber = InputView.inputTableNumber();
             checkExistedTableNumber(tableNumber, inputNumber);
@@ -74,13 +74,13 @@ public class Application {
         }
     }
 
-    private static void checkEmptyTableWhenPay(Pos pos, TableNumber tableNumber) {
+    private static void checkEmptyTableWhenPay(final Pos pos, final TableNumber tableNumber) {
         if (pos == Pos.PAY && tableNumber.isInitialTableNumber()) {
             throw new IllegalArgumentException("결제할 수 있는 테이블이 없습니다.");
         }
     }
 
-    private static void checkExistedTableNumber(TableNumber tableNumber, int inputNumber) {
+    private static void checkExistedTableNumber(final TableNumber tableNumber, final int inputNumber) {
         if (tableNumber.isNotZeroAndNotSameValueWith(inputNumber)) {
             throw new IllegalArgumentException("현재 주문 진행중인 테이블만 선택가능합니다.");
         }
