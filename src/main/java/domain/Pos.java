@@ -13,7 +13,7 @@ public enum Pos {
         this.posNumber = posNumber;
     }
 
-    public static Pos getPos(int posNumber) {
+    public static Pos getPos(final int posNumber) {
         try {
             return Arrays.stream(Pos.values())
                     .filter(pos -> pos.posNumber == posNumber)

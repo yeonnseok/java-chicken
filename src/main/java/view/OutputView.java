@@ -44,7 +44,7 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private static void printSelectedLine(TableNumber tableNumber, StringBuilder stringBuilder, int index) {
+    private static void printSelectedLine(final TableNumber tableNumber, final StringBuilder stringBuilder, final int index) {
         if (tableNumber.isSameWith(index)) {
             stringBuilder.append(SELECTED_LINE);
             return;
@@ -66,11 +66,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printExceptionMessage(String message) {
+    public static void printExceptionMessage(final String message) {
         System.out.println(message);
     }
 
-    public static void printOrderList(Orders orders) {
+    public static void printOrderList(final Orders orders) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE)
                     .append("## 주문 내역")
@@ -81,7 +81,7 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private static void printEachMenuInformation(Orders orders, StringBuilder stringBuilder) {
+    private static void printEachMenuInformation(final Orders orders, final StringBuilder stringBuilder) {
         for (Menu menu : orders.getOrders().keySet()) {
             stringBuilder.append(menu.getName())
                         .append(SPACE)
@@ -92,11 +92,11 @@ public class OutputView {
         }
     }
 
-    public static void printPayProcessMessage(TableNumber tableNumber) {
+    public static void printPayProcessMessage(final TableNumber tableNumber) {
         System.out.println(String.format("%d번 테이블의 결제를 진행합니다.", tableNumber.getTableNumber()));
     }
 
-    public static void printTotalPrice(int totalPrice) {
+    public static void printTotalPrice(final int totalPrice) {
         System.out.println(NEW_LINE + "## 최종 결제할 금액");
         System.out.println(String.format("%d원", totalPrice));
         System.out.println();

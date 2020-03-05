@@ -10,7 +10,7 @@ public class Orders {
 
     private Map<Menu, Integer> orders = new HashMap<>();
 
-    public void addOrder(Menu menu, Count count) {
+    public void addOrder(final Menu menu, final Count count) {
         this.orders.put(menu, orders.getOrDefault(menu, DEFAULT_COUNT) + count.getCount());
     }
 

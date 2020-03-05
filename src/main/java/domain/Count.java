@@ -6,12 +6,12 @@ public class Count {
 
     private int count;
 
-    public Count(int count) {
+    public Count(final int count) {
         checkCountRange(count);
         this.count = count;
     }
 
-    private void checkCountRange(int count) {
+    private void checkCountRange(final int count) {
         if (count < MIN_COUNT | count > MAX_COUNT) {
             throw new IllegalArgumentException(String.format("주문 가능한 수량이 아닙니다. 현재 입력 : %d", count));
         }

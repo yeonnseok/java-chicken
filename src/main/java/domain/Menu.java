@@ -23,6 +23,14 @@ public class Menu {
         return this.number;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,14 +44,6 @@ public class Menu {
                 price == menu.price &&
                 name.equals(menu.name) &&
                 category == menu.category;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPrice() {
-        return this.price;
     }
 
     @Override

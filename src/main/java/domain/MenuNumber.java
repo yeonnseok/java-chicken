@@ -3,12 +3,12 @@ package domain;
 public class MenuNumber {
     private int menuNumber;
 
-    public MenuNumber(int menuNumber) {
+    public MenuNumber(final int menuNumber) {
         checkMenuRange(menuNumber);
         this.menuNumber = menuNumber;
     }
 
-    private void checkMenuRange(int menuNumber) {
+    private void checkMenuRange(final int menuNumber) {
         if (MenuRepository.menus()
                 .stream()
                 .mapToInt(Menu::getNumber)
