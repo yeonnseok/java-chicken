@@ -3,12 +3,6 @@ package controller;
 import domain.PosStatus;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
-import domain.order.Order;
-import domain.payment.CashDiscountStrategy;
-import domain.payment.ChickenDiscountStrategy;
-import domain.payment.DiscountableByCategory;
-import domain.payment.PaymentType;
-import domain.table.Table;
 import domain.table.TableRepository;
 import domain.table.Tables;
 import view.InputView;
@@ -25,8 +19,10 @@ import java.util.List;
  * 날짜 : 2020/03/04
  */
 public class PosController {
-	private final Tables tables = new Tables(TableRepository.tables());
-	private final List<Menu> menus = MenuRepository.menus();
+	OrderController orderController = new OrderController();
+	PaymentController paymentController = new PaymentController();
+	Tables tables = new Tables(TableRepository.tables());
+	List<Menu> menus = MenuRepository.menus();
 
 	public void run() {
 		PosStatus posStatus;
@@ -56,72 +52,11 @@ public class PosController {
 		}
 
 		if (posStatus.isOrdering()) {
-			operateOrderFunction();
+			orderController.operateOrderFunction(tables, menus);
 		}
 
 		if (posStatus.isPaying()) {
-			operatePayingFunction();
+			paymentController.operatePayingFunction(orderController, tables);
 		}
-	}
-
-	private void operateOrderFunction() {
-		OutputView.printTables(tables.getTables());
-		final Table orderingTable = receiveTargetTable(tables);
-		OutputView.printMenus(menus);
-
-		receiveOrder(orderingTable);
-	}
-
-	private Table receiveTargetTable(Tables tables) {
-		try {
-			OutputView.askInputTableNumber();
-			return tables.getTable(InputView.askIntegerInput());
-		} catch (IllegalArgumentException | NullPointerException e) {
-			OutputView.printExceptionMessage(e.getMessage());
-			return receiveTargetTable(tables);
-		}
-	}
-
-	private void receiveOrder(Table orderingTable) {
-		try {
-			OutputView.askInputOrderMenu();
-			Menu orderingMenu = MenuRepository.getMenu(InputView.askIntegerInput());
-
-			OutputView.askInputOrderAmount();
-			int orderingAmount = InputView.askIntegerInput();
-
-			orderingTable.order(new Order(orderingMenu, orderingAmount));
-		} catch (IllegalArgumentException | NullPointerException e) {
-			OutputView.printExceptionMessage(e.getMessage());
-			receiveOrder(orderingTable);
-		}
-	}
-
-	private void operatePayingFunction() {
-		OutputView.printTables(tables.getTables());
-		final Table payingTable = receivePayingTable(tables);
-
-		OutputView.printOrdersOf(payingTable);
-		DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
-		int price = categoryDiscountStrategy.discount(payingTable);
-
-		OutputView.printTablePayingProcess(payingTable.getNumber());
-		OutputView.printPaymentTypeOptions();
-		PaymentType paymentType = PaymentType.of(InputView.askIntegerInput());
-
-		int finalPrice = CashDiscountStrategy.discount(price, paymentType);
-		OutputView.printFinalPrice(finalPrice);
-		payingTable.cleanTable();
-	}
-
-	private Table receivePayingTable(Tables tables) {
-		Table targetTable = receiveTargetTable(tables);
-
-		if (targetTable.isOrdered()) {
-			return targetTable;
-		}
-
-		OutputView.printNotOrderedTable();
-		return receivePayingTable(tables);
 	}
 }
