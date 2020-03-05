@@ -16,15 +16,11 @@ public class Application {
             OutputView.printTables(tables, tableNumber);
             if (pos == Pos.ORDER) {
                 tableNumber = inputTableNumberWithValidation(tableNumber);
-
                 OutputView.printMenus(menus);
                 MenuNumber menuNumber = inputMenuNumberWithValidation();
-
                 Count count = inputCountWithValidation();
                 orders.addOrder(new Order(menuNumber.getMenuByNumber(), count));
-
             }
-
         } while (pos != Pos.EXIT);
 
     }
@@ -51,7 +47,7 @@ public class Application {
         try {
             int inputNumber = InputView.inputTableNumber();
             checkExistedTableNumber(tableNumber, inputNumber);
-            return new TableNumber();
+            return new TableNumber(inputNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return inputTableNumberWithValidation(tableNumber);

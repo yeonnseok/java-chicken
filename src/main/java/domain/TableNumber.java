@@ -23,4 +23,10 @@ public class TableNumber {
     public boolean isNotZeroAndNotSameValueWith(int inputNumber) {
         return tableNumber != 0 && tableNumber != inputNumber;
     }
+
+    public boolean isSameWith(int index) {
+        return tableNumber == TableRepository.tables()
+                .get(index)
+                .getNumber();
+    }
 }
