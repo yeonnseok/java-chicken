@@ -19,7 +19,7 @@ public class Application {
                 OutputView.printMenus(menus);
                 MenuNumber menuNumber = inputMenuNumberWithValidation();
                 Count count = inputCountWithValidation();
-                orders.addOrder(new Order(menuNumber.getMenuByNumber(), count));
+                orders.addOrder(menuNumber.getMenuByNumber(), count);
             }
 
             if (pos == Pos.PAY) {

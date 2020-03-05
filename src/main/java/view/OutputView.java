@@ -1,6 +1,9 @@
 package view;
 
-import domain.*;
+import domain.Menu;
+import domain.Orders;
+import domain.Table;
+import domain.TableNumber;
 
 import java.util.List;
 
@@ -9,6 +12,8 @@ public class OutputView {
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
     private static final String SELECTED_LINE = "└ ₩ ┘";
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String SPACE = " ";
 
     public static void printPosMenus() {
         System.out.println("## 메인화면");
@@ -66,9 +71,23 @@ public class OutputView {
     }
 
     public static void printOrderList(Orders orders) {
-        System.out.println("## 주문 내역");
-        System.out.println("메뉴 수량 금액");
-        orders.getOrders()
-                .forEach(System.out::println);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("## 주문 내역")
+                    .append(NEW_LINE)
+                    .append("메뉴 수량 금액")
+                    .append(NEW_LINE);
+        printEachMenuInformation(orders, stringBuilder);
+        System.out.println(stringBuilder);
+    }
+
+    private static void printEachMenuInformation(Orders orders, StringBuilder stringBuilder) {
+        for (Menu menu : orders.getOrders().keySet()) {
+            stringBuilder.append(menu.getName())
+                        .append(SPACE)
+                        .append(orders.getOrders().get(menu))
+                        .append(SPACE)
+                        .append(menu.getPrice())
+                        .append(NEW_LINE);
+        }
     }
 }

@@ -1,28 +1,31 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Orders {
     private static final int DISCOUNT_CHICKEN_UNIT_COUNT = 10;
     private static final int DISCOUNT_CHICKEN_UNIT_PRICE = 10_000;
+    private static final int DEFAULT_COUNT = 0;
 
-    private List<Order> orders = new ArrayList<>();
+    private Map<Menu, Integer> orders = new HashMap<>();
 
-    public void addOrder(Order order) {
-        this.orders.add(order);
+    public void addOrder(Menu menu, Count count) {
+        this.orders.put(menu, orders.getOrDefault(menu, DEFAULT_COUNT) + count.getCount());
     }
 
     public int calculateTotalPrice() {
-        return orders.stream()
-                .mapToInt(Order::calculateMenuPrice)
+        return orders.keySet()
+                .stream()
+                .mapToInt(menu -> menu.getPrice() * orders.get(menu))
                 .sum();
     }
 
     public int countChickenType() {
-        return (int) orders.stream()
-                .filter(Order::isChickenTypeMenu)
-                .mapToInt(Order::getCount)
+        return (int) orders.keySet()
+                .stream()
+                .filter(Menu::isChickenType)
+                .mapToInt(menu -> orders.get(menu))
                 .sum();
     }
 
@@ -30,7 +33,7 @@ public class Orders {
         return totalPrice - (countChickenType() / DISCOUNT_CHICKEN_UNIT_COUNT) * DISCOUNT_CHICKEN_UNIT_PRICE;
     }
 
-    public List<Order> getOrders() {
+    public Map<Menu, Integer> getOrders() {
         return orders;
     }
 }
