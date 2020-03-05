@@ -34,6 +34,7 @@ public class PosController {
 		do {
 			OutputView.printMainMessage();
 			posStatus = receivePostStatus();
+
 			runByStatus(posStatus);
 		} while (!posStatus.isTerminated());
 	}
@@ -67,12 +68,14 @@ public class PosController {
 		OutputView.printTables(tables.getTables());
 		final Table orderingTable = receiveTargetTable(tables);
 		OutputView.printMenus(menus);
+
 		receiveOrder(orderingTable);
 	}
 
-	private void operatePayingFunction() {
+	private void operatePayingFunction() { // TODO: 2020/03/05 너무 부하다
 		OutputView.printTables(tables.getTables());
 		final Table payingTable = receivePayingTable(tables);
+
 		OutputView.printOrdersBy(payingTable);
 		DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
 		int price = categoryDiscountStrategy.discount(payingTable);
@@ -88,10 +91,12 @@ public class PosController {
 
 	private Table receivePayingTable(Tables tables) {
 		Table targetTable = receiveTargetTable(tables);
+
 		if (targetTable.isOrdered()) {
 			return targetTable;
 		}
-		System.out.println("주문되지 않은 테이블 입니다.");
+
+		OutputView.printNotOrderedTable();
 		return receivePayingTable(tables);
 	}
 
@@ -109,8 +114,10 @@ public class PosController {
 		try {
 			OutputView.askInputOrderMenu();
 			Menu orderingMenu = MenuRepository.getMenu(InputView.askIntegerInput());
+
 			OutputView.askInputOrderAmount();
 			int orderingAmount = InputView.askIntegerInput();
+
 			orderingTable.order(new Order(orderingMenu, orderingAmount));
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());

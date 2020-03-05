@@ -24,6 +24,7 @@ public class OutputView {
 	private static final String ORDER_CONTENTS = "\n## 주문내역";
 	private static final String ORDER_COLUMN_NAME = "메뉴   수량   금액";
 	private static final String TABLE_PAYING_PROCESS_GUIDE_MESSAGE = "\n## %d번 테이블의 결제를 진행합니다.\n";
+	private static final String NOT_ORDERED_TABLE_EXCEPTION_MESSAGE = "주문되지 않은 테이블 입니다.";
 	private static final String PAYMENT_OPTIONS_GUIDE_MESSAGE = "## 신용카드는 1번, 현금은 2번";
 	private static final String FINAL_PRICE_IS = "\n## 최종 결제할 금액";
 	private static final String THIS_MUCH = "%d원\n\n";
@@ -61,6 +62,10 @@ public class OutputView {
 
 	public static void printTablePayingProcess(int tableNumber) {
 		System.out.printf(TABLE_PAYING_PROCESS_GUIDE_MESSAGE, tableNumber);
+	}
+
+	public static void printNotOrderedTable() {
+		System.out.println(NOT_ORDERED_TABLE_EXCEPTION_MESSAGE);
 	}
 
 	public static void printPaymentTypeOptions() {
