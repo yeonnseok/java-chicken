@@ -33,4 +33,8 @@ public class TableNumber {
     public int getTableNumber() {
         return tableNumber;
     }
+
+    public boolean isInitialTableNumber() {
+        return tableNumber == 0;
+    }
 }

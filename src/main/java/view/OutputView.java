@@ -72,7 +72,8 @@ public class OutputView {
 
     public static void printOrderList(Orders orders) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("## 주문 내역")
+        stringBuilder.append(NEW_LINE)
+                    .append("## 주문 내역")
                     .append(NEW_LINE)
                     .append("메뉴 수량 금액")
                     .append(NEW_LINE);
@@ -93,5 +94,11 @@ public class OutputView {
 
     public static void printPayProcessMessage(TableNumber tableNumber) {
         System.out.println(String.format("%d번 테이블의 결제를 진행합니다.", tableNumber.getTableNumber()));
+    }
+
+    public static void printTotalPrice(int totalPrice) {
+        System.out.println(NEW_LINE + "## 최종 결제할 금액");
+        System.out.println(String.format("%d원", totalPrice));
+        System.out.println();
     }
 }

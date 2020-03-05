@@ -23,11 +23,14 @@ public class Application {
             }
 
             if (pos == Pos.PAY) {
+                checkEmptyTableWhenPay(pos, tableNumber);
                 OutputView.printTables(tables, tableNumber);
                 tableNumber = inputTableNumberWithValidation(tableNumber);
                 OutputView.printOrderList(orders);
                 OutputView.printPayProcessMessage(tableNumber);
                 Payment payment = getPaymentWithValidation();
+                int totalPrice = payment.totalPriceAfterPaymentDiscount(orders.totalPriceDiscountedByChickenCount());
+                OutputView.printTotalPrice(totalPrice);
             }
         } while (pos != Pos.EXIT);
 
@@ -68,6 +71,12 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return inputTableNumberWithValidation(tableNumber);
+        }
+    }
+
+    private static void checkEmptyTableWhenPay(Pos pos, TableNumber tableNumber) {
+        if (pos == Pos.PAY && tableNumber.isInitialTableNumber()) {
+            throw new IllegalArgumentException("결제할 수 있는 테이블이 없습니다.");
         }
     }
 

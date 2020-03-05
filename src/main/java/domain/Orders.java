@@ -14,13 +14,6 @@ public class Orders {
         this.orders.put(menu, orders.getOrDefault(menu, DEFAULT_COUNT) + count.getCount());
     }
 
-    public int calculateTotalPrice() {
-        return orders.keySet()
-                .stream()
-                .mapToInt(menu -> menu.getPrice() * orders.get(menu))
-                .sum();
-    }
-
     public int countChickenType() {
         return orders.keySet()
                 .stream()
@@ -29,11 +22,18 @@ public class Orders {
                 .sum();
     }
 
-    public int totalPriceDiscountedByChickenCount(int totalPrice) {
-        return totalPrice - (countChickenType() / DISCOUNT_CHICKEN_UNIT_COUNT) * DISCOUNT_CHICKEN_UNIT_PRICE;
-    }
-
     public Map<Menu, Integer> getOrders() {
         return orders;
+    }
+
+    public int totalPriceDiscountedByChickenCount() {
+        return calculateTotalPrice() - (countChickenType() / DISCOUNT_CHICKEN_UNIT_COUNT) * DISCOUNT_CHICKEN_UNIT_PRICE;
+    }
+
+    private int calculateTotalPrice() {
+        return orders.keySet()
+                .stream()
+                .mapToInt(menu -> menu.getPrice() * orders.get(menu))
+                .sum();
     }
 }
