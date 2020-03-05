@@ -29,4 +29,8 @@ public class TableNumber {
                 .get(index)
                 .getNumber();
     }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
 }

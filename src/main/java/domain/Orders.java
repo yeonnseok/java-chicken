@@ -22,7 +22,7 @@ public class Orders {
     }
 
     public int countChickenType() {
-        return (int) orders.keySet()
+        return orders.keySet()
                 .stream()
                 .filter(Menu::isChickenType)
                 .mapToInt(menu -> orders.get(menu))

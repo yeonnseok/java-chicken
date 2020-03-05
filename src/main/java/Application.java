@@ -26,6 +26,7 @@ public class Application {
                 OutputView.printTables(tables, tableNumber);
                 tableNumber = inputTableNumberWithValidation(tableNumber);
                 OutputView.printOrderList(orders);
+                OutputView.printPayProcessMessage(tableNumber);
             }
         } while (pos != Pos.EXIT);
 

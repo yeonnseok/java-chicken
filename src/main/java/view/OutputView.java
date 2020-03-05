@@ -90,4 +90,8 @@ public class OutputView {
                         .append(NEW_LINE);
         }
     }
+
+    public static void printPayProcessMessage(TableNumber tableNumber) {
+        System.out.println(String.format("%d번 테이블의 결제를 진행합니다.", tableNumber.getTableNumber()));
+    }
 }
