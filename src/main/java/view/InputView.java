@@ -11,21 +11,6 @@ public class InputView {
         return validateNumber(SCANNER.nextLine());
     }
 
-    public static int validateNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format("입력값은 숫자로만 입력해야합니다. 입력값 : %s", input));
-        }
-    }
-
-    public static int validateNegativeNumber(int input) {
-        if (input < MIN_QUANTITY) {
-            throw new IllegalArgumentException(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", input));
-        }
-        return input;
-    }
-
     public static int inputToDo() {
         OutputView.printInputToDo();
         return validateNumber(SCANNER.nextLine());
@@ -45,5 +30,20 @@ public class InputView {
     public static int inputPaymentWay() {
         OutputView.printInputPaymentWay();
         return validateNumber(SCANNER.nextLine());
+    }
+
+    public static int validateNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(String.format("입력값은 숫자로만 입력해야합니다. 입력값 : %s", input));
+        }
+    }
+
+    public static int validateNegativeNumber(int input) {
+        if (input < MIN_QUANTITY) {
+            throw new IllegalArgumentException(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", input));
+        }
+        return input;
     }
 }

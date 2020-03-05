@@ -108,4 +108,12 @@ public class OutputView {
     public static void printTotalMoney(int totalMoney) {
         System.out.println("## 최종 결제할 금액" + NEW_LINE + totalMoney);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.err.println(errorMessage);
+    }
+
+    public static void printExitMessage() {
+        System.out.println("프로그램을 종료합니다.");
+    }
 }

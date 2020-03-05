@@ -1,13 +1,9 @@
 package controller;
 
-import domain.Menu;
 import domain.Menus;
-import domain.Table;
 import domain.Tables;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class Application {
     private static final int REGISTER = 1;
@@ -19,10 +15,27 @@ public class Application {
         int toDo;
         do {
             OutputView.printMain();
-            toDo = InputView.inputToDo();
+            toDo = inputToDo();
             runApplication(tables, toDo);
         } while(toDo != EXIT);
-        System.out.println("프로그램을 종료합니다.");
+        OutputView.printExitMessage();
+    }
+
+    private static int inputToDo() {
+        try {
+            int toDo = InputView.inputToDo();
+            return validateToDo(toDo);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputToDo();
+        }
+    }
+
+    private static int validateToDo(int toDo) {
+        if (toDo != REGISTER && toDo != PAY && toDo != EXIT) {
+            throw new IllegalArgumentException("1,2,3 중 하나의 기능을 선택해주세요.");
+        }
+        return toDo;
     }
 
     private static void runApplication(Tables tables, int toDo) {

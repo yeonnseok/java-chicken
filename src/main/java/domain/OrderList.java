@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class OrderList {
+    private static final int NO_QUANTITY = 0;
+
     private final List<OrderedMenu> orderList = new ArrayList<>();
 
     public void registerMenu(Menu menu, int quantity) {
+        if (quantity == NO_QUANTITY) {
+            return;
+        }
         if (hasSameMenu(menu)) {
             orderList.stream()
                     .filter(o -> o.isMatchMenu(menu))

@@ -10,7 +10,14 @@ public class OrderedMenu {
 
     public OrderedMenu(Menu menu, int quantity) {
         this.menu = menu;
-        this.quantity = quantity;
+        this.quantity = validateMenuQuantity(quantity);;
+    }
+
+    private int validateMenuQuantity(int quantity) {
+        if (quantity > MAX_QUANTITY) {
+            throw new IllegalArgumentException("한 메뉴에 대해 최대 99개까지 주문가능합니다.");
+        }
+        return quantity;
     }
 
     public void addQuantity(int quantity) {
