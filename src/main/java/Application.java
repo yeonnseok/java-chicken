@@ -12,12 +12,21 @@ public class Application {
             pos = getPosWithValidation();
             if (pos == Pos.ORDER) {
                 OutputView.printTables(tables);
-                final int tableNumber = InputView.inputTableNumber();
+                TableNumber tableNumber = inputTableNumberWithValidation();
             }
 
         } while (pos != Pos.EXIT);
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
+    }
+
+    private static TableNumber inputTableNumberWithValidation() {
+        try {
+            return new TableNumber(InputView.inputTableNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputTableNumberWithValidation();
+        }
     }
 
     private static Pos getPosWithValidation() {
