@@ -29,4 +29,8 @@ public class Orders {
     public int totalPriceDiscountedByChickenCount(int totalPrice) {
         return totalPrice - (countChickenType() / DISCOUNT_CHICKEN_UNIT_COUNT) * DISCOUNT_CHICKEN_UNIT_PRICE;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }

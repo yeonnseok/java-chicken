@@ -13,13 +13,19 @@ public class Application {
         Pos pos;
         do {
             pos = getPosWithValidation();
-            OutputView.printTables(tables, tableNumber);
             if (pos == Pos.ORDER) {
+                OutputView.printTables(tables, tableNumber);
                 tableNumber = inputTableNumberWithValidation(tableNumber);
                 OutputView.printMenus(menus);
                 MenuNumber menuNumber = inputMenuNumberWithValidation();
                 Count count = inputCountWithValidation();
                 orders.addOrder(new Order(menuNumber.getMenuByNumber(), count));
+            }
+
+            if (pos == Pos.PAY) {
+                OutputView.printTables(tables, tableNumber);
+                tableNumber = inputTableNumberWithValidation(tableNumber);
+                OutputView.printOrderList(orders);
             }
         } while (pos != Pos.EXIT);
 

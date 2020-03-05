@@ -42,6 +42,14 @@ public class Menu {
                 category == menu.category;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(number, name, category, price);
