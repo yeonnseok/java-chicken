@@ -112,4 +112,30 @@ public class OrdersTest {
 		);
 		assertThat(orders.hasOrderedMenu(MenuRepository.getMenu(4))).isEqualTo(false);
 	}
+
+	@DisplayName("getAmountOfOrderedMenu 주문되어있는 메뉴의 개수를 반환")
+	@Test
+	void getAmountOfOrderedMenu() {
+		Orders orders = new Orders(
+				Arrays.asList(
+						new Order(MenuRepository.getMenu(1), 1),
+						new Order(MenuRepository.getMenu(2), 2),
+						new Order(MenuRepository.getMenu(3), 3)
+				)
+		);
+		assertThat(orders.getAmountOfOrderedMenu(MenuRepository.getMenu(3))).isEqualTo(3);
+	}
+
+	@DisplayName("getAmountOfOrderedMenu 주문 안된 메뉴를 입력시 0 반환")
+	@Test
+	void getAmountOfOrderedMenu_unordered_menu() {
+		Orders orders = new Orders(
+				Arrays.asList(
+						new Order(MenuRepository.getMenu(1), 1),
+						new Order(MenuRepository.getMenu(2), 2),
+						new Order(MenuRepository.getMenu(3), 3)
+				)
+		);
+		assertThat(orders.getAmountOfOrderedMenu(MenuRepository.getMenu(4))).isEqualTo(0);
+	}
 }

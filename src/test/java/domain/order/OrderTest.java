@@ -88,4 +88,18 @@ public class OrderTest {
 		assertThat(order.hasSameMenu(MenuRepository.getMenu(inputMenuNumber)))
 				.isEqualTo(expected);
 	}
+
+	@DisplayName("calculatePurePrice 16_000원짜리 후라이드 치킨 5개 주문시 80_000 반환")
+	@Test
+	void calculatePurePrice() {
+		Order order = new Order(MenuRepository.getMenu(1), 5);
+		assertThat(order.calculatePurePrice()).isEqualTo(80_000);
+	}
+
+	@DisplayName("getDividedAmountByUnit 10마리 주문시 할인되는 수를 알기위해 55개 주문시 5 반환")
+	@Test
+	void getDividedAmountByUnit() {
+		Order order = new Order(MenuRepository.getMenu(1), 55);
+		assertThat(order.getDividedAmountByUnit(10)).isEqualTo(5);
+	}
 }

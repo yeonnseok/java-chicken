@@ -65,4 +65,15 @@ public class TableTest {
 		assertThat(table_one.getOrders().getAmountOfOrderedMenu(menu_one)).isEqualTo(2);
 		assertThat(table_one.getOrders().getAmountOfOrderedMenu(menu_two)).isEqualTo(1);
 	}
+
+	@DisplayName("cleanTable 사용시 빈 orders로 재할당 되는지 확인")
+	@Test
+	void cleanTable() {
+		Menu menu_one = MenuRepository.getMenu(1);
+		Menu menu_two = MenuRepository.getMenu(2);
+		table_one.order(new Order(menu_one, 11));
+		table_one.order(new Order(menu_two, 99));
+		table_one.cleanTable();
+		assertThat(table_one.getOrders().isEmpty()).isEqualTo(true);
+	}
 }

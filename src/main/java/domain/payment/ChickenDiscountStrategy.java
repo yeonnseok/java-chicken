@@ -44,7 +44,7 @@ public class ChickenDiscountStrategy implements DiscountableByCategory {
 		return order.calculatePurePrice() - (order.getDividedAmountByUnit(DIVIDE_UNIT) * DISCOUNT_UNIT);
 	}
 
-	public static <T> Predicate<T> not(Predicate<T> t) {
+	private static <T> Predicate<T> not(Predicate<T> t) {
 		return t.negate();
 	}
 }

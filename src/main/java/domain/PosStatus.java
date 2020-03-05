@@ -15,9 +15,9 @@ public enum PosStatus {
 	STATUS_PAYING(2),
 	STATUS_TERMINATION(3);
 
-	private static final int TERMINATION_STATUS = 3;
-	private static final int PAYING_STATUS = 2;
 	private static final int ORDER_STATUS = 1;
+	private static final int PAYING_STATUS = 2;
+	private static final int TERMINATION_STATUS = 3;
 	private int statusNumber;
 
 	PosStatus(int statusNumber) {

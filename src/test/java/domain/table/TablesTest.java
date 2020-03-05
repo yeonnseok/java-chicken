@@ -33,4 +33,20 @@ public class TablesTest {
 			new Tables(nullInput);
 		}).withMessage("Tables에 잘못된 입력이 들어왔습니다.");
 	}
+
+	@DisplayName("getTable 유효한 테이블 번호 입력시 테이블 반환")
+	@Test
+	void getTable() {
+		Tables tables = new Tables(TableRepository.tables());
+		assertThat(tables.getTable(1)).isEqualTo(new Table(1));
+	}
+
+	@DisplayName("getTable 유효하지 않은 테이블 번호 입력시 예외처리")
+	@Test
+	void getTable_exception() {
+		Tables tables = new Tables(TableRepository.tables());
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+			tables.getTable(99);
+		}).withMessage("해당되는 번호의 테이블이 없습니다.");
+	}
 }
