@@ -20,10 +20,9 @@ public class TablesTest {
     @DisplayName("전달한 테이블 번호에 메뉴 등록하는 기능 테스트")
     void registerMenuTest() {
         Tables tables = new Tables();
-        Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
         int tableNumber = 2;
         int quantity = 5;
-        tables.registerMenu(tableNumber, menu, quantity);
+        tables.registerMenu(tableNumber, 1, quantity);
 
         Table testTable = new Table(2);
         testTable.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), quantity);
@@ -36,13 +35,10 @@ public class TablesTest {
     void countChickenMenuTest() {
         Tables tables = new Tables();
         int tableNumber = 2;
-        Menu menu1 = new Menu(1, "후라이드", Category.CHICKEN, 16000);
-        Menu menu2 = new Menu(2, "양념", Category.CHICKEN, 18000);
-        Menu menu3 = new Menu(4, "콜라", Category.BEVERAGE, 1800);
 
-        tables.registerMenu(tableNumber, menu1, 5);
-        tables.registerMenu(tableNumber, menu2, 3);
-        tables.registerMenu(tableNumber, menu3, 10);
+        tables.registerMenu(tableNumber, 1, 5);
+        tables.registerMenu(tableNumber, 2, 3);
+        tables.registerMenu(tableNumber, 21, 10);
 
         assertThat(tables.countChickenMenu(tableNumber)).isEqualTo(8);
     }
@@ -52,14 +48,11 @@ public class TablesTest {
     void calculateTotalTotalMoneyTest() {
         Tables tables = new Tables();
         int tableNumber = 2;
-        Menu menu1 = new Menu(1, "후라이드", Category.CHICKEN, 16000);
-        Menu menu2 = new Menu(2, "양념", Category.CHICKEN, 18000);
-        Menu menu3 = new Menu(4, "콜라", Category.BEVERAGE, 1800);
 
-        tables.registerMenu(tableNumber, menu1, 1);
-        tables.registerMenu(tableNumber, menu2, 1);
-        tables.registerMenu(tableNumber, menu3, 1);
+        tables.registerMenu(tableNumber, 1, 1);
+        tables.registerMenu(tableNumber, 2, 1);
+        tables.registerMenu(tableNumber, 21, 1);
 
-        assertThat(tables.calculateTotalMoney(tableNumber)).isEqualTo(35800);
+        assertThat(tables.calculateTotalMoney(tableNumber)).isEqualTo(33000);
     }
 }

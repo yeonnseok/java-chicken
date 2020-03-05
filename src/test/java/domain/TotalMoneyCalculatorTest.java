@@ -11,17 +11,14 @@ public class TotalMoneyCalculatorTest {
     void applyChickenCategoryDiscountTest() {
         Tables tables = new Tables();
         int tableNumber = 1;
-        Menu menu1 = new Menu(1,"후라이드", Category.CHICKEN, 16000);
-        Menu menu2 = new Menu(2,"양념", Category.CHICKEN, 18000);
-        Menu menu3 = new Menu(3,"반반", Category.CHICKEN, 17000);
-        tables.registerMenu(tableNumber, menu1, 4);
-        tables.registerMenu(tableNumber, menu2, 10);
-        tables.registerMenu(tableNumber, menu3, 20);
+        tables.registerMenu(tableNumber, 1, 4);
+        tables.registerMenu(tableNumber, 2, 10);
+        tables.registerMenu(tableNumber, 5, 20);
 
         TotalMoneyCalculator calculator = new TotalMoneyCalculator();
         PaymentWay paymentWay = new PaymentWay(1);
 
-        assertThat(calculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo(554000);
+        assertThat(calculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo(534000);
     }
 
     @Test
@@ -29,16 +26,13 @@ public class TotalMoneyCalculatorTest {
     void applyPaymentWayDiscountTest() {
         Tables tables = new Tables();
         int tableNumber = 1;
-        Menu menu1 = new Menu(1,"후라이드", Category.CHICKEN, 16000);
-        Menu menu2 = new Menu(2,"양념", Category.CHICKEN, 18000);
-        Menu menu3 = new Menu(3,"콜라", Category.BEVERAGE, 1000);
-        tables.registerMenu(tableNumber, menu1, 1);
-        tables.registerMenu(tableNumber, menu2, 1);
-        tables.registerMenu(tableNumber, menu3, 2);
+        tables.registerMenu(tableNumber, 1, 1);
+        tables.registerMenu(tableNumber, 2, 1);
+        tables.registerMenu(tableNumber, 22, 2);
 
         TotalMoneyCalculator calculator = new TotalMoneyCalculator();
         PaymentWay paymentWay = new PaymentWay(2);
-        double testMoney = 36000 * 0.95;
+        double testMoney = 34000 * 0.95;
 
         assertThat(calculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo((int) testMoney);
     }
@@ -48,13 +42,10 @@ public class TotalMoneyCalculatorTest {
     void calculateTotalMoneyTest() {
         Tables tables = new Tables();
         int tableNumber = 1;
-        Menu menu1 = new Menu(1,"후라이드", Category.CHICKEN, 16000);
-        Menu menu2 = new Menu(2,"양념", Category.CHICKEN, 18000);
-        Menu menu3 = new Menu(3,"콜라", Category.BEVERAGE, 1000);
-        tables.registerMenu(tableNumber, menu1, 10);
-        tables.registerMenu(tableNumber, menu2, 25);
-        tables.registerMenu(tableNumber, menu3, 20);
-        double testTotalMoney = 16000 * 10 + 18000 * 25 + 1000 * 20 - 30000;
+        tables.registerMenu(tableNumber, 1, 10);
+        tables.registerMenu(tableNumber, 5, 25);
+        tables.registerMenu(tableNumber, 22, 20);
+        double testTotalMoney = 16000 * 10 + 17000 * 25 + 1000 * 20 - 30000;
 
         TotalMoneyCalculator calculator = new TotalMoneyCalculator();
         PaymentWay paymentWay = new PaymentWay(2);

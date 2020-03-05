@@ -17,7 +17,7 @@ public class Application {
             OutputView.printMain();
             toDo = inputToDo();
             runApplication(tables, toDo);
-        } while(toDo != EXIT);
+        } while (toDo != EXIT);
         OutputView.printExitMessage();
     }
 
