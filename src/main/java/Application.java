@@ -1,4 +1,5 @@
 import controller.PosController;
+import view.OutputView;
 
 /**
  * 프로그램의 실행을 담당하는 main이 있는 클래스
@@ -10,7 +11,11 @@ import controller.PosController;
  */
 public class Application {
 	public static void main(String[] args) {
-		PosController posController = new PosController();
-		posController.run();
+		try {
+			PosController posController = new PosController();
+			posController.run();
+		} catch (Exception e) {
+			OutputView.printExceptionMessage(e.getMessage());
+		}
 	}
 }

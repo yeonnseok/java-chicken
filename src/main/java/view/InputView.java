@@ -15,6 +15,15 @@ public class InputView {
 
 	private InputView() {}
 
+	public static int askPosStatus() {
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			OutputView.printExceptionMessage("정수만 입력해주세요");
+			return askTableNumber();
+		}
+	}
+
 	public static int askTableNumber() { // TODO: 2020/03/04 아래와 겹치네?
 		try {
 			return Integer.parseInt(SCANNER.nextLine());

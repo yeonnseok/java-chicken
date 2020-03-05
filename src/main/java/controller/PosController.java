@@ -1,5 +1,6 @@
 package controller;
 
+import domain.PosStatus;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.Order;
@@ -24,35 +25,59 @@ import java.util.List;
  * 날짜 : 2020/03/04
  */
 public class PosController {
-	public void run() { // TODO: 2020/03/04 장기적으로 여기에서는 기능을 받아서 해당하는 기능으로 이동하도록, 즉 다른 메서드를 추가하기, 우선은 주문기능 여기에 구현
-		while (true) {
-			final Tables tables = new Tables(TableRepository.tables());
+	private final Tables tables = new Tables(TableRepository.tables());
+	private final List<Menu> menus = MenuRepository.menus();
 
-			OutputView.printTables(tables.getTables());
+	public void run() {
+		PosStatus posStatus;
 
-			final Table orderingTable = receiveTargetTable(tables);
+		do {
+			OutputView.printMainMessage();
+			OutputView.askInputPosStatus();
+			posStatus = PosStatus.of(InputView.askPosStatus());
+			runByStatus(posStatus);
+		} while (!posStatus.isTerminated());
+	}
 
-			final List<Menu> menus = MenuRepository.menus();
-			OutputView.printMenus(menus);
-			Order order = receiveOrder();
-			orderingTable.order(order);
-
-			// 계산 로직 시작
-			OutputView.printTables(tables.getTables());
-			final Table payingTable = receivePayingTable(tables);
-			OutputView.printOrdersBy(payingTable);
-			DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
-			int price = categoryDiscountStrategy.discount(payingTable);
-
-			OutputView.printTablePayingProcess(payingTable.getNumber());
-			OutputView.printPaymentTypeOptions();
-			PaymentType paymentType = PaymentType.of(InputView.askPaymentType());
-
-			int finalPrice = CardDiscountStrategy.discount(price, paymentType);
-			OutputView.printFinalPrice(finalPrice);
-			payingTable.cleanTable();
-
+	private void runByStatus(PosStatus posStatus) {
+		if (posStatus.isTerminated()) {
+			OutputView.printTerminationMessage();
+			return;
 		}
+
+		if (posStatus.isOrdering()) {
+			operateOrderFunction();
+		}
+
+		if(posStatus.isPaying()) {
+			operatePayingFunction();
+		}
+	}
+
+	private void operateOrderFunction() {
+		OutputView.printTables(tables.getTables());
+
+		final Table orderingTable = receiveTargetTable(tables);
+
+		OutputView.printMenus(menus);
+		Order order = receiveOrder();
+		orderingTable.order(order);
+	}
+
+	private void operatePayingFunction() {
+		OutputView.printTables(tables.getTables());
+		final Table payingTable = receivePayingTable(tables);
+		OutputView.printOrdersBy(payingTable);
+		DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
+		int price = categoryDiscountStrategy.discount(payingTable);
+
+		OutputView.printTablePayingProcess(payingTable.getNumber());
+		OutputView.printPaymentTypeOptions();
+		PaymentType paymentType = PaymentType.of(InputView.askPaymentType());
+
+		int finalPrice = CardDiscountStrategy.discount(price, paymentType);
+		OutputView.printFinalPrice(finalPrice);
+		payingTable.cleanTable();
 	}
 
 	private Table receivePayingTable(Tables tables) {
@@ -86,6 +111,4 @@ public class PosController {
 			return receiveOrder();
 		}
 	}
-
-
 }
