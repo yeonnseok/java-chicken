@@ -1,6 +1,6 @@
 package domain.payment;
 
-import domain.order.Order;
+import domain.table.Table;
 
 /**
  * 클래스 이름 : .java
@@ -10,10 +10,15 @@ import domain.order.Order;
  * <p>
  * 날짜 : 2020/03/05
  */
-public class CardDiscountStrategy implements Discountable {
+public class CardDiscountStrategy {
 
-	@Override
-	public int discount(Order order) {
-		return 0;
+	private CardDiscountStrategy() {}
+
+	public static CardDiscountStrategy create() {
+		return new CardDiscountStrategy();
+	}
+
+	public static int discount(int inputPrice, PaymentType paymentType) {
+		return (int) ((inputPrice * paymentType.getDiscountRate()));
 	}
 }
