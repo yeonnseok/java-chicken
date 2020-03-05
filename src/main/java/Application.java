@@ -27,9 +27,19 @@ public class Application {
                 tableNumber = inputTableNumberWithValidation(tableNumber);
                 OutputView.printOrderList(orders);
                 OutputView.printPayProcessMessage(tableNumber);
+                Payment payment = getPaymentWithValidation();
             }
         } while (pos != Pos.EXIT);
 
+    }
+
+    private static Payment getPaymentWithValidation() {
+        try {
+            return Payment.getPayment(InputView.inputPaymentNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return getPaymentWithValidation();
+        }
     }
 
     private static Count inputCountWithValidation() {

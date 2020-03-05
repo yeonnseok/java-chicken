@@ -45,6 +45,16 @@ public class InputView {
         }
     }
 
+    public static int inputPaymentNumber() {
+        try {
+            System.out.println("## 신용 카드는 1번, 현금은 2번");
+            return inputIntegerWithValidation();
+        } catch (NumberFormatException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputPaymentNumber();
+        }
+    }
+
     private static int inputIntegerWithValidation() {
         try {
             return Integer.parseInt(SCANNER.nextLine());
