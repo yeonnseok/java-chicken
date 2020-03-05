@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Menu {
     private final int number;
     private final String name;
@@ -23,6 +25,26 @@ public class Menu {
 
     public int getNumber() {
         return this.number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Menu menu = (Menu) o;
+        return number == menu.number &&
+                price == menu.price &&
+                name.equals(menu.name) &&
+                category == menu.category;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, name, category, price);
     }
 
     @Override

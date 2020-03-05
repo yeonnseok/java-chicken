@@ -16,4 +16,12 @@ public class MenuNumber {
             throw new IllegalArgumentException("주문할 수 있는 메뉴 번호가 아닙니다.");
         }
     }
+
+    public Menu getMenuByNumber() {
+        return MenuRepository.menus()
+                .stream()
+                .filter(menu -> menu.getNumber() == menuNumber)
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
