@@ -34,7 +34,7 @@ public class PosController {
 		do {
 			OutputView.printMainMessage();
 			OutputView.askInputPosStatus();
-			posStatus = PosStatus.of(InputView.askPosStatus());
+			posStatus = PosStatus.of(InputView.askIntegerInput());
 			runByStatus(posStatus);
 		} while (!posStatus.isTerminated());
 	}
@@ -70,7 +70,7 @@ public class PosController {
 
 		OutputView.printTablePayingProcess(payingTable.getNumber());
 		OutputView.printPaymentTypeOptions();
-		PaymentType paymentType = PaymentType.of(InputView.askPaymentType());
+		PaymentType paymentType = PaymentType.of(InputView.askIntegerInput());
 
 		int finalPrice = CardDiscountStrategy.discount(price, paymentType);
 		OutputView.printFinalPrice(finalPrice);
@@ -89,7 +89,7 @@ public class PosController {
 	private Table receiveTargetTable(Tables tables) {
 		try {
 			OutputView.askInputTableNumber();
-			return tables.getTable(InputView.askTableNumber());
+			return tables.getTable(InputView.askIntegerInput());
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
 			return receiveTargetTable(tables);
@@ -99,9 +99,9 @@ public class PosController {
 	private void receiveOrder(Table orderingTable) {
 		try {
 			OutputView.askInputOrderMenu();
-			Menu orderingMenu = MenuRepository.getMenu(InputView.askMenuNumber());
+			Menu orderingMenu = MenuRepository.getMenu(InputView.askIntegerInput());
 			OutputView.askInputOrderAmount();
-			int orderingAmount = InputView.askAmount();
+			int orderingAmount = InputView.askIntegerInput();
 			orderingTable.order(new Order(orderingMenu, orderingAmount));
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());

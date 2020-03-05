@@ -69,7 +69,7 @@ public class OutputView {
 
 	public static void printFinalPrice(int finalPrice) {
 		System.out.println(FINAL_PRICE_IS);
-		System.out.printf(THIS_MUCH, finalPrice); // TODO: 2020/03/05 naming
+		System.out.printf(THIS_MUCH, finalPrice);
 	}
 
 	public static void printTerminationMessage() {
