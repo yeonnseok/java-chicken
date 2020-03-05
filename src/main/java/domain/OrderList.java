@@ -28,10 +28,6 @@ public class OrderList {
                 .anyMatch(o -> o.isMatchMenu(menu));
     }
 
-    public List<OrderedMenu> getOrderedMenus() {
-        return orderList;
-    }
-
     public int calculateMenuPriceSum() {
         return orderList.stream()
                 .mapToInt(o -> o.calculateMenuPriceSum())
@@ -42,6 +38,14 @@ public class OrderList {
         return orderList.stream()
                 .mapToInt(OrderedMenu::getChickenCategoryQuantity)
                 .sum();
+    }
+
+    public void initOrderList() {
+        orderList.clear();
+    }
+
+    public List<OrderedMenu> getOrderedMenus() {
+        return orderList;
     }
 
     @Override
@@ -55,9 +59,5 @@ public class OrderList {
     @Override
     public int hashCode() {
         return Objects.hash(orderList);
-    }
-
-    public void initOrderList() {
-        orderList.clear();
     }
 }

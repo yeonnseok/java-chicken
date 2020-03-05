@@ -27,13 +27,13 @@ public class MenuTest {
     @Test
     @DisplayName("치킨 카테고리인지 확인하는 기능 테스트")
     void isChickenCategoryTest() {
-        Menu menu1 = new Menu(1,"후라이드", Category.CHICKEN, 16000);
+        Menu menu1 = new Menu(1, "후라이드", Category.CHICKEN, 16000);
         assertThat(menu1.isChickenCategory()).isEqualTo(true);
 
-        Menu menu2 = new Menu(2,"양념", Category.CHICKEN, 17000);
+        Menu menu2 = new Menu(2, "양념", Category.CHICKEN, 17000);
         assertThat(menu2.isChickenCategory()).isEqualTo(true);
 
-        Menu menu3 = new Menu(3,"콜라", Category.BEVERAGE, 1600);
+        Menu menu3 = new Menu(3, "콜라", Category.BEVERAGE, 1600);
         assertThat(menu3.isChickenCategory()).isEqualTo(false);
     }
 }

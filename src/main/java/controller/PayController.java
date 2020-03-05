@@ -20,15 +20,6 @@ public class PayController {
         tables.initOrderList(tableNumber);
     }
 
-    private static PaymentWay createPaymentWay() {
-        try {
-            return new PaymentWay(InputView.inputPaymentWay());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return createPaymentWay();
-        }
-    }
-
     private static int inputTableNumber(Tables tables) {
         try {
             int tableNumber = InputView.inputTableNumber();
@@ -51,5 +42,14 @@ public class PayController {
         OrderList tableOrderList = tables.getOrderList(tableNumber);
         List<OrderedMenu> orderedMenus = tableOrderList.getOrderedMenus();
         return orderedMenus.size();
+    }
+
+    private static PaymentWay createPaymentWay() {
+        try {
+            return new PaymentWay(InputView.inputPaymentWay());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return createPaymentWay();
+        }
     }
 }

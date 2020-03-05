@@ -6,13 +6,14 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final int MIN_QUANTITY = 0;
 
-    public static int inputTableNumber() {
-        OutputView.printInputTableNumber();
-        return validateNumber(SCANNER.nextLine());
-    }
 
     public static int inputToDo() {
         OutputView.printInputToDo();
+        return validateNumber(SCANNER.nextLine());
+    }
+
+    public static int inputTableNumber() {
+        OutputView.printInputTableNumber();
         return validateNumber(SCANNER.nextLine());
     }
 

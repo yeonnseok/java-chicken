@@ -29,7 +29,7 @@ public class Tables {
         Menu menu = matchMenu(menuNumber);
         tables().stream()
                 .filter(o -> o.isMatchTableNumber(tableNumber))
-                .forEach(o -> o.registerMenu(menu,quantity));
+                .forEach(o -> o.registerMenu(menu, quantity));
     }
 
     private Menu matchMenu(int menuNumber) {
@@ -39,6 +39,13 @@ public class Tables {
                 .get();
     }
 
+    public int calculateTotalMoney(int tableNumber) {
+        return tables.stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
+                .mapToInt(o -> o.calculateMenuPriceSum())
+                .sum();
+    }
+
     public int countChickenMenu(int tableNumber) {
         return tables.stream()
                 .filter(o -> o.isMatchTableNumber(tableNumber))
@@ -46,11 +53,10 @@ public class Tables {
                 .sum();
     }
 
-    public int calculateTotalMoney(int tableNumber) {
-        return tables.stream()
+    public void initOrderList(int tableNumber) {
+        tables.stream()
                 .filter(o -> o.isMatchTableNumber(tableNumber))
-                .mapToInt(o -> o.calculateMenuPriceSum())
-                .sum();
+                .forEach(o -> o.initOrderList());
     }
 
     public OrderList getOrderList(int tableNumber) {
@@ -59,11 +65,5 @@ public class Tables {
                 .map(o -> o.getOrderList())
                 .findFirst()
                 .get();
-    }
-
-    public void initOrderList(int tableNumber) {
-        tables.stream()
-                .filter(o -> o.isMatchTableNumber(tableNumber))
-                .forEach(o -> o.initOrderList());
     }
 }

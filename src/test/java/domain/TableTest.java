@@ -20,10 +20,10 @@ public class TableTest {
     @DisplayName("주문받은 메뉴와 수량을 등록하는 기능 확인")
     void registerMenuTest() {
         Table table = new Table(1);
-        table.registerMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), 1);
+        table.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 1);
 
         OrderList testOrderList = new OrderList();
-        testOrderList.registerMenu(new Menu(1,"후라이드", Category.CHICKEN, 16000), 1);
+        testOrderList.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 1);
 
         assertThat(table.getOrderList()).isEqualTo(testOrderList);
     }

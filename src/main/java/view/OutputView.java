@@ -69,12 +69,12 @@ public class OutputView {
         System.out.println("## 메인화면" + NEW_LINE + "1. 주문등록" + NEW_LINE + "2. 결제하기" + NEW_LINE + "3. 프로그램 종료");
     }
 
-    public static void printInputTableNumber() {
-        System.out.println(NEW_LINE + "## 테이블을 선택하세요.");
-    }
-
     public static void printInputToDo() {
         System.out.println("## 원하는 기능을 선택하세요.");
+    }
+
+    public static void printInputTableNumber() {
+        System.out.println(NEW_LINE + "## 테이블을 선택하세요.");
     }
 
     public static void printInputRegisterMenu() {
@@ -109,11 +109,11 @@ public class OutputView {
         System.out.println("## 최종 결제할 금액" + NEW_LINE + totalMoney);
     }
 
-    public static void printErrorMessage(String errorMessage) {
-        System.err.println(errorMessage);
-    }
-
     public static void printExitMessage() {
         System.out.println("프로그램을 종료합니다.");
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.err.println(errorMessage);
     }
 }

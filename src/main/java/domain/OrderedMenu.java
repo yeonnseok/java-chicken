@@ -10,7 +10,8 @@ public class OrderedMenu {
 
     public OrderedMenu(Menu menu, int quantity) {
         this.menu = menu;
-        this.quantity = validateMenuQuantity(quantity);;
+        this.quantity = validateMenuQuantity(quantity);
+        ;
     }
 
     private int validateMenuQuantity(int quantity) {
@@ -29,6 +30,10 @@ public class OrderedMenu {
         if (this.quantity + quantity > MAX_QUANTITY) {
             throw new IllegalArgumentException(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. 현재 주문량 : %d", this.quantity));
         }
+    }
+
+    public boolean isMatchMenu(Menu menu) {
+        return this.menu.equals(menu);
     }
 
     public int calculateMenuPriceSum() {
@@ -58,10 +63,6 @@ public class OrderedMenu {
             return quantity;
         }
         return 0;
-    }
-
-    public boolean isMatchMenu(Menu menu) {
-        return this.menu.equals(menu);
     }
 
     @Override

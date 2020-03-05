@@ -8,19 +8,6 @@ public class Table {
         this.number = number;
     }
 
-    public int calculateMenuPriceSum() {
-        return orderList.calculateMenuPriceSum();
-    }
-
-    public int countChickenMenu() {
-        return orderList.countChickenMenu();
-    }
-
-    @Override
-    public String toString() {
-        return Integer.toString(number);
-    }
-
     public boolean isMatchTableNumber(int tableNumber) {
         return this.number == tableNumber;
     }
@@ -29,11 +16,19 @@ public class Table {
         orderList.registerMenu(menu, quantity);
     }
 
-    public OrderList getOrderList() {
-        return orderList;
+    public int calculateMenuPriceSum() {
+        return orderList.calculateMenuPriceSum();
+    }
+
+    public int countChickenMenu() {
+        return orderList.countChickenMenu();
     }
 
     public void initOrderList() {
         orderList.initOrderList();
+    }
+
+    public OrderList getOrderList() {
+        return orderList;
     }
 }

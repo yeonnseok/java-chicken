@@ -15,17 +15,20 @@ public class Menu {
         this.price = price;
     }
 
+    public boolean isMatchMenu(int menuNumber) {
+        return this.number == menuNumber;
+    }
+
     public int calculateMenuPriceSum(int quantity) {
         return this.price * quantity;
     }
 
-    @Override
-    public String toString() {
-        return category + " " + number + " - " + name + " : " + price + "원";
+    public boolean isChickenCategory() {
+        return this.category == Category.CHICKEN;
     }
 
-    public boolean isMatchMenu(int menuNumber) {
-        return this.number == menuNumber;
+    public String getName() {
+        return this.name;
     }
 
     @Override
@@ -44,11 +47,8 @@ public class Menu {
         return Objects.hash(number, name, category, price);
     }
 
-    public boolean isChickenCategory() {
-        return this.category == Category.CHICKEN;
-    }
-
-    public String getName() {
-        return this.name;
+    @Override
+    public String toString() {
+        return category + " " + number + " - " + name + " : " + price + "원";
     }
 }
