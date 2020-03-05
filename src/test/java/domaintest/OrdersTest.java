@@ -1,9 +1,6 @@
 package domaintest;
 
-import domain.Category;
-import domain.Menu;
-import domain.Order;
-import domain.Orders;
+import domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,11 +18,11 @@ public class OrdersTest {
         Menu menu4 = new Menu(4, "통구이", Category.CHICKEN, 16_000);
         Menu menu5 = new Menu(22, "사이다", Category.BEVERAGE, 1_000);
         orders = new Orders();
-        orders.addOrder(new Order(menu1, 20));
-        orders.addOrder(new Order(menu2, 20));
-        orders.addOrder(new Order(menu3, 1));
-        orders.addOrder(new Order(menu4, 4));
-        orders.addOrder(new Order(menu5, 2));
+        orders.addOrder(new Order(menu1, new Count(20)));
+        orders.addOrder(new Order(menu2, new Count(20)));
+        orders.addOrder(new Order(menu3, new Count(1)));
+        orders.addOrder(new Order(menu4, new Count(4)));
+        orders.addOrder(new Order(menu5, new Count(2)));
     }
 
     @DisplayName("주문 등록 된 음식 가격 합산")

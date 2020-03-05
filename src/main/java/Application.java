@@ -8,20 +8,34 @@ public class Application {
     public static void main(String[] args) {
         final List<Table> tables = TableRepository.tables();
         final List<Menu> menus = MenuRepository.menus();
-
+        final Orders orders = new Orders();
+        TableNumber tableNumber = new TableNumber();
         Pos pos;
         do {
             pos = getPosWithValidation();
+            OutputView.printTables(tables, tableNumber);
             if (pos == Pos.ORDER) {
-                OutputView.printTables(tables);
-                TableNumber tableNumber = inputTableNumberWithValidation();
+                tableNumber = inputTableNumberWithValidation(tableNumber);
 
                 OutputView.printMenus(menus);
                 MenuNumber menuNumber = inputMenuNumberWithValidation();
+
+                Count count = inputCountWithValidation();
+                orders.addOrder(new Order(menuNumber.getMenuByNumber(), count));
+
             }
 
         } while (pos != Pos.EXIT);
 
+    }
+
+    private static Count inputCountWithValidation() {
+        try {
+            return new Count(InputView.inputCount());
+        } catch(IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputCountWithValidation();
+        }
     }
 
     private static MenuNumber inputMenuNumberWithValidation() {
@@ -33,12 +47,20 @@ public class Application {
         }
     }
 
-    private static TableNumber inputTableNumberWithValidation() {
+    private static TableNumber inputTableNumberWithValidation(TableNumber tableNumber) {
         try {
-            return new TableNumber(InputView.inputTableNumber());
+            int inputNumber = InputView.inputTableNumber();
+            checkExistedTableNumber(tableNumber, inputNumber);
+            return new TableNumber();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return inputTableNumberWithValidation();
+            return inputTableNumberWithValidation(tableNumber);
+        }
+    }
+
+    private static void checkExistedTableNumber(TableNumber tableNumber, int inputNumber) {
+        if (tableNumber.isNotZeroAndNotSameValueWith(inputNumber)) {
+            throw new IllegalArgumentException("현재 주문 진행중인 테이블만 선택가능합니다.");
         }
     }
 

@@ -17,4 +17,21 @@ public class TableNumberTest {
             new TableNumber(number);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("현재 주문 진행 중인 테이블 이외의 테이블 번호 입력시 예외 발생 확인")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 5})
+    void existedTableNumberTest(int inputNumber) {
+        assertThatThrownBy(() -> {
+            TableNumber tableNumber = new TableNumber(3);
+            checkExistedTableNumber(tableNumber, inputNumber);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("현재 주문 진행중인 테이블만 선택가능합니다.");
+    }
+
+    private static void checkExistedTableNumber(TableNumber tableNumber, int inputNumber) {
+        if (tableNumber.isNotZeroAndNotSameValueWith(inputNumber)) {
+            throw new IllegalArgumentException("현재 주문 진행중인 테이블만 선택가능합니다.");
+        }
+    }
 }
