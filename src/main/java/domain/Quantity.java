@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.Objects;
-
 public class Quantity {
-    private static final int MIN_QUANTITY_RANGE = 0;
+    private static final int MIN_QUANTITY_RANGE = 1;
     private static final int MAX_QUANTITY_RANGE = 99;
 
     private int quantity;
@@ -32,22 +30,5 @@ public class Quantity {
 
     public int getQuantity() {
         return this.quantity;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Quantity quantity1 = (Quantity) o;
-        return quantity == quantity1.quantity;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(quantity);
     }
 }

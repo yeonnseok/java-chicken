@@ -30,13 +30,13 @@ public class PosController {
     }
 
     private static void executeByFunctionType(FunctionType functionType) {
-        if (functionType.equals(FunctionType.ORDER_ENROLL)) {
+        if (FunctionType.ORDER_ENROLL.equals(functionType)) {
             executeOrderEnroll();
         }
-        if (functionType.equals(FunctionType.PAY)) {
+        if (FunctionType.PAY.equals(functionType)) {
             executePay();
         }
-        if (functionType.equals(FunctionType.TERMINATE)) {
+        if (FunctionType.TERMINATE.equals(functionType)) {
             return;
         }
         run();

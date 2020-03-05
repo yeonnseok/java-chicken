@@ -22,7 +22,7 @@ public class Table {
     }
 
     public boolean hasOrder() {
-        return this.order.getOrder().size() != 0;
+        return this.order.getOrderInfo().size() != 0;
     }
 
     public Order getOrder() {

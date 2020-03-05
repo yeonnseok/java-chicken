@@ -2,7 +2,6 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,10 +16,11 @@ public class PaymentTypeTest {
     }
 
     @DisplayName("유효하지 않은 결제 수단을 입력했을 때 예외 출력 테스트")
-    @Test
-    void getPaymentTypeWithInvalidInput() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 3})
+    void getPaymentTypeWithInvalidInput(int input) {
         Assertions.assertThatThrownBy(() -> {
-            PaymentType.getPaymentType(3);
+            PaymentType.getPaymentType(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

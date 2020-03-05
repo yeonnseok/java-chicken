@@ -12,14 +12,14 @@ public class Calculator {
 
     public static int calculate(Table table, PaymentType paymentType) {
         Order order = table.getOrder();
-        Map<Menu, Quantity> orderInfo = order.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrderInfo();
         int amount = calculateAllMenuSum(orderInfo);
         amount = discountByCash(paymentType, amount);
         return amount;
     }
 
     private static int discountByCash(PaymentType paymentType, int amount) {
-        if (PaymentType.isCash(paymentType)) {
+        if (PaymentType.CASH.equals(paymentType)) {
             amount = (int) (amount * DISCOUNT_RATE);
         }
         return amount;

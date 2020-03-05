@@ -74,7 +74,7 @@ public class OutputView {
         System.out.println("\n## 주문 내역");
         System.out.println("메뉴 수량 금액");
         Order order = table.getOrder();
-        Map<Menu, Quantity> orderInfo = order.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrderInfo();
         for (Map.Entry<Menu, Quantity> entry : orderInfo.entrySet()) {
             printOrderInfo(entry);
         }

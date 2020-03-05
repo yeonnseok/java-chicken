@@ -2,7 +2,6 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Order {
     private Map<Menu, Quantity> order;
@@ -25,24 +24,7 @@ public class Order {
         this.order.clear();
     }
 
-    public Map<Menu, Quantity> getOrder() {
+    public Map<Menu, Quantity> getOrderInfo() {
         return this.order;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Order order1 = (Order) o;
-        return Objects.equals(order, order1.order);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(order);
     }
 }

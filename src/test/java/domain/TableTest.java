@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class TableTest {
@@ -23,20 +24,27 @@ public class TableTest {
     @DisplayName("없는 메뉴 추가 테스트")
     @Test
     void addMenuWithNewMenuTest() {
-        Order expected = new Order();
-        expected.addMenu(menu, quantity);
+        Order order = table.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrderInfo();
 
-        Assertions.assertThat(table.getOrder()).isEqualTo(expected);
+        Map<Menu, Quantity> expected = new HashMap<>();
+        expected.put(menu, quantity);
+
+        Assertions.assertThat(orderInfo).isEqualTo(expected);
     }
 
     @DisplayName("기존에 있는 메뉴 추가 테스트")
     @Test
     void addMenuWithOriginalMenu() {
         table.addMenu(menu, quantity);
+        Order order = table.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrderInfo();
 
-        Order expected = new Order();
-        expected.addMenu(menu, new Quantity(2));
-        Assertions.assertThat(table.getOrder()).isEqualTo(expected);
+        Map<Menu, Quantity> expected = new HashMap<>();
+        expected.put(menu, quantity);
+        expected.put(menu, quantity);
+
+        Assertions.assertThat(orderInfo).isEqualTo(expected);
     }
 
     @DisplayName("기존에 있는 메뉴의 수량이 초과될 때 예외 출력 테스트")
@@ -52,7 +60,7 @@ public class TableTest {
     void clearOrderTest() {
         table.clearOrder();
         Order order = table.getOrder();
-        Map<Menu, Quantity> orderInfo = order.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrderInfo();
 
         Assertions.assertThat(orderInfo.size()).isEqualTo(0);
     }

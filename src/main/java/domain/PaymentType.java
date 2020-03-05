@@ -18,8 +18,4 @@ public enum PaymentType {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 결제 수단 입니다."));
     }
-
-    public static boolean isCash(PaymentType paymentType) {
-        return paymentType.equals(PaymentType.CASH);
-    }
 }
