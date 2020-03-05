@@ -33,10 +33,19 @@ public class PosController {
 
 		do {
 			OutputView.printMainMessage();
-			OutputView.askInputPosStatus();
-			posStatus = PosStatus.of(InputView.askIntegerInput());
+			posStatus = receivePostStatus();
 			runByStatus(posStatus);
 		} while (!posStatus.isTerminated());
+	}
+
+	private PosStatus receivePostStatus() {
+		try {
+			OutputView.askInputPosStatus();
+			return PosStatus.of(InputView.askIntegerInput());
+		} catch (IllegalArgumentException | NullPointerException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			return receivePostStatus();
+		}
 	}
 
 	private void runByStatus(PosStatus posStatus) {
