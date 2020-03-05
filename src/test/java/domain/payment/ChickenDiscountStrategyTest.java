@@ -47,9 +47,9 @@ public class ChickenDiscountStrategyTest {
 		table.order(order);
 		table.order(otherOrder);
 
-		Discountable discountStrategy = ChickenDiscountStrategy.create();
+		DiscountableByCategory discountStrategy = ChickenDiscountStrategy.create();
 
-		assertThat(discountStrategy.discount(table, PaymentType.CASH)).isEqualTo(444_000);
+		assertThat(discountStrategy.discount(table)).isEqualTo(444_000);
 	}
 
 	@DisplayName("discount 후라이드 치킨 9개 입력시 할인 적용이 안되어 144_000이 반환되는지 확인")
@@ -59,9 +59,9 @@ public class ChickenDiscountStrategyTest {
 
 		table.order(order);
 
-		Discountable discountStrategy = ChickenDiscountStrategy.create();
+		DiscountableByCategory discountStrategy = ChickenDiscountStrategy.create();
 
-		assertThat(discountStrategy.discount(table, PaymentType.CASH)).isEqualTo(144_000);
+		assertThat(discountStrategy.discount(table)).isEqualTo(144_000);
 	}
 
 	@DisplayName("discount 음료 카테고리 99개 입력시 할인 적용이 안되어 99_000이 반환되는지 확인")
@@ -71,8 +71,8 @@ public class ChickenDiscountStrategyTest {
 
 		table.order(order);
 
-		Discountable discountStrategy = ChickenDiscountStrategy.create();
+		DiscountableByCategory discountStrategy = ChickenDiscountStrategy.create();
 
-		assertThat(discountStrategy.discount(table, PaymentType.CASH)).isEqualTo(99_000);
+		assertThat(discountStrategy.discount(table)).isEqualTo(99_000);
 	}
 }

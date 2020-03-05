@@ -11,7 +11,7 @@ import domain.table.Table;
  * <p>
  * 날짜 : 2020/03/05
  */
-public class ChickenDiscountStrategy implements Discountable {
+public class ChickenDiscountStrategy implements DiscountableByCategory {
 	private static final int DIVIDE_UNIT = 10;
 	private static final int DISCOUNT_UNIT = 10_000;
 
@@ -22,11 +22,11 @@ public class ChickenDiscountStrategy implements Discountable {
 	}
 
 	@Override
-	public int discount(Table table, PaymentType paymentType) {
+	public int discount(Table table) {
 		int discountedPrice = 0;
 		for(Order order : table.getOrders().getOrders()) {
 			int orderPrice = order.calculatePurePrice();
-			if (order.isChickenMenu()) {
+			if (order.isChickenMenu()) { // TODO: 2020/03/05 뎁스 2
 				orderPrice = applyStrategy(order);
 			}
 			discountedPrice += orderPrice;
