@@ -45,4 +45,18 @@ public class OrderListTest {
 
         assertThat(orderList.countChickenMenu()).isEqualTo(9);
     }
+
+    @Test
+    @DisplayName("결제 완료 후, 테이블의 주문 내역 초기화 확인")
+    void initOrderListTest() {
+        OrderList orderList = new OrderList();
+        orderList.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 3);
+        orderList.registerMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5);
+        orderList.registerMenu(new Menu(6, "반반", Category.CHICKEN, 17000), 1);
+        orderList.registerMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2);
+
+        assertThat(orderList.getOrderList().size()).isEqualTo(4);
+        orderList.initOrderList();
+        assertThat(orderList.getOrderList().size()).isEqualTo(0);
+    }
 }

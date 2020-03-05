@@ -51,4 +51,8 @@ public class OrderList {
     public int hashCode() {
         return Objects.hash(orderList);
     }
+
+    public void initOrderList() {
+        orderList.clear();
+    }
 }

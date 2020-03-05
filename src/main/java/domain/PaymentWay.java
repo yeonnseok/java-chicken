@@ -16,4 +16,8 @@ public class PaymentWay {
         }
         return paymentWay;
     }
+
+    public boolean isCash() {
+        return paymentWay == CASH;
+    }
 }
