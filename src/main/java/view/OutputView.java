@@ -2,6 +2,7 @@ package view;
 
 import domain.Menu;
 import domain.Table;
+import domain.Tables;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class OutputView {
     }
 
     public static void printInputTableNumber() {
-        System.out.println(NEW_LINE + "## 주문할 테이블을 선택하세요.");
+        System.out.println(NEW_LINE + "## 테이블을 선택하세요.");
     }
 
     public static void printInputToDo() {
@@ -82,5 +83,29 @@ public class OutputView {
 
     public static void printInputMenuQuantity() {
         System.out.println("## 메뉴의 수량을 입력하세요.");
+    }
+
+    public static void printOrderList(Tables tables, int tableNumber) {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+        StringBuilder orderList = new StringBuilder();
+
+        tables.getOrderList(tableNumber)
+                .getOrderedMenus()
+                .forEach(o -> orderList.append(o.toString())
+                                        .append(NEW_LINE));
+        System.out.println(orderList);
+    }
+
+    public static void printStartPay(int tableNumber) {
+        System.out.printf("## %d번 테이블의 결제를 진행합니다.", tableNumber);
+    }
+
+    public static void printInputPaymentWay() {
+        System.out.println("신용카드는 1번, 현금은 2번");
+    }
+
+    public static void printTotalMoney(int totalMoney) {
+        System.out.println("## 최종 결제할 금액" + NEW_LINE + totalMoney);
     }
 }

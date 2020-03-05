@@ -20,7 +20,7 @@ public class OrderListTest {
         List<OrderedMenu> testOrderList = Arrays.asList(new OrderedMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 3)
                                                         , new OrderedMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5)
                                                         , new OrderedMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2));
-        assertThat(orderList.getOrderList()).isEqualTo(testOrderList);
+        assertThat(orderList.getOrderedMenus()).isEqualTo(testOrderList);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class OrderListTest {
         orderList.registerMenu(new Menu(6, "반반", Category.CHICKEN, 17000), 1);
         orderList.registerMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2);
 
-        assertThat(orderList.getOrderList().size()).isEqualTo(4);
+        assertThat(orderList.getOrderedMenus().size()).isEqualTo(4);
         orderList.initOrderList();
-        assertThat(orderList.getOrderList().size()).isEqualTo(0);
+        assertThat(orderList.getOrderedMenus().size()).isEqualTo(0);
     }
 }

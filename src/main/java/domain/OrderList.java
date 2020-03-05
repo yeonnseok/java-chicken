@@ -23,7 +23,7 @@ public class OrderList {
                 .anyMatch(o -> o.isMatchMenu(menu));
     }
 
-    public List<OrderedMenu> getOrderList() {
+    public List<OrderedMenu> getOrderedMenus() {
         return orderList;
     }
 

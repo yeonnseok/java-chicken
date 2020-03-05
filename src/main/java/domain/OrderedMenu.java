@@ -56,4 +56,11 @@ public class OrderedMenu {
     public boolean isMatchMenu(Menu menu) {
         return this.menu.equals(menu);
     }
+
+    @Override
+    public String toString() {
+        return menu.getName() + " " +
+                this.quantity + " " +
+                menu.calculateMenuPriceSum(this.quantity);
+    }
 }

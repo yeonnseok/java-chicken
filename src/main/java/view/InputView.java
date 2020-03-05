@@ -41,4 +41,9 @@ public class InputView {
         int menuQuantity = validateNumber(SCANNER.nextLine());
         return validateNegativeNumber(menuQuantity);
     }
+
+    public static int inputPaymentWay() {
+        OutputView.printInputPaymentWay();
+        return validateNumber(SCANNER.nextLine());
+    }
 }

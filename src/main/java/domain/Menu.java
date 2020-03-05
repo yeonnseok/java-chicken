@@ -47,4 +47,8 @@ public class Menu {
     public boolean isChickenCategory() {
         return this.category == Category.CHICKEN;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

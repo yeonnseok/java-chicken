@@ -29,7 +29,7 @@ public class Application {
             RegisterController.startRegister(tables, menus);
         }
         if (toDo == PAY) {
-
+            PayController.startPay(tables);
         }
         if (toDo == EXIT) {
 

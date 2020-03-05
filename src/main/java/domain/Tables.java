@@ -52,4 +52,18 @@ public class Tables {
                 .mapToInt(o -> o.calculateMenuPriceSum())
                 .sum();
     }
+
+    public OrderList getOrderList(int tableNumber) {
+        return tables.stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
+                .map(o -> o.getOrderList())
+                .findFirst()
+                .get();
+    }
+
+    public void initOrderList(int tableNumber) {
+        tables.stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
+                .forEach(o -> o.initOrderList());
+    }
 }

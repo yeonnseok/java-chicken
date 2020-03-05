@@ -32,4 +32,8 @@ public class Table {
     public OrderList getOrderList() {
         return orderList;
     }
+
+    public void initOrderList() {
+        orderList.initOrderList();
+    }
 }
