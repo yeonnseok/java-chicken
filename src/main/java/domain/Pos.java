@@ -5,8 +5,7 @@ import java.util.Arrays;
 public enum Pos {
     ORDER(1),
     PAY(2),
-    EXIT(3),
-    NONE(0);
+    EXIT(3);
 
     private int posNumber;
 
@@ -15,9 +14,13 @@ public enum Pos {
     }
 
     public static Pos getPos(int posNumber) {
-        return Arrays.stream(Pos.values())
-                .filter(pos -> pos.posNumber == posNumber)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+        try {
+            return Arrays.stream(Pos.values())
+                    .filter(pos -> pos.posNumber == posNumber)
+                    .findFirst()
+                    .orElseThrow(IllegalArgumentException::new);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("선택할 수 없는 메뉴 번호 입니다.");
+        }
     }
 }

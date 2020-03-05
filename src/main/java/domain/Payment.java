@@ -4,8 +4,7 @@ import java.util.Arrays;
 
 public enum Payment {
     CARD(1, 0),
-    CASH(2, 0.05),
-    NONE(0, 0);
+    CASH(2, 0.05);
 
     private int paymentNumber;
     private double discountRatio;
@@ -16,10 +15,14 @@ public enum Payment {
     }
 
     public static Payment getPayment(int paymentNumber) {
-        return Arrays.stream(Payment.values())
-                .filter(pay -> pay.paymentNumber == paymentNumber)
-                .findFirst()
-                .orElse(NONE);
+        try {
+            return Arrays.stream(Payment.values())
+                    .filter(pay -> pay.paymentNumber == paymentNumber)
+                    .findFirst()
+                    .orElseThrow(IllegalArgumentException::new);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("선택할 수 없는 번호 입니다.");
+        }
     }
 
     public int totalPriceAfterPaymentDiscount (int totalPriceDiscountedByChickenCount) {
