@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Tables {
-    private static final List<Table> tables = new ArrayList<>();
+    private final List<Table> tables = new ArrayList<>();
 
-    static {
+    public Tables() {
         tables.add(new Table(1));
         tables.add(new Table(2));
         tables.add(new Table(3));
@@ -16,11 +16,11 @@ public class Tables {
         tables.add(new Table(8));
     }
 
-    public static List<Table> tables() {
+    public List<Table> tables() {
         return Collections.unmodifiableList(tables);
     }
 
-    public static boolean isPresentTableNumber(int tableNumber) {
+    public boolean isPresentTableNumber(int tableNumber) {
         return tables.stream()
                 .anyMatch(o -> o.isMatchTableNumber(tableNumber));
     }
@@ -33,7 +33,15 @@ public class Tables {
 
     public int countChickenMenu(int tableNumber) {
         return tables.stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
                 .mapToInt(o -> o.countChickenMenu())
+                .sum();
+    }
+
+    public int calculateTotalMoney(int tableNumber) {
+        return tables.stream()
+                .filter(o -> o.isMatchTableNumber(tableNumber))
+                .mapToInt(o -> o.calculateMenuPriceSum())
                 .sum();
     }
 }

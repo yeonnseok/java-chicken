@@ -12,8 +12,8 @@ import java.util.List;
 public class Application {
     // TODO 구현 진행
     public static void main(String[] args) {
-        final List<Table> tables = Tables.tables();
-        OutputView.printTables(tables);
+//        final List<Table> tables = Tables.tables();
+//        OutputView.printTables(tables);
 
         final int tableNumber = InputView.inputTableNumber();
 

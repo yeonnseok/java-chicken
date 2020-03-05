@@ -8,7 +8,19 @@ public class OrderList {
     private final List<OrderedMenu> orderList = new ArrayList<>();
 
     public void registerMenu(Menu menu, int quantity) {
-        orderList.add(new OrderedMenu(menu, quantity));
+        if (hasSameMenu(menu)) {
+            orderList.stream()
+                    .filter(o -> o.isMatchMenu(menu))
+                    .forEach(o -> o.addQuantity(quantity));
+        }
+        if (!hasSameMenu(menu)) {
+            orderList.add(new OrderedMenu(menu, quantity));
+        }
+    }
+
+    private boolean hasSameMenu(Menu menu) {
+        return orderList.stream()
+                .anyMatch(o -> o.isMatchMenu(menu));
     }
 
     public List<OrderedMenu> getOrderList() {

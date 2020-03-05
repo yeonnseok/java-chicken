@@ -25,7 +25,7 @@ public class OrderedMenu {
     }
 
     public int calculateMenuPriceSum() {
-        return menu.calculateMenuPriceSum(quantity);
+        return menu.calculateMenuPriceSum(this.quantity);
     }
 
     public int getQuantity() {
@@ -51,5 +51,9 @@ public class OrderedMenu {
             return quantity;
         }
         return 0;
+    }
+
+    public boolean isMatchMenu(Menu menu) {
+        return this.menu.equals(menu);
     }
 }
