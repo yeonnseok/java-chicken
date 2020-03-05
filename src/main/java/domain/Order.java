@@ -22,4 +22,12 @@ public class Order {
     public int calculateMenuPrice() {
         return menu.priceTimesCount(count);
     }
+
+    public boolean isChickenTypeMenu() {
+        return menu.isChickenType();
+    }
+
+    public int getCount() {
+        return count;
+    }
 }

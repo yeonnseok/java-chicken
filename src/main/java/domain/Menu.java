@@ -17,6 +17,10 @@ public class Menu {
         return price * count;
     }
 
+    public boolean isChickenType() {
+        return category.equals(Category.CHICKEN);
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
