@@ -54,19 +54,21 @@ isOrder() → boolean : bill.hasOrder()
 Tables (List Table) → Tables : null 처리  
 
 ### PaymentCalculator
+pay(Table) → void : 테이블을 전달받아서 돈 계산 시작하기 + 할인 적용도 하기   
 
-discount에 관한 List를 만들어서 멤버로 두기
-
-pay(Table) → void : 테이블을 전달받아서 돈 계산 시작하기 
-
-### Discountable    
-인터페이스  
+### DiscountableByCategory    
+카테고리와 관련된 할인을 담당하는 인터페이스  
+추후 다른 카테고리 추가시 해당 인터페이스를 상속받아서 활용  
 discount()가 있음
 
 ### ChickenDiscountStrategy 
-implements Discountable 
+implements DiscountableByCategory 
 치킨에 관한 할인 전략 
 
-### CardDiscountStrategy
-implements Discountable
-카드에 관한 할인 전략 
+### PaymentType
+지불 수단과 관련된 할인에 대한 정보를 담고있는 Enum  
+추후 다른 지불 수단 추가시 해당 Enum을 조작하여 활용  
+
+### CardDiscountStrategy  
+카드에 관한 할인 전략   
+PaymentType 사용  
