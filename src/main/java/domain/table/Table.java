@@ -33,6 +33,10 @@ public class Table {
 		orders.addNewMenuOrder(inputOrder);
 	}
 
+	public void cleanTable() {
+		this.orders = Orders.createOrders();
+	}
+
 	public boolean isSameNumber(int inputTableNumber) {
 		return this.number == inputTableNumber;
 	}

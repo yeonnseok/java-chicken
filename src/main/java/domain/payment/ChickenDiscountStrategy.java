@@ -1,6 +1,7 @@
 package domain.payment;
 
 import domain.order.Order;
+import domain.table.Table;
 
 /**
  * 클래스 이름 : .java
@@ -21,14 +22,16 @@ public class ChickenDiscountStrategy implements Discountable {
 	}
 
 	@Override
-	public int discount(Order order) {
-		int orderPrice = order.calculatePurePrice();
-
-		if (order.isChickenMenu()) {
-			orderPrice = applyStrategy(order);
+	public int discount(Table table) {
+		int discountedPrice = 0;
+		for(Order order : table.getOrders().getOrders()) {
+			int orderPrice = order.calculatePurePrice();
+			if (order.isChickenMenu()) {
+				orderPrice = applyStrategy(order);
+			}
+			discountedPrice += orderPrice;
 		}
-
-		return orderPrice;
+		return discountedPrice;
 	}
 
 	private int applyStrategy(Order order) {

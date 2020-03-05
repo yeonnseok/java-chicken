@@ -2,9 +2,8 @@ package domain.order;
 
 import domain.menu.Menu;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * 주문들의 일급 컬렉션
@@ -43,6 +42,10 @@ public class Orders {
 				.anyMatch(order -> order.hasSameMenu(targetMenu));
 	}
 
+	public boolean isEmpty() {
+		return orders.isEmpty();
+	}
+
 	public int getAmountOfOrderedMenu(Menu targetMenu) {
 		return orders.stream()
 				.filter(order -> order.hasSameMenu(targetMenu))
@@ -51,7 +54,7 @@ public class Orders {
 				.orElse(0); // TODO: 2020/03/04 0이 맞을까 예외가 맞을까?
 	}
 
-	public boolean isEmpty() {
-		return orders.isEmpty();
+	public List<Order> getOrders() {
+		return this.orders;
 	}
 }
