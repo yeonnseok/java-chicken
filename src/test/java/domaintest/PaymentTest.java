@@ -15,4 +15,13 @@ public class PaymentTest {
     void paymentNumberTest(int paymentNumber, String paymentName) {
         assertThat(Payment.getPayment(paymentNumber)).isEqualTo(Payment.valueOf(paymentName));
     }
+
+    @DisplayName("현금 결제시 5% 할인 테스트")
+    @ParameterizedTest
+    @CsvSource({"CARD,30000,30000", "CASH,30000,28500", "NONE,30000,30000"})
+    void cardDiscountTest(String paymentName, int totalPrice, int discountedTotalPrice) {
+        Payment payment = Payment.valueOf(paymentName);
+        int totalPriceAfterPaymentDiscount = payment.totalPriceAfterPaymentDiscount(totalPrice);
+        assertThat(totalPriceAfterPaymentDiscount).isEqualTo(discountedTotalPrice);
+    }
 }

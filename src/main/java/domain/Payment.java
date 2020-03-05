@@ -3,14 +3,16 @@ package domain;
 import java.util.Arrays;
 
 public enum Payment {
-    CARD(1),
-    CASH(2),
-    NONE(0);
+    CARD(1, 0),
+    CASH(2, 0.05),
+    NONE(0, 0);
 
     private int paymentNumber;
+    private double discountRatio;
 
-    Payment(int paymentNumber) {
+    Payment(int paymentNumber, double discountRatio) {
         this.paymentNumber = paymentNumber;
+        this.discountRatio = discountRatio;
     }
 
     public static Payment getPayment(int paymentNumber) {
@@ -20,4 +22,7 @@ public enum Payment {
                 .orElse(NONE);
     }
 
+    public int totalPriceAfterPaymentDiscount (int totalPriceDiscountedByChickenCount) {
+        return (int) ((1 - this.discountRatio) * totalPriceDiscountedByChickenCount);
+    }
 }
