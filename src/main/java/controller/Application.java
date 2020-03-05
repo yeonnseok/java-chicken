@@ -16,23 +16,22 @@ public class Application {
 
     public static void main(String[] args) {
         Tables tables = new Tables();
+        int toDo;
         do {
-            runApplication(tables);
-        } while(true);
+            OutputView.printMain();
+            toDo = InputView.inputToDo();
+            runApplication(tables, toDo);
+        } while(toDo != EXIT);
+        System.out.println("프로그램을 종료합니다.");
     }
 
-    private static void runApplication(Tables tables) {
-        OutputView.printMain();
-        int toDo = InputView.inputToDo();
+    private static void runApplication(Tables tables, int toDo) {
         if (toDo == REGISTER) {
             Menus menus = new Menus();
             RegisterController.startRegister(tables, menus);
         }
         if (toDo == PAY) {
             PayController.startPay(tables);
-        }
-        if (toDo == EXIT) {
-
         }
     }
 }
