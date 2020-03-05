@@ -18,6 +18,6 @@ public enum Pos {
         return Arrays.stream(Pos.values())
                 .filter(pos -> pos.posNumber == posNumber)
                 .findFirst()
-                .orElse(NONE);
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
