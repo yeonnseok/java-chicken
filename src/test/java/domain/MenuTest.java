@@ -21,7 +21,7 @@ public class MenuTest {
     @DisplayName("해당 메뉴의 번호와 전달된 번호가 일치하는지 확인")
     void isPresentMenu(int menuNumber, int testMenuNumber, boolean status) {
         Menu menu = new Menu(menuNumber, "후라이드", Category.CHICKEN, 16000);
-        assertThat(menu.isPresentMenu(testMenuNumber)).isEqualTo(status);
+        assertThat(menu.isMatchMenu(testMenuNumber)).isEqualTo(status);
     }
 
     @Test

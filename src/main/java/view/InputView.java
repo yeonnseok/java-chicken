@@ -3,14 +3,12 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final int MIN_QUANTITY = 0;
 
     public static int inputTableNumber() {
-        System.out.println("## 주문할 테이블을 선택하세요.");
-        int tableNumber = validateNumber(scanner.nextLine());
-        validateNegativeNumber(tableNumber);
-        return tableNumber;
+        OutputView.printInputTableNumber();
+        return validateNumber(SCANNER.nextLine());
     }
 
     public static int validateNumber(String input) {
@@ -21,9 +19,26 @@ public class InputView {
         }
     }
 
-    public static void validateNegativeNumber(int input) {
+    public static int validateNegativeNumber(int input) {
         if (input < MIN_QUANTITY) {
             throw new IllegalArgumentException(String.format("수량은 0이상의 수를 입력해야 합니다. 입력한 수 : %d", input));
         }
+        return input;
+    }
+
+    public static int inputToDo() {
+        OutputView.printInputToDo();
+        return validateNumber(SCANNER.nextLine());
+    }
+
+    public static int inputRegisterMenu() {
+        OutputView.printInputRegisterMenu();
+        return validateNumber(SCANNER.nextLine());
+    }
+
+    public static int inputMenuQuantity() {
+        OutputView.printInputMenuQuantity();
+        int menuQuantity = validateNumber(SCANNER.nextLine());
+        return validateNegativeNumber(menuQuantity);
     }
 }

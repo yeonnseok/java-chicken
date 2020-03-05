@@ -20,10 +20,10 @@ public class Menus {
 
     public boolean isPresentMenu(int menuNumber) {
         return menus.stream()
-                .anyMatch(o -> o.isPresentMenu(menuNumber));
+                .anyMatch(o -> o.isMatchMenu(menuNumber));
     }
 
-    public static List<Menu> menus() {
+    public static List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);
     }
 }

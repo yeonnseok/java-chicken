@@ -24,7 +24,7 @@ public class Menu {
         return category + " " + number + " - " + name + " : " + price + "원";
     }
 
-    public boolean isPresentMenu(int menuNumber) {
+    public boolean isMatchMenu(int menuNumber) {
         return this.number == menuNumber;
     }
 
