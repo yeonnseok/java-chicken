@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Orders {
-    public static final int DISCOUNT_CHICKEN_UNIT_COUNT = 10;
-    public static final int DISCOUNT_CHICKEN_UNIT_PRICE = 10_000;
+    private static final int DISCOUNT_CHICKEN_UNIT_COUNT = 10;
+    private static final int DISCOUNT_CHICKEN_UNIT_PRICE = 10_000;
+
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
