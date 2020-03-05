@@ -25,12 +25,6 @@ public class OrdersTest {
         orders.addOrder(menu5, new Count(2));
     }
 
-    @DisplayName("주문 등록 된 음식 가격 합산")
-    @Test
-    void calculateTotalPrice() {
-        int totalPrice = orders.calculateTotalPrice();
-        assertThat(totalPrice).isEqualTo(722_000);
-    }
 
     @DisplayName("치킨 종류 메뉴 총 개수 계산")
     @Test
@@ -42,8 +36,7 @@ public class OrdersTest {
     @DisplayName("치킨 종류 개수 10개당 10_000원씩 할인")
     @Test
     void discountByChickenTypeTest() {
-        int totalPrice = orders.calculateTotalPrice();
-        int discountedTotalPrice = orders.totalPriceDiscountedByChickenCount(totalPrice);
+        int discountedTotalPrice = orders.totalPriceDiscountedByChickenCount();
         assertThat(discountedTotalPrice).isEqualTo(682_000);
     }
 }
