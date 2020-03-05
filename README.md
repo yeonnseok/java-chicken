@@ -28,6 +28,11 @@
 - Tables
     - TableRepository 를 이용해 만든 일급 콜렉션
     - 사용자가 입력한 테이블 번호가 있는지 검사
+    
+- Table
+    - Order 를 갖고 있음
+    - 메뉴 추가 기능
+    - 결제 완료 시 Order 를 비워버림
 
 - PaymentType
     - 결제수단 enum
