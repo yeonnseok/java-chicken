@@ -13,6 +13,10 @@ public class Table {
         this.order.addMenu(menu, quantity);
     }
 
+    public void clearOrder() {
+        this.order.clearOrderInfo();
+    }
+
     public boolean isSameTableNumber(int tableNumber) {
         return this.number == tableNumber;
     }

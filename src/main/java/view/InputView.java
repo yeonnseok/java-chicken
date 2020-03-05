@@ -1,5 +1,7 @@
 package view;
 
+import domain.Table;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -46,6 +48,21 @@ public class InputView {
         } catch (NumberFormatException e) {
             OutputView.printErrorMessage(NUMBER_FORMAT_ERROR_MESSAGE);
             return inputQuantity();
+        }
+    }
+
+    public static int inputPaymentType(String tableNumber) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n## ");
+        sb.append(tableNumber);
+        sb.append("번 테이블의 결제를 진행합니다.\n");
+        sb.append("## 신용 카드는 1번, 현금은 2번");
+        System.out.println(sb.toString());
+        try {
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException e) {
+            OutputView.printErrorMessage(NUMBER_FORMAT_ERROR_MESSAGE);
+            return inputPaymentType(tableNumber);
         }
     }
 }

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 public class TableTest {
     private Table table;
     private Menu menu;
@@ -43,5 +45,15 @@ public class TableTest {
         Assertions.assertThatThrownBy(() -> {
             table.addMenu(menu, new Quantity(99));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("결제 후 주문 정보가 비워지는지 테스트")
+    @Test
+    void clearOrderTest() {
+        table.clearOrder();
+        Order order = table.getOrder();
+        Map<Menu, Quantity> orderInfo = order.getOrder();
+
+        Assertions.assertThat(orderInfo.size()).isEqualTo(0);
     }
 }

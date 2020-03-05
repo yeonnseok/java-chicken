@@ -21,6 +21,10 @@ public class Order {
         this.order.put(menu, originalQuantity);
     }
 
+    public void clearOrderInfo() {
+        this.order.clear();
+    }
+
     public Map<Menu, Quantity> getOrder() {
         return this.order;
     }

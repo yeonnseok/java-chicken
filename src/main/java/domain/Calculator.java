@@ -7,6 +7,9 @@ public class Calculator {
     private static final int CHICKEN_DISCOUNT_STANDARD = 10;
     private static final int DISCOUNT_PAYMENT = 10000;
 
+    private Calculator() {
+    }
+
     public static int calculate(Table table, PaymentType paymentType) {
         Order order = table.getOrder();
         Map<Menu, Quantity> orderInfo = order.getOrder();
