@@ -25,6 +25,16 @@ public class InputView {
         }
     }
 
+    public static int inputMenuNumber() {
+        try {
+            System.out.println("## 등록할 메뉴를 선택하세요.");
+            return inputIntegerWithValidation();
+        } catch (NumberFormatException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputTableNumber();
+        }
+    }
+
     private static int inputIntegerWithValidation() {
         try {
             return Integer.parseInt(SCANNER.nextLine());

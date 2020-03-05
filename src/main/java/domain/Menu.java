@@ -21,6 +21,10 @@ public class Menu {
         return category.equals(Category.CHICKEN);
     }
 
+    public int getNumber() {
+        return this.number;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
