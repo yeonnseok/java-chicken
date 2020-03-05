@@ -3,6 +3,8 @@ package domain.payment;
 import domain.order.Order;
 import domain.table.Table;
 
+import java.util.function.Predicate;
+
 /**
  * 클래스 이름 : .java
  *
@@ -24,17 +26,25 @@ public class ChickenDiscountStrategy implements DiscountableByCategory {
 	@Override
 	public int discount(Table table) {
 		int discountedPrice = 0;
-		for(Order order : table.getOrders().getOrders()) {
-			int orderPrice = order.calculatePurePrice();
-			if (order.isChickenMenu()) { // TODO: 2020/03/05 뎁스 2
-				orderPrice = applyStrategy(order);
-			}
-			discountedPrice += orderPrice;
-		}
+
+		discountedPrice += table.getOrders().getOrders().stream()
+				.filter(Order::isChickenMenu)
+				.mapToInt(this::applyStrategy)
+				.sum();
+
+		discountedPrice += table.getOrders().getOrders().stream()
+				.filter(not(Order::isChickenMenu))
+				.mapToInt(Order::calculatePurePrice)
+				.sum();
+
 		return discountedPrice;
 	}
 
 	private int applyStrategy(Order order) {
 		return order.calculatePurePrice() - (order.getDividedAmountByUnit(DIVIDE_UNIT) * DISCOUNT_UNIT);
+	}
+
+	public static <T> Predicate<T> not(Predicate<T> t) {
+		return t.negate();
 	}
 }

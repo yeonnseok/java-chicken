@@ -59,7 +59,7 @@ public class PosController {
 			operateOrderFunction();
 		}
 
-		if(posStatus.isPaying()) {
+		if (posStatus.isPaying()) {
 			operatePayingFunction();
 		}
 	}
