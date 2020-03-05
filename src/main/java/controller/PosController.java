@@ -29,20 +29,28 @@ public class PosController {
 
 		do {
 			OutputView.printMainMessage();
-			posStatus = receivePostStatus();
+			posStatus = receivePostStatus(tables.isOrderedTables());
 
 			runByStatus(posStatus);
 		} while (!posStatus.isTerminated());
 	}
 
-	private PosStatus receivePostStatus() {
+	private PosStatus receivePostStatus(boolean isTablesOrdered) {
 		try {
 			OutputView.askInputPosStatus();
-			return PosStatus.of(InputView.askIntegerInput());
+			int inputPosStatus = validatePosStatus(InputView.askIntegerInput(), isTablesOrdered);
+			return PosStatus.of(inputPosStatus);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return receivePostStatus();
+			return receivePostStatus(isTablesOrdered);
 		}
+	}
+
+	private int validatePosStatus(int inputPosStatus, boolean isTablesOrdered) {
+		if (inputPosStatus == 2 && !isTablesOrdered) {
+			throw new IllegalArgumentException("주문 받은 테이블이 없는데 결제를 할 수 없습니다.");
+		}
+		return inputPosStatus;
 	}
 
 	private void runByStatus(PosStatus posStatus) {

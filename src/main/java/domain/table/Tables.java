@@ -19,6 +19,10 @@ public class Tables {
 				.orElseThrow(() -> new IllegalArgumentException("Tables에 잘못된 입력이 들어왔습니다."));
 	}
 
+	public boolean isOrderedTables() {
+		return tables.stream().anyMatch(Table::isOrdered);
+	}
+
 	public List<Table> getTables() {
 		return this.tables;
 	}
