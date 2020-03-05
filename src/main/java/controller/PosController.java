@@ -56,12 +56,9 @@ public class PosController {
 
 	private void operateOrderFunction() {
 		OutputView.printTables(tables.getTables());
-
 		final Table orderingTable = receiveTargetTable(tables);
-
 		OutputView.printMenus(menus);
-		Order order = receiveOrder();
-		orderingTable.order(order);
+		receiveOrder(orderingTable);
 	}
 
 	private void operatePayingFunction() {
@@ -99,16 +96,16 @@ public class PosController {
 		}
 	}
 
-	private Order receiveOrder() {
+	private void receiveOrder(Table orderingTable) {
 		try {
 			OutputView.askInputOrderMenu();
 			Menu orderingMenu = MenuRepository.getMenu(InputView.askMenuNumber());
 			OutputView.askInputOrderAmount();
 			int orderingAmount = InputView.askAmount();
-			return new Order(orderingMenu, orderingAmount);
+			orderingTable.order(new Order(orderingMenu, orderingAmount));
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return receiveOrder();
+			receiveOrder(orderingTable);
 		}
 	}
 }
