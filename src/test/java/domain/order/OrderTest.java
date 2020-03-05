@@ -2,7 +2,6 @@ package domain.order;
 
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
-import domain.order.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -6,9 +6,9 @@ import domain.table.Table;
 import java.util.function.Predicate;
 
 /**
- * 클래스 이름 : .java
+ * 치킨 카테고리에 대한 할인 객체
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/05

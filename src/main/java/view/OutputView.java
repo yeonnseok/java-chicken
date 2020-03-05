@@ -81,7 +81,7 @@ public class OutputView {
 		System.out.println(TERMINATION_MESSAGE);
 	}
 
-	public static void printOrdersBy(Table table) {
+	public static void printOrdersOf(Table table) {
 		System.out.println(ORDER_CONTENTS);
 		System.out.println(ORDER_COLUMN_NAME);
 		for (Order order : table.getOrders().getOrders()) {

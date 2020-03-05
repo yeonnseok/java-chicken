@@ -3,9 +3,9 @@ package domain.payment;
 import java.util.Arrays;
 
 /**
- * 클래스 이름 : .java
+ * 지불 방식을 나타내는 Enum
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/05

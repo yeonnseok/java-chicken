@@ -22,6 +22,7 @@ public class Order {
 	public Order(Menu inputMenu, int inputAmount) {
 		Objects.requireNonNull(inputMenu, "메뉴는 null일 수 없습니다.");
 		validateAmount(inputAmount);
+
 		this.menu = inputMenu;
 		this.amount = inputAmount;
 	}

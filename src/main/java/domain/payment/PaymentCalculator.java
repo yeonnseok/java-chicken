@@ -1,14 +1,14 @@
 package domain.payment;
 
 /**
- * 클래스 이름 : .java
+ * 지불 금액을 계산하는 객체
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/05
  */
 public class PaymentCalculator {
 
-
+// TODO: 2020/03/05 ??
 }

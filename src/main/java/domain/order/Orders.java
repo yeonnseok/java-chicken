@@ -3,7 +3,6 @@ package domain.order;
 import domain.menu.Menu;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * 주문들의 일급 컬렉션
@@ -51,7 +50,7 @@ public class Orders {
 				.filter(order -> order.hasSameMenu(targetMenu))
 				.findAny()
 				.map(Order::getAmount)
-				.orElse(0); // TODO: 2020/03/04 0이 맞을까 예외가 맞을까?
+				.orElse(0);
 	}
 
 	public List<Order> getOrders() {

@@ -4,7 +4,7 @@ import domain.PosStatus;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.Order;
-import domain.payment.CardDiscountStrategy;
+import domain.payment.CashDiscountStrategy;
 import domain.payment.ChickenDiscountStrategy;
 import domain.payment.DiscountableByCategory;
 import domain.payment.PaymentType;
@@ -72,34 +72,6 @@ public class PosController {
 		receiveOrder(orderingTable);
 	}
 
-	private void operatePayingFunction() { // TODO: 2020/03/05 너무 부하다
-		OutputView.printTables(tables.getTables());
-		final Table payingTable = receivePayingTable(tables);
-
-		OutputView.printOrdersBy(payingTable);
-		DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
-		int price = categoryDiscountStrategy.discount(payingTable);
-
-		OutputView.printTablePayingProcess(payingTable.getNumber());
-		OutputView.printPaymentTypeOptions();
-		PaymentType paymentType = PaymentType.of(InputView.askIntegerInput());
-
-		int finalPrice = CardDiscountStrategy.discount(price, paymentType);
-		OutputView.printFinalPrice(finalPrice);
-		payingTable.cleanTable();
-	}
-
-	private Table receivePayingTable(Tables tables) {
-		Table targetTable = receiveTargetTable(tables);
-
-		if (targetTable.isOrdered()) {
-			return targetTable;
-		}
-
-		OutputView.printNotOrderedTable();
-		return receivePayingTable(tables);
-	}
-
 	private Table receiveTargetTable(Tables tables) {
 		try {
 			OutputView.askInputTableNumber();
@@ -123,5 +95,33 @@ public class PosController {
 			OutputView.printExceptionMessage(e.getMessage());
 			receiveOrder(orderingTable);
 		}
+	}
+
+	private void operatePayingFunction() {
+		OutputView.printTables(tables.getTables());
+		final Table payingTable = receivePayingTable(tables);
+
+		OutputView.printOrdersOf(payingTable);
+		DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
+		int price = categoryDiscountStrategy.discount(payingTable);
+
+		OutputView.printTablePayingProcess(payingTable.getNumber());
+		OutputView.printPaymentTypeOptions();
+		PaymentType paymentType = PaymentType.of(InputView.askIntegerInput());
+
+		int finalPrice = CashDiscountStrategy.discount(price, paymentType);
+		OutputView.printFinalPrice(finalPrice);
+		payingTable.cleanTable();
+	}
+
+	private Table receivePayingTable(Tables tables) {
+		Table targetTable = receiveTargetTable(tables);
+
+		if (targetTable.isOrdered()) {
+			return targetTable;
+		}
+
+		OutputView.printNotOrderedTable();
+		return receivePayingTable(tables);
 	}
 }

@@ -1,13 +1,11 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.Arrays;
 
 /**
- * 클래스 이름 : .java
+ * 포스기의 상태를 나타내는 Enum
  *
- * @author
+ * @author 토니
  * @version 1.0
  * <p>
  * 날짜 : 2020/03/05
@@ -17,6 +15,9 @@ public enum PosStatus {
 	STATUS_PAYING(2),
 	STATUS_TERMINATION(3);
 
+	private static final int TERMINATION_STATUS = 3;
+	private static final int PAYING_STATUS = 2;
+	private static final int ORDER_STATUS = 1;
 	private int statusNumber;
 
 	PosStatus(int statusNumber) {
@@ -31,15 +32,14 @@ public enum PosStatus {
 	}
 
 	public boolean isOrdering() {
-		return this.statusNumber == 1;
+		return this.statusNumber == ORDER_STATUS;
 	}
 
 	public boolean isPaying() {
-		return this.statusNumber == 2;
+		return this.statusNumber == PAYING_STATUS;
 	}
 
 	public boolean isTerminated() {
-		return this.statusNumber == 3;
+		return this.statusNumber == TERMINATION_STATUS;
 	}
-
 }
