@@ -17,10 +17,6 @@ public class Count {
         }
     }
 
-    public int priceTimesCount(int price) {
-        return count * price;
-    }
-
     public int getCount() {
         return count;
     }

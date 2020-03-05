@@ -15,10 +15,6 @@ public class Menu {
         this.price = price;
     }
 
-    public int priceTimesCount(Count count) {
-        return count.priceTimesCount(price);
-    }
-
     public boolean isChickenType() {
         return category.equals(Category.CHICKEN);
     }
