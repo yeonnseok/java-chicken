@@ -41,4 +41,13 @@ public class InputView {
 			return askAmount();
 		}
 	}
+
+	public static int askPaymentType() {
+		try {
+			return Integer.parseInt(SCANNER.nextLine());
+		} catch (NumberFormatException e) {
+			OutputView.printExceptionMessage("정수만 입력해주세요");
+			return askAmount();
+		}
+	}
 }

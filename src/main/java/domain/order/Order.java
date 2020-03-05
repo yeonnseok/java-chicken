@@ -61,4 +61,9 @@ public class Order {
 	public int getAmount() {
 		return this.amount;
 	}
+
+	@Override
+	public String toString() {
+		return this.menu.getName() + " " + this.amount + " " + this.menu.getPrice();
+	}
 }

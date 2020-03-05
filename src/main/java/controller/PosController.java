@@ -3,6 +3,10 @@ package controller;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.Order;
+import domain.payment.CardDiscountStrategy;
+import domain.payment.ChickenDiscountStrategy;
+import domain.payment.DiscountableByCategory;
+import domain.payment.PaymentType;
 import domain.table.Table;
 import domain.table.TableRepository;
 import domain.table.Tables;
@@ -26,23 +30,47 @@ public class PosController {
 
 			OutputView.printTables(tables.getTables());
 
-			final Table orderingTable = receiveOrderingTable(tables);
+			final Table orderingTable = receiveTargetTable(tables);
 
 			final List<Menu> menus = MenuRepository.menus();
 			OutputView.printMenus(menus);
 			Order order = receiveOrder();
 			orderingTable.order(order);
-		}
 
+			// 계산 로직 시작
+			OutputView.printTables(tables.getTables());
+			final Table payingTable = receivePayingTable(tables);
+			OutputView.printOrdersBy(payingTable);
+			DiscountableByCategory categoryDiscountStrategy = ChickenDiscountStrategy.create();
+			int price = categoryDiscountStrategy.discount(payingTable);
+
+			OutputView.printTablePayingProcess(payingTable.getNumber());
+			OutputView.printPaymentTypeOptions();
+			PaymentType paymentType = PaymentType.of(InputView.askPaymentType());
+
+			int finalPrice = CardDiscountStrategy.discount(price, paymentType);
+			OutputView.printFinalPrice(finalPrice);
+			payingTable.cleanTable();
+
+		}
 	}
 
-	private Table receiveOrderingTable(Tables tables) {
+	private Table receivePayingTable(Tables tables) {
+		Table targetTable = receiveTargetTable(tables);
+		if (targetTable.isOrdered()) {
+			return targetTable;
+		}
+		System.out.println("주문되지 않은 테이블 입니다.");
+		return receivePayingTable(tables);
+	}
+
+	private Table receiveTargetTable(Tables tables) {
 		try {
 			OutputView.askInputTableNumber();
 			return tables.getTable(InputView.askTableNumber());
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return receiveOrderingTable(tables);
+			return receiveTargetTable(tables);
 		}
 	}
 

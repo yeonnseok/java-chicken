@@ -27,6 +27,10 @@ public class Menu {
 		return category.isChicken();
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 	public int getNumber() {
 		return this.number;
 	}
