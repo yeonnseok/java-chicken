@@ -22,7 +22,7 @@ public class ChickenDiscountStrategy implements Discountable {
 	}
 
 	@Override
-	public int discount(Table table) {
+	public int discount(Table table, PaymentType paymentType) {
 		int discountedPrice = 0;
 		for(Order order : table.getOrders().getOrders()) {
 			int orderPrice = order.calculatePurePrice();

@@ -11,5 +11,5 @@ import domain.table.Table;
  * 날짜 : 2020/03/05
  */
 public interface Discountable {
-	int discount(final Table table);
+	int discount(final Table table, final PaymentType paymentType);
 }
