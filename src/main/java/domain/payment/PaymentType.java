@@ -22,14 +22,18 @@ public enum PaymentType {
 		this.discountRate = discountRate;
 	}
 
-	public double getDiscountRate() {
-		return this.discountRate;
-	}
-
 	public static PaymentType of(int inputPaymentNumber) {
 		return Arrays.stream(PaymentType.values())
 				.filter(paymentType -> paymentType.paymentNumber == inputPaymentNumber)
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException("입력 번호에 해당하는 지불방식이 없습니다."));
+	}
+
+	public int calculateDiscountedPrice(int inputPrice) {
+		return (int) ((inputPrice * this.discountRate));
+	}
+
+	public double getDiscountRate() {
+		return this.discountRate;
 	}
 }

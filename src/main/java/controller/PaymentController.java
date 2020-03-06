@@ -1,6 +1,5 @@
 package controller;
 
-import domain.payment.CashDiscountStrategy;
 import domain.payment.ChickenDiscountStrategy;
 import domain.payment.DiscountableByCategory;
 import domain.payment.PaymentType;
@@ -30,7 +29,7 @@ public class PaymentController {
 		OutputView.printPaymentTypeOptions();
 		PaymentType paymentType = PaymentType.of(InputView.askIntegerInput());
 
-		int finalPrice = CashDiscountStrategy.discount(price, paymentType);
+		int finalPrice = paymentType.calculateDiscountedPrice(price);
 		OutputView.printFinalPrice(finalPrice);
 		payingTable.cleanTable();
 	}
