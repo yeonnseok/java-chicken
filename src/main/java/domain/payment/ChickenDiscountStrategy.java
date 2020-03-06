@@ -32,6 +32,8 @@ public class ChickenDiscountStrategy implements DiscountableByCategory {
 				.mapToInt(Order::getAmount)
 				.sum();
 
-		return table.calculateTotalPrice() - (categoryCount / DIVIDE_UNIT) * DISCOUNT_UNIT;
+		int discountMoney = (categoryCount / DIVIDE_UNIT) * DISCOUNT_UNIT;
+
+		return table.calculateTotalPrice() - discountMoney;
 	}
 }
