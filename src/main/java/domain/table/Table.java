@@ -3,6 +3,7 @@ package domain.table;
 import domain.order.Order;
 import domain.order.Orders;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -19,7 +20,7 @@ public class Table {
 
 	public Table(final int number) {
 		this.number = number;
-		this.orders = Orders.createOrders();
+		this.orders = new Orders(new ArrayList<>());
 	}
 
 	public void order(Order inputOrder) {
@@ -34,7 +35,7 @@ public class Table {
 	}
 
 	public void cleanTable() {
-		this.orders = Orders.createOrders();
+		this.orders = new Orders(new ArrayList<>());
 	}
 
 	public boolean isSameNumber(int inputTableNumber) {

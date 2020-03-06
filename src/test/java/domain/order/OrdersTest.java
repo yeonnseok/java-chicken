@@ -48,7 +48,7 @@ public class OrdersTest {
 	@DisplayName("createOrders 정적 팩토리 메서드 생성 테스트")
 	@Test
 	void createOrders() {
-		assertThat(Orders.createOrders()).isInstanceOf(Orders.class);
+		assertThat(new Orders(new ArrayList<>())).isInstanceOf(Orders.class);
 	}
 
 	@DisplayName("addNewMenuOrder 처음 주문되는 메뉴에 대해 정상 작동 확인")
