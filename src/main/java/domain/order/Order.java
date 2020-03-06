@@ -50,10 +50,6 @@ public class Order {
 		return this.menu.getPrice() * this.amount;
 	}
 
-	public int getDividedAmountByUnit(int divideUnit) {
-		return this.amount / divideUnit;
-	}
-
 	public Menu getMenu() {
 		return this.menu;
 	}
