@@ -34,6 +34,12 @@ public class Table {
 		orders.addNewMenuOrder(inputOrder);
 	}
 
+	public int calculateTotalPrice() {
+		return orders.getOrders().stream()
+				.mapToInt(Order::calculatePurePrice)
+				.sum();
+	}
+
 	public void cleanTable() {
 		this.orders = new Orders(new ArrayList<>());
 	}

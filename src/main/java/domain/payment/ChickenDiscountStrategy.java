@@ -25,26 +25,13 @@ public class ChickenDiscountStrategy implements DiscountableByCategory {
 
 	@Override
 	public int discount(Table table) {
-		int discountedPrice = 0;
+		int categoryCount = 0;
 
-		discountedPrice += table.getOrders().getOrders().stream()
+		categoryCount += table.getOrders().getOrders().stream()
 				.filter(Order::isChickenMenu)
-				.mapToInt(this::applyStrategy)
+				.mapToInt(Order::getAmount)
 				.sum();
 
-		discountedPrice += table.getOrders().getOrders().stream()
-				.filter(not(Order::isChickenMenu))
-				.mapToInt(Order::calculatePurePrice)
-				.sum();
-
-		return discountedPrice;
-	}
-
-	private int applyStrategy(Order order) {
-		return order.calculatePurePrice() - (order.getDividedAmountByUnit(DIVIDE_UNIT) * DISCOUNT_UNIT);
-	}
-
-	private static <T> Predicate<T> not(Predicate<T> t) {
-		return t.negate();
+		return table.calculateTotalPrice() - (categoryCount / DIVIDE_UNIT) * DISCOUNT_UNIT;
 	}
 }

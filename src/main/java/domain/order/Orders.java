@@ -20,10 +20,6 @@ public class Orders {
 		this.orders = inputOrders;
 	}
 
-	public static Orders createOrders() {
-		return new Orders(new ArrayList<>());
-	}
-
 	public void addNewMenuOrder(Order inputOrder) {
 		Objects.requireNonNull(inputOrder, "주문은 null일 수 없습니다.");
 		orders.add(inputOrder);
