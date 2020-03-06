@@ -63,7 +63,7 @@ public class OrderTest {
 
 	@DisplayName("orderMore 유효하지 않은 수량의 메뉴 추가시 예외처리")
 	@ParameterizedTest
-	@ValueSource(ints = {-20, 0, 100})
+	@ValueSource(ints = {70, 100})
 	void orderMore_invalid_range_input(int inputAmount) {
 		Order order = new Order(MenuRepository.getMenu(1), 30);
 		assertThatIllegalArgumentException().isThrownBy(() -> {
