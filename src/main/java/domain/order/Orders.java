@@ -15,7 +15,7 @@ import java.util.*;
 public class Orders {
 	private List<Order> orders;
 
-	public Orders(List<Order> inputOrders) { // TODO: 2020/03/05 옵셔널을 통한 리팩토링
+	public Orders(List<Order> inputOrders) {
 		Objects.requireNonNull(inputOrders, "주문들은 null일 수 없습니다.");
 		this.orders = inputOrders;
 	}

@@ -28,7 +28,7 @@ public class TableRepository {
 		return Collections.unmodifiableList(tables);
 	}
 
-	public static Table getTable(int inputNumber) { // TODO: 2020/03/05 프로덕션에서 사용하는지 여부
+	public static Table getTable(int inputNumber) {
 		return tables.stream()
 				.filter(table -> table.isSameNumber(inputNumber))
 				.findAny()
