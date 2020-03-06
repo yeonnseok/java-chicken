@@ -21,7 +21,7 @@ import java.util.List;
 public class OrderController {
 	void operateOrderFunction(Tables tables, List<Menu> menus) {
 		OutputView.printTables(tables.getTables());
-		final Table orderingTable = receiveTargetTable(tables);
+		Table orderingTable = receiveTargetTable(tables);
 		OutputView.printMenus(menus);
 
 		receiveOrder(orderingTable);
