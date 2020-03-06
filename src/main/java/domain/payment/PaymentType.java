@@ -32,8 +32,4 @@ public enum PaymentType {
 	public int calculateDiscountedPrice(int inputPrice) {
 		return (int) ((inputPrice * this.discountRate));
 	}
-
-	public double getDiscountRate() {
-		return this.discountRate;
-	}
 }
