@@ -11,11 +11,7 @@ import view.OutputView;
  */
 public class Application {
 	public static void main(String[] args) {
-		try {
-			PosController posController = new PosController();
-			posController.run();
-		} catch (Exception e) {
-			OutputView.printExceptionMessage(e.getMessage());
-		}
+		PosController posController = new PosController();
+		posController.run();
 	}
 }
