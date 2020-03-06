@@ -29,20 +29,20 @@ public class PosController {
 
 		do {
 			OutputView.printMainMessage();
-			posStatus = receivePostStatus(tables.isOrderedTables());
+			posStatus = receivePosStatus(tables.isOrderedTables());
 
 			runByStatus(posStatus);
 		} while (!posStatus.isTerminated());
 	}
 
-	private PosStatus receivePostStatus(boolean isTablesOrdered) {
+	private PosStatus receivePosStatus(boolean isTablesOrdered) {
 		try {
 			OutputView.askInputPosStatus();
 			int inputPosStatus = validatePosStatus(InputView.askIntegerInput(), isTablesOrdered);
 			return PosStatus.of(inputPosStatus);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return receivePostStatus(isTablesOrdered);
+			return receivePosStatus(isTablesOrdered);
 		}
 	}
 
