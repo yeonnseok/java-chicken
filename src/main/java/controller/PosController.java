@@ -19,10 +19,10 @@ import java.util.List;
  * 날짜 : 2020/03/04
  */
 public class PosController {
-	OrderController orderController = new OrderController();
-	PaymentController paymentController = new PaymentController();
-	Tables tables = new Tables(TableRepository.tables());
-	List<Menu> menus = MenuRepository.menus();
+	private OrderController orderController = new OrderController();
+	private PaymentController paymentController = new PaymentController();
+	private Tables tables = new Tables(TableRepository.tables());
+	private List<Menu> menus = MenuRepository.menus();
 
 	public void run() {
 		PosStatus posStatus;
