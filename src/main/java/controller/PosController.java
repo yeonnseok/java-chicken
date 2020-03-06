@@ -32,7 +32,7 @@ public class PosController {
 			posStatus = receivePosStatus(tables.isOrderedTables());
 
 			runByStatus(posStatus);
-		} while (!posStatus.isTerminated());
+		} while (!posStatus.equals(PosStatus.STATUS_TERMINATION));
 	}
 
 	private PosStatus receivePosStatus(boolean isTablesOrdered) {
@@ -54,16 +54,16 @@ public class PosController {
 	}
 
 	private void runByStatus(PosStatus posStatus) {
-		if (posStatus.isTerminated()) {
+		if (posStatus.equals(PosStatus.STATUS_TERMINATION)) {
 			OutputView.printTerminationMessage();
 			return;
 		}
 
-		if (posStatus.isOrdering()) {
+		if (posStatus.equals(PosStatus.STATUS_ORDER)) {
 			orderController.operateOrderFunction(tables, menus);
 		}
 
-		if (posStatus.isPaying()) {
+		if (posStatus.equals(PosStatus.STATUS_PAYING)) {
 			paymentController.operatePayingFunction(orderController, tables);
 		}
 	}

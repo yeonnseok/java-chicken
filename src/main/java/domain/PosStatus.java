@@ -15,9 +15,6 @@ public enum PosStatus {
 	STATUS_PAYING(2),
 	STATUS_TERMINATION(3);
 
-	private static final int ORDER_STATUS = 1;
-	private static final int PAYING_STATUS = 2;
-	private static final int TERMINATION_STATUS = 3;
 	private int statusNumber;
 
 	PosStatus(int statusNumber) {
@@ -29,17 +26,5 @@ public enum PosStatus {
 				.filter(posStatus -> posStatus.statusNumber == inputStatusNumber)
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException("기능번호가 유효하지 않습니다."));
-	}
-
-	public boolean isOrdering() {
-		return this.statusNumber == ORDER_STATUS;
-	}
-
-	public boolean isPaying() {
-		return this.statusNumber == PAYING_STATUS;
-	}
-
-	public boolean isTerminated() {
-		return this.statusNumber == TERMINATION_STATUS;
 	}
 }
