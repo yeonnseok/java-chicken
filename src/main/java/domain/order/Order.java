@@ -28,7 +28,6 @@ public class Order {
 	}
 
 	public void orderMore(int inputAmount) {
-		validateAmount(inputAmount);
 		validateAmount(this.amount + inputAmount);
 		this.amount = this.amount + inputAmount;
 	}
