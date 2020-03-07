@@ -3,26 +3,20 @@ package domain;
 import java.util.Map;
 
 public class Calculator {
-    private static final double DISCOUNT_RATE = 0.95;
-    private static final int CHICKEN_DISCOUNT_STANDARD = 10;
-    private static final int DISCOUNT_PAYMENT = 10000;
-
     private Calculator() {
     }
 
     public static int calculate(Table table, PaymentType paymentType) {
         Order order = table.getOrder();
         Map<Menu, Quantity> orderInfo = order.getOrderInfo();
-        int amount = calculateAllMenuSum(orderInfo);
-        amount = discountByCash(paymentType, amount);
-        return amount;
-    }
 
-    private static int discountByCash(PaymentType paymentType, int amount) {
-        if (PaymentType.CASH.equals(paymentType)) {
-            amount = (int) (amount * DISCOUNT_RATE);
-        }
-        return amount;
+        int allMenuPrice = calculateAllMenuSum(orderInfo);
+        DiscountByCategory chickenDiscountStrategy = ChickenDiscountStrategy.create();
+        int chickenDiscountPrice = chickenDiscountStrategy.discountByCategory(table);
+        allMenuPrice = allMenuPrice - chickenDiscountPrice;
+
+        int discountAmount = PaymentTypeDiscountStrategy.discountByPaymentType(allMenuPrice, paymentType);
+        return discountAmount;
     }
 
     private static int calculateAllMenuSum(Map<Menu, Quantity> orderInfo) {
@@ -38,14 +32,6 @@ public class Calculator {
     private static int calculateMenuSum(Menu menu, Quantity quantity) {
         int price = menu.getPrice();
         int count = quantity.getQuantity();
-        int chickenDiscount = discountByChickenCount(menu, count);
-        return (price * count) - chickenDiscount;
-    }
-
-    private static int discountByChickenCount(Menu menu, int count) {
-        if (menu.isChicken() && count >= CHICKEN_DISCOUNT_STANDARD) {
-            return (count / CHICKEN_DISCOUNT_STANDARD) * DISCOUNT_PAYMENT;
-        }
-        return 0;
+        return price * count;
     }
 }
