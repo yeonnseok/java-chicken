@@ -1,7 +1,7 @@
 package domain;
 
 public class Quantity {
-    private static final int MIN_QUANTITY_RANGE = 1;
+    private static final int MIN_QUANTITY_RANGE = 0;
     private static final int MAX_QUANTITY_RANGE = 99;
 
     private int quantity;
@@ -24,7 +24,8 @@ public class Quantity {
 
     private void validateQuantitySum(Quantity quantity) {
         if (this.quantity + quantity.quantity > MAX_QUANTITY_RANGE) {
-            throw new IllegalArgumentException("메뉴 수량의 합이 99개 초과입니다.");
+            throw new IllegalArgumentException(
+                    String.format("메뉴 수량의 합이 99개 초과입니다.\n현재 메뉴 수량: %d", this.quantity));
         }
     }
 

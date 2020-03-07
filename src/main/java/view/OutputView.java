@@ -78,6 +78,7 @@ public class OutputView {
         for (Map.Entry<Menu, Quantity> entry : orderInfo.entrySet()) {
             printOrderInfo(entry);
         }
+        System.out.println("\n## " + table.toString() + "번 테이블의 결제를 진행합니다.");
     }
 
     private static void printOrderInfo(Map.Entry<Menu, Quantity> entry) {

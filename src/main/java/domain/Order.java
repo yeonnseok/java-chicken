@@ -24,6 +24,10 @@ public class Order {
         this.order.clear();
     }
 
+    public boolean hashOrder() {
+        return !this.order.isEmpty();
+    }
+
     public Map<Menu, Quantity> getOrderInfo() {
         return this.order;
     }

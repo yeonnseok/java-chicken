@@ -47,7 +47,7 @@ public class PosController {
         Table table = selectTable();
         OutputView.printMenus(menus.getMenus());
         Menu menu = selectMenu();
-        checkMenuQuantity(table, menu);
+        addMenu(table, menu);
     }
 
     private static Table selectTable() {
@@ -80,13 +80,13 @@ public class PosController {
         }
     }
 
-    private static void checkMenuQuantity(Table table, Menu menu) {
+    private static void addMenu(Table table, Menu menu) {
         try {
             Quantity quantity = createQuantity();
             table.addMenu(menu, quantity);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            checkMenuQuantity(table, menu);
+            addMenu(table, menu);
         }
     }
 
@@ -94,20 +94,19 @@ public class PosController {
         OutputView.printTables(tables.getTables());
         Table table = selectTable();
         OutputView.printOrder(table);
-        String tableNumber = table.toString();
-        PaymentType paymentType = createPaymentType(tableNumber);
+        PaymentType paymentType = createPaymentType();
         int amount = Calculator.calculate(table, paymentType);
         OutputView.printAmount(amount);
         table.clearOrder();
     }
 
-    private static PaymentType createPaymentType(String tableNumber) {
+    private static PaymentType createPaymentType() {
         try {
-            int paymentTypeNumber = InputView.inputPaymentType(tableNumber);
+            int paymentTypeNumber = InputView.inputPaymentType();
             return PaymentType.getPaymentType(paymentTypeNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return createPaymentType(tableNumber);
+            return createPaymentType();
         }
     }
 }
