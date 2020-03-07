@@ -21,7 +21,7 @@ public class CalculatorTest {
         cash = PaymentType.CASH;
     }
 
-    @DisplayName("결제 기능 테스트")
+    @DisplayName("신용 카드로 결제 기능 테스트")
     @Test
     void calculateByCreditTest() {
         Quantity quantity = new Quantity(1);
@@ -29,9 +29,18 @@ public class CalculatorTest {
         table.addMenu(coke, quantity);
 
         int amountByCredit = Calculator.calculate(table, credit);
-        int amountByCash = Calculator.calculate(table, cash);
 
         Assertions.assertThat(amountByCredit).isEqualTo(17_000);
+    }
+
+    @DisplayName("현금으로 결제 기능 테스트")
+    @Test
+    void calculateByCashTest() {
+        Quantity quantity = new Quantity(1);
+        table.addMenu(friedChicken, quantity);
+        table.addMenu(coke, quantity);
+        int amountByCash = Calculator.calculate(table, cash);
+
         Assertions.assertThat(amountByCash).isEqualTo(16_150);
     }
 

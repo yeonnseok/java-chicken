@@ -24,7 +24,7 @@ public class Quantity {
 
     private void validateQuantitySum(Quantity quantity) {
         if (this.quantity + quantity.quantity > MAX_QUANTITY_RANGE) {
-            throw new IllegalArgumentException("메뉴 수량의 합이 99개 이상입니다.");
+            throw new IllegalArgumentException("메뉴 수량의 합이 99개 초과입니다.");
         }
     }
 
