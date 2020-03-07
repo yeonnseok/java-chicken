@@ -1,49 +1,39 @@
 package controller;
 
 import domain.Menus;
+import domain.PosFunction;
 import domain.Tables;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
-    private static final int REGISTER = 1;
-    private static final int PAY = 2;
-    private static final int EXIT = 3;
-
     public static void main(String[] args) {
         Tables tables = new Tables();
-        int toDo;
+        PosFunction posFunction;
         do {
             OutputView.printMain();
-            toDo = inputToDo();
-            runApplication(tables, toDo);
-        } while (toDo != EXIT);
+            posFunction = inputPosFunction();
+            runApplication(tables, posFunction);
+        } while (!posFunction.isExit());
         OutputView.printExitMessage();
     }
 
-    private static int inputToDo() {
+    private static PosFunction inputPosFunction() {
         try {
-            int toDo = InputView.inputToDo();
-            return validateToDo(toDo);
+            int posFunction = InputView.inputToDo();
+            return PosFunction.getPosFunction(posFunction);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return inputToDo();
+            return inputPosFunction();
         }
     }
 
-    private static int validateToDo(int toDo) {
-        if (toDo != REGISTER && toDo != PAY && toDo != EXIT) {
-            throw new IllegalArgumentException("1,2,3 중 하나의 기능을 선택해주세요.");
-        }
-        return toDo;
-    }
-
-    private static void runApplication(Tables tables, int toDo) {
-        if (toDo == REGISTER) {
+    private static void runApplication(Tables tables, PosFunction posFunction) {
+        if (posFunction.isRegister()) {
             Menus menus = new Menus();
             RegisterController.startRegister(tables, menus);
         }
-        if (toDo == PAY) {
+        if (posFunction.isPay()) {
             PayController.startPay(tables);
         }
     }

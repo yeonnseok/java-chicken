@@ -1,6 +1,8 @@
 package domain;
 
 public class Table {
+    private static final int PAY_FINISH = 0;
+
     private final int number;
     private final OrderList orderList = new OrderList();
 
@@ -24,11 +26,18 @@ public class Table {
         return orderList.countChickenMenu();
     }
 
+    public boolean isPayFinish() {return orderList.calculateMenuPriceSum() == PAY_FINISH;}
+
     public void initOrderList() {
         orderList.initOrderList();
     }
 
     public OrderList getOrderList() {
         return orderList;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.number);
     }
 }

@@ -12,7 +12,6 @@ public class OutputView {
     private static final String PAY_FINISH_BOTTOM_LINE = "└ ─ ┘";
     private static final String NOT_PAY_FINISH_BOTTOM_LINE = "└ m ┘";
     private static final String NEW_LINE = System.lineSeparator();
-    private static final int PAY_FINISH = 0;
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
@@ -40,19 +39,15 @@ public class OutputView {
     }
 
     private static void printPayFinishTableBottomLine(Table table) {
-        if (!isPayFinish(table)) {
+        if (!table.isPayFinish()) {
             printBottomLine(NOT_PAY_FINISH_BOTTOM_LINE);
         }
     }
 
     private static void printNotPayFinishTableBottomLine(Table table) {
-        if (isPayFinish(table)) {
+        if (table.isPayFinish()) {
             printBottomLine(PAY_FINISH_BOTTOM_LINE);
         }
-    }
-
-    private static boolean isPayFinish(Table table) {
-        return table.calculateMenuPriceSum() == PAY_FINISH;
     }
 
     private static void printBottomLine(final String line) {
