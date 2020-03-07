@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MenusTest {
     @ParameterizedTest
-    @DisplayName("테이블 전체를 조회하여 존재하는 테이블 번호인지 확인")
+    @DisplayName("메뉴 전체를 조회하여 존재하는 메뉴 번호인지 확인")
     @CsvSource({"1,true", "6,true", "7,false", "21,true", "22,true", "23,false", "33,false"})
     void isPresentTableNumberTest(int menuNumber, boolean status) {
         Menus menus = new Menus();

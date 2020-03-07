@@ -9,8 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class OrderedMenuTest {
-    @ParameterizedTest
-    @CsvSource({"0,0", "1,16000", "3,48000", "10,1600000", "53, 848000", "93,1488000"})
+    @Test
     @DisplayName("주문한 메뉴와 수량을 곱하여 합계를 잘 반환하는지 확인")
     void calculateMenuPriceTest() {
         Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
@@ -51,7 +50,7 @@ public class OrderedMenuTest {
         assertThat(orderedMenu.getChickenCategoryQuantity()).isEqualTo(2);
 
         Menu menu2 = new Menu(2, "양념", Category.CHICKEN, 17000);
-        OrderedMenu orderedMenu2 = new OrderedMenu(menu, 1);
+        OrderedMenu orderedMenu2 = new OrderedMenu(menu2, 1);
         assertThat(orderedMenu2.getChickenCategoryQuantity()).isEqualTo(1);
 
         Menu menu3 = new Menu(4, "콜라", Category.BEVERAGE, 1600);

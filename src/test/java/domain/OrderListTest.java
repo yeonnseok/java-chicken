@@ -17,9 +17,10 @@ public class OrderListTest {
         orderList.registerMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5);
         orderList.registerMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2);
 
-        List<OrderedMenu> testOrderList = Arrays.asList(new OrderedMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 3)
-                , new OrderedMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5)
-                , new OrderedMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2));
+        List<OrderedMenu> testOrderList = Arrays.asList(
+                new OrderedMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 3),
+                new OrderedMenu(new Menu(2, "양념", Category.CHICKEN, 18000), 5),
+                new OrderedMenu(new Menu(5, "콜라", Category.BEVERAGE, 2000), 2));
         assertThat(orderList.getOrderedMenus()).isEqualTo(testOrderList);
     }
 

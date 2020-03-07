@@ -28,7 +28,8 @@ public class OrderedMenu {
 
     private void checkMaxQuantity(int quantity) {
         if (this.quantity + quantity > MAX_QUANTITY) {
-            throw new IllegalArgumentException(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. 현재 주문량 : %d", this.quantity));
+            throw new IllegalArgumentException(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. " +
+                    "현재 주문량 : %d", this.quantity));
         }
     }
 

@@ -88,7 +88,7 @@ public class OutputView {
         tables.getOrderList(tableNumber)
                 .getOrderedMenus()
                 .forEach(o -> orderList.append(o.toString())
-                                        .append(NEW_LINE));
+                        .append(NEW_LINE));
         System.out.println(orderList);
     }
 
