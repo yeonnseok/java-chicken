@@ -22,9 +22,9 @@ public class TableTest {
         Table table = new Table(1);
         table.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 1);
 
-        OrderList testOrderList = new OrderList();
-        testOrderList.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 1);
+        Bill testBill = new Bill();
+        testBill.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), 1);
 
-        assertThat(table.getOrderList()).isEqualTo(testOrderList);
+        assertThat(table.getBill()).isEqualTo(testBill);
     }
 }

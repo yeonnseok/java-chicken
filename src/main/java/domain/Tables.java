@@ -59,10 +59,10 @@ public class Tables {
                 .forEach(o -> o.initOrderList());
     }
 
-    public OrderList getOrderList(int tableNumber) {
+    public Bill getOrderList(int tableNumber) {
         return tables.stream()
                 .filter(o -> o.isMatchTableNumber(tableNumber))
-                .map(o -> o.getOrderList())
+                .map(o -> o.getBill())
                 .findFirst()
                 .get();
     }

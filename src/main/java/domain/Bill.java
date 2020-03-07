@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderList {
+public class Bill {
     private static final int NO_QUANTITY = 0;
 
     private final List<OrderedMenu> orderList = new ArrayList<>();
@@ -50,10 +50,14 @@ public class OrderList {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrderList orderList1 = (OrderList) o;
-        return Objects.equals(orderList, orderList1.orderList);
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Bill bill1 = (Bill) o;
+        return Objects.equals(orderList, bill1.orderList);
     }
 
     @Override

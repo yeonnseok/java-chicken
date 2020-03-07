@@ -48,7 +48,7 @@
 
 ### domain
 - Table : 한 테이블에 대한 정보를 담고 있다.
-    - OrderList orderList : 한 테이블의 주문 내역
+    - OrderList bill : 한 테이블의 주문 내역
     - int number : 테이블의 번호
     - 한 테이블의 총 주문 금액을 알려주는 기능
     - 한 테이블의 치킨 메뉴 개수를 계산하는 기능
@@ -64,7 +64,7 @@
     - 지정한 테이블의 주문 내역을 초기화하는 기능
     
 - OrderList : 주문 내역을 가진 일급콜렉션이다.
-    - List<OrderedMenu> orderList
+    - List<OrderedMenu> bill
 - OrderedMenu : 주문된 메뉴에 대한 정보를 담고 있다.
     - Menu Menu
     - int quantity

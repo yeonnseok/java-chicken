@@ -43,8 +43,8 @@ public class PayController {
     }
 
     private static int countOrderedMenus(Tables tables, int tableNumber) {
-        OrderList tableOrderList = tables.getOrderList(tableNumber);
-        List<OrderedMenu> orderedMenus = tableOrderList.getOrderedMenus();
+        Bill tableBill = tables.getOrderList(tableNumber);
+        List<OrderedMenu> orderedMenus = tableBill.getOrderedMenus();
         return orderedMenus.size();
     }
 

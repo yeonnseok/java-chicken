@@ -27,7 +27,7 @@ public class TablesTest {
         Table testTable = new Table(2);
         testTable.registerMenu(new Menu(1, "후라이드", Category.CHICKEN, 16000), quantity);
 
-        assertThat(tables.tables().get(1).getOrderList()).isEqualTo(testTable.getOrderList());
+        assertThat(tables.tables().get(1).getBill()).isEqualTo(testTable.getBill());
     }
 
     @Test

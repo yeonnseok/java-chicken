@@ -4,7 +4,7 @@ public class Table {
     private static final int PAY_FINISH = 0;
 
     private final int number;
-    private final OrderList orderList = new OrderList();
+    private final Bill bill = new Bill();
 
     public Table(final int number) {
         this.number = number;
@@ -15,25 +15,25 @@ public class Table {
     }
 
     public void registerMenu(Menu menu, int quantity) {
-        orderList.registerMenu(menu, quantity);
+        bill.registerMenu(menu, quantity);
     }
 
     public int calculateMenuPriceSum() {
-        return orderList.calculateMenuPriceSum();
+        return bill.calculateMenuPriceSum();
     }
 
     public int countChickenMenu() {
-        return orderList.countChickenMenu();
+        return bill.countChickenMenu();
     }
 
-    public boolean isPayFinish() {return orderList.calculateMenuPriceSum() == PAY_FINISH;}
+    public boolean isPayFinish() {return bill.calculateMenuPriceSum() == PAY_FINISH;}
 
     public void initOrderList() {
-        orderList.initOrderList();
+        bill.initOrderList();
     }
 
-    public OrderList getOrderList() {
-        return orderList;
+    public Bill getBill() {
+        return bill;
     }
 
     @Override
