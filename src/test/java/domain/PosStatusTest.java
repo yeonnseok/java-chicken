@@ -16,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  */
 public class PosStatusTest {
 
-	@DisplayName("of 유효한 번호 입력시 정상 동작")
+	@DisplayName("of 유효한 번호 입력시 정상적으로 해당 Enum 상수 리턴")
 	@Test
-	void of() {
+	void of_valid_input() {
 		assertThat(PosStatus.of(1)).isEqualTo(PosStatus.STATUS_ORDER);
 	}
 
