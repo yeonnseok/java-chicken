@@ -64,21 +64,4 @@ public class Table {
 	public String toString() {
 		return Integer.toString(number);
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null || getClass() != obj.getClass()) {
-			return false;
-		}
-		Table that = (Table)obj ;
-		return this.number == that.number;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(this.number);
-	}
 }
