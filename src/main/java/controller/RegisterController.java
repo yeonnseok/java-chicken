@@ -15,6 +15,7 @@ public class RegisterController {
         try {
             int tableNumber = inputTableNumber(tables);
             OutputView.printMenus(menus.getMenus());
+
             int menuNumber = inputMenuNumber(menus);
             int menuQuantity = inputMenuQuantity();
             tables.registerMenu(tableNumber, menuNumber, menuQuantity);

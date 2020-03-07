@@ -12,11 +12,15 @@ public class PayController {
     public static void startPay(Tables tables) {
         OutputView.printTables(tables.tables());
         int tableNumber = inputTableNumber(tables);
+
         OutputView.printOrderList(tables, tableNumber);
         OutputView.printStartPay(tableNumber);
+
         PaymentWay paymentWay = createPaymentWay();
+
         int totalMoney = TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay);
         OutputView.printTotalMoney(totalMoney);
+
         tables.initOrderList(tableNumber);
     }
 
