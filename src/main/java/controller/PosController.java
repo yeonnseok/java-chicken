@@ -29,28 +29,26 @@ public class PosController {
 
 		do {
 			OutputView.printMainMessage();
-			posStatus = receivePosStatus(tables.isOrderedTables());
-
+			posStatus = receivePosStatus();
 			runByStatus(posStatus);
 		} while (!posStatus.equals(PosStatus.STATUS_TERMINATION));
 	}
 
-	private PosStatus receivePosStatus(boolean isTablesOrdered) {
+	private PosStatus receivePosStatus() {
 		try {
 			OutputView.askInputPosStatus();
-			int inputPosStatus = validatePosStatus(InputView.askIntegerInput(), isTablesOrdered);
+			int inputPosStatus = InputView.askIntegerInput();
 			return PosStatus.of(inputPosStatus);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			return receivePosStatus(isTablesOrdered);
+			return receivePosStatus();
 		}
 	}
 
-	private int validatePosStatus(int inputPosStatus, boolean isTablesOrdered) {
-		if (inputPosStatus == 2 && !isTablesOrdered) {
+	private void validatePosStatus(PosStatus posStatus, boolean isTablesOrdered) {
+		if (posStatus.equals(PosStatus.STATUS_PAYING) && !isTablesOrdered) {
 			throw new IllegalArgumentException("주문 받은 테이블이 없는데 결제를 할 수 없습니다.");
 		}
-		return inputPosStatus;
 	}
 
 	private void runByStatus(PosStatus posStatus) {
@@ -64,6 +62,7 @@ public class PosController {
 		}
 
 		if (posStatus.equals(PosStatus.STATUS_PAYING)) {
+			validatePosStatus(posStatus, tables.isOrderedTables());
 			paymentController.operatePayingFunction(orderController, tables);
 		}
 	}
