@@ -1,8 +1,6 @@
 package domaintest;
 
-import domain.Category;
-import domain.Menu;
-import domain.MenuNumber;
+import domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,8 +23,9 @@ public class MenuNumberTest {
     @DisplayName("메뉴 번호와 일치하는 메뉴 인스턴스 반환")
     @Test
     void getMenuByNumberTest() {
+        Menus menus = new Menus(MenuRepository.menus());
         MenuNumber menuNumber = new MenuNumber(1);
-        Menu menu = menuNumber.getMenuByNumber();
+        Menu menu = menus.getMenuByNumber(menuNumber);
         assertThat(menu).isEqualTo(new Menu(1, "후라이드", Category.CHICKEN, 16_000));
     }
 }

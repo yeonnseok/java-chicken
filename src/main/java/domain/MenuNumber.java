@@ -17,11 +17,7 @@ public class MenuNumber {
         }
     }
 
-    public Menu getMenuByNumber() {
-        return MenuRepository.menus()
-                .stream()
-                .filter(menu -> menu.getNumber() == menuNumber)
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+    public int getNumber() {
+        return menuNumber;
     }
 }

@@ -1,9 +1,6 @@
 package view;
 
-import domain.Menu;
-import domain.Orders;
-import domain.Table;
-import domain.TableNumber;
+import domain.*;
 
 import java.util.List;
 
@@ -22,16 +19,16 @@ public class OutputView {
         System.out.println("3 - 프로그램 종료");
     }
 
-    public static void printTables(final List<Table> tables, final TableNumber tableNumber) {
+    public static void printTables(final Tables tables, final TableNumber tableNumber) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printTopLine(size);
-        printTableNumbers(tables);
+        printTableNumbers(tables.getTables());
         printBottomLine(size, tableNumber);
     }
 
-    public static void printMenus(final List<Menu> menus) {
-        for (final Menu menu : menus) {
+    public static void printMenus(final Menus menus) {
+        for (final Menu menu : menus.getMenus()) {
             System.out.println(menu);
         }
     }
@@ -70,14 +67,14 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printOrderList(final Orders orders) {
+    public static void printOrderList(final Table table) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE)
                     .append("## 주문 내역")
                     .append(NEW_LINE)
                     .append("메뉴 수량 금액")
                     .append(NEW_LINE);
-        printEachMenuInformation(orders, stringBuilder);
+        printEachMenuInformation(table.getOrders(), stringBuilder);
         System.out.println(stringBuilder);
     }
 
