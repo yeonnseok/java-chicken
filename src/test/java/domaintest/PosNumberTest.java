@@ -12,7 +12,7 @@ public class PosNumberTest {
     @DisplayName("정수 입력 시 해당 enum 반환")
     @ParameterizedTest
     @CsvSource({"1,ORDER", "2,PAY", "3,EXIT"})
-    void posNumberTest(int posNumber, String posName) {
-        assertThat(PosNumber.getPosNumber(posNumber)).isEqualTo(PosNumber.valueOf(posName));
+    void posNumberTest(int posNumber, PosNumber posName) {
+        assertThat(PosNumber.getPosNumber(posNumber)).isEqualTo(posName);
     }
 }

@@ -14,8 +14,8 @@ public class PaymentTest {
     @DisplayName("결제 기능 선택")
     @ParameterizedTest
     @CsvSource({"1,CARD", "2,CASH"})
-    void paymentNumberTest(int paymentNumber, String paymentName) {
-        assertThat(Payment.getPayment(paymentNumber)).isEqualTo(Payment.valueOf(paymentName));
+    void paymentNumberTest(int paymentNumber, Payment paymentName) {
+        assertThat(Payment.getPayment(paymentNumber)).isEqualTo(paymentName);
     }
 
     @DisplayName("결제 수단 외 다른 번호 입력 시 예외 발생")

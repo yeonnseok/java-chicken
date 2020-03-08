@@ -14,8 +14,8 @@ public class PayDecideTest {
     @DisplayName("결제 확인 선택")
     @ParameterizedTest
     @CsvSource({"1,YES", "2,NO"})
-    void paymentNumberTest(int payDecideNumber, String payDecideName) {
-        assertThat(PayDecide.getPayDecide(payDecideNumber)).isEqualTo(PayDecide.valueOf(payDecideName));
+    void paymentNumberTest(int payDecideNumber, PayDecide payDecideName) {
+        assertThat(PayDecide.getPayDecide(payDecideNumber)).isEqualTo(payDecideName);
     }
 
     @DisplayName("결제 확인 여부 외 다른 번호 입력 시 예외 발생")
