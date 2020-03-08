@@ -13,13 +13,13 @@ public class OrderController implements PosController {
         OutputView.printMenus(menus);
         Menu selectedMenu = getMenuWithInputValidation(menus);
 
-        Count count = inputCountWithValidation();
-        selectedTable.addToOrders(selectedMenu, count);
+        Quantity quantity = inputCountWithValidation();
+        selectedTable.addToOrders(selectedMenu, quantity);
     }
 
-    private static Count inputCountWithValidation() {
+    private static Quantity inputCountWithValidation() {
         try {
-            return new Count(InputView.inputCount());
+            return new Quantity(InputView.inputCount());
         } catch(IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return inputCountWithValidation();

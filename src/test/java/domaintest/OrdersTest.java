@@ -18,11 +18,11 @@ public class OrdersTest {
         Menu menu4 = new Menu(4, "통구이", Category.CHICKEN, 16_000);
         Menu menu5 = new Menu(22, "사이다", Category.BEVERAGE, 1_000);
         orders = new Orders();
-        orders.addOrder(menu1, new Count(20));
-        orders.addOrder(menu2, new Count(20));
-        orders.addOrder(menu3, new Count(1));
-        orders.addOrder(menu4, new Count(4));
-        orders.addOrder(menu5, new Count(2));
+        orders.addOrder(menu1, new Quantity(20));
+        orders.addOrder(menu2, new Quantity(20));
+        orders.addOrder(menu3, new Quantity(1));
+        orders.addOrder(menu4, new Quantity(4));
+        orders.addOrder(menu5, new Quantity(2));
     }
 
 

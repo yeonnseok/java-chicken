@@ -14,8 +14,8 @@ public class Table {
         return number;
     }
 
-    public void addToOrders(Menu menu, Count count) {
-        orders.addOrder(menu, count);
+    public void addToOrders(Menu menu, Quantity quantity) {
+        orders.addOrder(menu, quantity);
     }
 
     public Orders getOrders() {
