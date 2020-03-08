@@ -8,39 +8,38 @@ public class PayController implements PosController {
     final Tables tables = new Tables(TableRepository.tables());
 
     @Override
-    public TableNumber controlAction(TableNumber tableNumber) {
-        checkEmptyTableWhenPay(tableNumber);
-        OutputView.printTables(tables, tableNumber);
-        tableNumber = inputTableNumberWithValidation(tableNumber);
+    public void controlAction() {
+        checkEmptyTableWhenPay(tables);
+        OutputView.printTables(tables);
+        Table selectedTable = getPayTableWithInputValidation(tables);
 
-        Table table = tables.getTableByNumber(tableNumber);
-        OutputView.printOrderList(table);
-        OutputView.printPayProcessMessage(tableNumber);
+        OutputView.printOrderList(selectedTable);
+        OutputView.printPayProcessMessage(selectedTable);
+
         Payment payment = getPaymentWithValidation();
-        int totalPrice = payment.totalPriceAfterPaymentDiscount(table.getTotalPrice());
+        int totalPrice = payment.totalPriceAfterPaymentDiscount(selectedTable.getTotalPrice());
         OutputView.printTotalPrice(totalPrice);
-        return tableNumber;
     }
 
-    private static void checkEmptyTableWhenPay(final TableNumber tableNumber) {
-        if (tableNumber.isInitialTableNumber()) {
+    private static void checkEmptyTableWhenPay(final Tables tables) {
+        if (tables.isAllEmptyOrders()) {
             throw new IllegalArgumentException("결제할 수 있는 테이블이 없습니다.");
         }
     }
 
-    private static TableNumber inputTableNumberWithValidation(final TableNumber tableNumber) {
+    private static Table getPayTableWithInputValidation(Tables tables) {
         try {
-            int inputNumber = InputView.inputTableNumber();
-            checkExistedTableNumber(tableNumber, inputNumber);
-            return new TableNumber(inputNumber);
+            Table selectedTable = tables.getTableByNumber(InputView.inputPayTableNumber());
+            checkOrderingTable(selectedTable);
+            return selectedTable;
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return inputTableNumberWithValidation(tableNumber);
+            return getPayTableWithInputValidation(tables);
         }
     }
 
-    private static void checkExistedTableNumber(final TableNumber tableNumber, final int inputNumber) {
-        if (tableNumber.isNotZeroAndNotSameValueWith(inputNumber)) {
+    private static void checkOrderingTable(final Table table) {
+        if (!table.hasOrders()) {
             throw new IllegalArgumentException("현재 주문 진행중인 테이블만 선택가능합니다.");
         }
     }

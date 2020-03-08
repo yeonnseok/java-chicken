@@ -9,15 +9,15 @@ public class OrderController implements PosController {
     final Menus menus = new Menus(MenuRepository.menus());
 
     @Override
-    public TableNumber controlAction(TableNumber tableNumber) {
-        OutputView.printTables(tables, tableNumber);
-        tableNumber = inputTableNumberWithValidation(tableNumber);
+    public void controlAction() {
+        OutputView.printTables(tables);
+        Table selectedTable = getTableWithInputValidation(tables);
+
         OutputView.printMenus(menus);
-        MenuNumber menuNumber = inputMenuNumberWithValidation();
+        Menu selectedMenu = getMenuWithInputValidation(menus);
+
         Count count = inputCountWithValidation();
-        Table currentTable = tables.getTableByNumber(tableNumber);
-        currentTable.addToOrders(menus.getMenuByNumber(menuNumber), count);
-        return tableNumber;
+        selectedTable.addToOrders(selectedMenu, count);
     }
 
     private static Count inputCountWithValidation() {
@@ -29,22 +29,21 @@ public class OrderController implements PosController {
         }
     }
 
-    private static MenuNumber inputMenuNumberWithValidation() {
+    private static Menu getMenuWithInputValidation(Menus menus) {
         try {
-            return new MenuNumber(InputView.inputMenuNumber());
+            return menus.getMenuByNumber(InputView.inputMenuNumber());
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return inputMenuNumberWithValidation();
+            return getMenuWithInputValidation(menus);
         }
     }
 
-    private static TableNumber inputTableNumberWithValidation(final TableNumber tableNumber) {
+    private static Table getTableWithInputValidation(Tables tables) {
         try {
-            int inputNumber = InputView.inputTableNumber();
-            return new TableNumber(inputNumber);
+            return tables.getTableByNumber(InputView.inputTableNumber());
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            return inputTableNumberWithValidation(tableNumber);
+            return getTableWithInputValidation(tables);
         }
     }
 }

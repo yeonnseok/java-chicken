@@ -5,12 +5,10 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        TableNumber tableNumber = new TableNumber();
         Pos pos = getPosWithValidation();
-
         do {
             PosController controller = pos.getController();
-            tableNumber = controller.controlAction(tableNumber);
+            controller.controlAction();
             pos = getPosWithValidation();
         } while (pos != Pos.EXIT);
     }

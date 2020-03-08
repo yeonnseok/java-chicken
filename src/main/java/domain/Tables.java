@@ -17,10 +17,15 @@ public class Tables {
         return tables.size();
     }
 
-    public Table getTableByNumber(TableNumber tableNumber) {
+    public Table getTableByNumber(int tableNumber) {
         return tables.stream()
-                .filter(table -> table.getNumber() == tableNumber.getTableNumber())
+                .filter(table -> table.getNumber() == tableNumber)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 테이블 번호 입니다."));
+    }
+
+    public boolean isAllEmptyOrders() {
+        return tables.stream()
+                .noneMatch(Table::hasOrders);
     }
 }

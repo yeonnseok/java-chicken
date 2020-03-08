@@ -45,6 +45,17 @@ public class InputView {
         }
     }
 
+
+    public static int inputPayTableNumber() {
+        try {
+            System.out.println("## 결제할 테이블을 선택하세요.");
+            return inputIntegerWithValidation();
+        } catch (NumberFormatException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputPayTableNumber();
+        }
+    }
+
     public static int inputPaymentNumber() {
         try {
             System.out.println("## 신용 카드는 1번, 현금은 2번");

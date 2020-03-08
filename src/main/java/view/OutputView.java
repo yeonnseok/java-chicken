@@ -19,12 +19,12 @@ public class OutputView {
         System.out.println("3 - 프로그램 종료");
     }
 
-    public static void printTables(final Tables tables, final TableNumber tableNumber) {
+    public static void printTables(final Tables tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printTopLine(size);
         printTableNumbers(tables.getTables());
-        printBottomLine(size, tableNumber);
+        printBottomLine(size, tables);
     }
 
     public static void printMenus(final Menus menus) {
@@ -33,16 +33,16 @@ public class OutputView {
         }
     }
 
-    private static void printBottomLine(final int count, final TableNumber tableNumber) {
+    private static void printBottomLine(final int count, final Tables tables) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int index = 0; index < count; index++) {
-            printSelectedLine(tableNumber, stringBuilder, index);
+            printSelectedLine(tables, stringBuilder, index);
         }
         System.out.println(stringBuilder);
     }
 
-    private static void printSelectedLine(final TableNumber tableNumber, final StringBuilder stringBuilder, final int index) {
-        if (tableNumber.isSameWith(index)) {
+    private static void printSelectedLine(final Tables tables, final StringBuilder stringBuilder, final int index) {
+        if (tables.getTables().get(index).hasOrders()) {
             stringBuilder.append(SELECTED_LINE);
             return;
         }
@@ -89,8 +89,8 @@ public class OutputView {
         }
     }
 
-    public static void printPayProcessMessage(final TableNumber tableNumber) {
-        System.out.println(String.format("%d번 테이블의 결제를 진행합니다.", tableNumber.getTableNumber()));
+    public static void printPayProcessMessage(final Table table) {
+        System.out.println(String.format("%d번 테이블의 결제를 진행합니다.", table.getNumber()));
     }
 
     public static void printTotalPrice(final int totalPrice) {

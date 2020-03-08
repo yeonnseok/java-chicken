@@ -13,9 +13,9 @@ public class Menus {
         return menus;
     }
 
-    public Menu getMenuByNumber(MenuNumber menuNumber) {
+    public Menu getMenuByNumber(int menuNumber) {
         return menus.stream()
-                .filter(menu -> menu.getNumber() == menuNumber.getNumber())
+                .filter(menu -> menu.getNumber() == menuNumber)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
     }

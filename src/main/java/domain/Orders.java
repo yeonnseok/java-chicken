@@ -36,4 +36,8 @@ public class Orders {
                 .mapToInt(menu -> menu.getPrice() * orders.get(menu))
                 .sum();
     }
+
+    public boolean hasOrders() {
+        return orders.size() > 0;
+    }
 }

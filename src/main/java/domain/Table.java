@@ -24,6 +24,10 @@ public class Table {
         return orders.totalPriceDiscountedByChickenCount();
     }
 
+    public boolean hasOrders() {
+        return orders.hasOrders();
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);
