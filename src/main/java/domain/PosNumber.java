@@ -7,7 +7,7 @@ import controller.PosController;
 
 import java.util.Arrays;
 
-public enum Pos {
+public enum PosNumber {
     ORDER(1, new OrderController()),
     PAY(2, new PayController()),
     EXIT(3, new ExitController());
@@ -15,14 +15,14 @@ public enum Pos {
     private int posNumber;
     private PosController controller;
 
-    Pos(int posNumber, PosController controller) {
+    PosNumber(int posNumber, PosController controller) {
         this.posNumber = posNumber;
         this.controller = controller;
     }
 
-    public static Pos getPos(final int posNumber) {
+    public static PosNumber getPosNumber(final int posNumber) {
         try {
-            return Arrays.stream(Pos.values())
+            return Arrays.stream(PosNumber.values())
                     .filter(pos -> pos.posNumber == posNumber)
                     .findFirst()
                     .orElseThrow(IllegalArgumentException::new);

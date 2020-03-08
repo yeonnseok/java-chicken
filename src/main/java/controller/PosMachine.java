@@ -14,18 +14,18 @@ public class PosMachine {
     }
 
     public void run() {
-        Pos pos;
+        PosNumber posNumber;
 
         do {
-            pos = getPosWithValidation();
-            PosController controller = pos.getController();
+            posNumber = getPosWithValidation();
+            PosController controller = posNumber.getController();
             controller.controlAction(tables, menus);
-        } while (pos.isNotExit());
+        } while (posNumber.isNotExit());
     }
 
-    private static Pos getPosWithValidation() {
+    private static PosNumber getPosWithValidation() {
         try {
-            return Pos.getPos(InputView.inputPosNumber());
+            return PosNumber.getPosNumber(InputView.inputPosNumber());
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return getPosWithValidation();
