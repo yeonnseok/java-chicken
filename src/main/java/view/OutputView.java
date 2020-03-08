@@ -93,7 +93,7 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    public static void printAmount(int amount) {
+    public static void printTotalAmount(int amount) {
         System.out.println("\n## 최종 결제할 금액");
         System.out.println(Integer.toString(amount));
         System.out.println();

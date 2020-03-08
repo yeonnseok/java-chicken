@@ -95,8 +95,8 @@ public class PosController {
         Table table = selectTable();
         OutputView.printOrder(table);
         PaymentType paymentType = createPaymentType();
-        int amount = Calculator.calculate(table, paymentType);
-        OutputView.printAmount(amount);
+        int totalAmount = Calculator.calculate(table, paymentType);
+        OutputView.printTotalAmount(totalAmount);
         table.clearOrder();
     }
 
