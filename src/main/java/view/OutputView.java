@@ -70,10 +70,10 @@ public class OutputView {
     public static void printOrderList(final Table table) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NEW_LINE)
-                    .append("## 주문 내역")
-                    .append(NEW_LINE)
-                    .append("메뉴 수량 금액")
-                    .append(NEW_LINE);
+                .append("## 주문 내역")
+                .append(NEW_LINE)
+                .append("메뉴 수량 금액")
+                .append(NEW_LINE);
         printEachMenuInformation(table.getOrders(), stringBuilder);
         System.out.println(stringBuilder);
     }
@@ -81,11 +81,11 @@ public class OutputView {
     private static void printEachMenuInformation(final Orders orders, final StringBuilder stringBuilder) {
         for (Menu menu : orders.getOrders().keySet()) {
             stringBuilder.append(menu.getName())
-                        .append(SPACE)
-                        .append(orders.getOrders().get(menu))
-                        .append(SPACE)
-                        .append(menu.getPrice())
-                        .append(NEW_LINE);
+                    .append(SPACE)
+                    .append(orders.getOrders().get(menu))
+                    .append(SPACE)
+                    .append(menu.getPrice())
+                    .append(NEW_LINE);
         }
     }
 

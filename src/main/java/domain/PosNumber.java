@@ -27,7 +27,7 @@ public enum PosNumber {
                     .findFirst()
                     .orElseThrow(IllegalArgumentException::new);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("선택할 수 없는 메뉴 번호 입니다.");
+            throw new IllegalArgumentException("선택할 수 없는 번호입니다.");
         }
     }
 
