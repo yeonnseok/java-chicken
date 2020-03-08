@@ -34,4 +34,8 @@ public enum Pos {
     public PosController getController() {
         return controller;
     }
+
+    public boolean isNotExit() {
+        return this != EXIT;
+    }
 }

@@ -24,7 +24,7 @@ public class OutputView {
         final int size = tables.size();
         printTopLine(size);
         printTableNumbers(tables.getTables());
-        printBottomLine(size, tables);
+        printBottomLine(size, tables.getTables());
     }
 
     public static void printMenus(final Menus menus) {
@@ -33,7 +33,7 @@ public class OutputView {
         }
     }
 
-    private static void printBottomLine(final int count, final Tables tables) {
+    private static void printBottomLine(final int count, final List<Table> tables) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int index = 0; index < count; index++) {
             printSelectedLine(tables, stringBuilder, index);
@@ -41,8 +41,8 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private static void printSelectedLine(final Tables tables, final StringBuilder stringBuilder, final int index) {
-        if (tables.getTables().get(index).hasOrders()) {
+    private static void printSelectedLine(final List<Table> tables, final StringBuilder stringBuilder, final int index) {
+        if (tables.get(index).hasOrders()) {
             stringBuilder.append(SELECTED_LINE);
             return;
         }
@@ -96,5 +96,6 @@ public class OutputView {
     public static void printTotalPrice(final int totalPrice) {
         System.out.println(NEW_LINE + "## 최종 결제할 금액");
         System.out.println(String.format("%d원", totalPrice));
+        System.out.println();
     }
 }

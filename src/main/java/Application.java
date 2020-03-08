@@ -5,12 +5,15 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        Pos pos = getPosWithValidation();
+        final Tables tables = new Tables(TableRepository.tables());
+        final Menus menus = new Menus(MenuRepository.menus());
+        Pos pos;
+
         do {
-            PosController controller = pos.getController();
-            controller.controlAction();
             pos = getPosWithValidation();
-        } while (pos != Pos.EXIT);
+            PosController controller = pos.getController();
+            controller.controlAction(tables, menus);
+        } while (pos.isNotExit());
     }
 
     private static Pos getPosWithValidation() {

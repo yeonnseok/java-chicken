@@ -5,11 +5,8 @@ import view.InputView;
 import view.OutputView;
 
 public class OrderController implements PosController {
-    final Tables tables = new Tables(TableRepository.tables());
-    final Menus menus = new Menus(MenuRepository.menus());
-
     @Override
-    public void controlAction() {
+    public void controlAction(Tables tables, Menus menus) {
         OutputView.printTables(tables);
         Table selectedTable = getTableWithInputValidation(tables);
 

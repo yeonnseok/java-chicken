@@ -5,10 +5,8 @@ import view.InputView;
 import view.OutputView;
 
 public class PayController implements PosController {
-    final Tables tables = new Tables(TableRepository.tables());
-
     @Override
-    public void controlAction() {
+    public void controlAction(Tables tables, Menus menus) {
         checkEmptyTableWhenPay(tables);
         OutputView.printTables(tables);
         Table selectedTable = getPayTableWithInputValidation(tables);
