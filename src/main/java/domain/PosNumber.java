@@ -31,11 +31,11 @@ public enum PosNumber {
         }
     }
 
-    public PosController getController() {
-        return controller;
-    }
-
     public boolean isNotExit() {
         return this != EXIT;
+    }
+
+    public PosController getController() {
+        return controller;
     }
 }

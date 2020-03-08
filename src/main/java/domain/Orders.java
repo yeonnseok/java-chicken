@@ -32,10 +32,6 @@ public class Orders {
                 .sum();
     }
 
-    public Map<Menu, Integer> getOrders() {
-        return orders;
-    }
-
     public int totalPriceDiscountedByChickenCount() {
         return calculateTotalPrice() - (countChickenType() / DISCOUNT_CHICKEN_UNIT_COUNT) * DISCOUNT_CHICKEN_UNIT_PRICE;
     }
@@ -49,5 +45,9 @@ public class Orders {
 
     public boolean hasOrders() {
         return orders.size() > EMPTY_COUNT;
+    }
+
+    public Map<Menu, Integer> getOrders() {
+        return orders;
     }
 }

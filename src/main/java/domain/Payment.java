@@ -7,6 +7,7 @@ public enum Payment {
     CASH(2, 0.05);
 
     private static final int DISCOUNT_FROM = 1;
+
     private int paymentNumber;
     private double discountRatio;
 

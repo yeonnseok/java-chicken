@@ -19,16 +19,16 @@ public class Menu {
         return category.equals(Category.CHICKEN);
     }
 
+    public boolean isSameNumber(int menuNumber) {
+        return number == menuNumber;
+    }
+
     public String getName() {
         return this.name;
     }
 
     public int getPrice() {
         return this.price;
-    }
-
-    public boolean isSameNumber(int menuNumber) {
-        return number == menuNumber;
     }
 
     @Override
