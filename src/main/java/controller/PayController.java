@@ -18,8 +18,8 @@ public class PayController {
 
         PaymentWay paymentWay = createPaymentWay();
 
-        int totalMoney = TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay);
-        OutputView.printTotalMoney(totalMoney);
+        double totalMoney = TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay);
+        OutputView.printTotalMoney((int) totalMoney);
 
         tables.initOrderList(tableNumber);
     }
@@ -50,7 +50,7 @@ public class PayController {
 
     private static PaymentWay createPaymentWay() {
         try {
-            return new PaymentWay(InputView.inputPaymentWay());
+            return PaymentWay.getPayment(InputView.inputPaymentWay());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return createPaymentWay();

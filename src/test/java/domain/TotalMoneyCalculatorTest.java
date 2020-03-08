@@ -26,7 +26,7 @@ public class TotalMoneyCalculatorTest {
         table.registerMenu(menus.getMenu(2), 10);
         table.registerMenu(menus.getMenu(5), 20);
 
-        PaymentWay paymentWay = new PaymentWay(1);
+        PaymentWay paymentWay = PaymentWay.CARD;
 
         assertThat(TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo(534000);
     }
@@ -39,7 +39,7 @@ public class TotalMoneyCalculatorTest {
         table.registerMenu(menus.getMenu(2), 1);
         table.registerMenu(menus.getMenu(22), 2);
 
-        PaymentWay paymentWay = new PaymentWay(2);
+        PaymentWay paymentWay = PaymentWay.CASH;
         double testMoney = 34000 * 0.95;
 
         assertThat(TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo((int) testMoney);
@@ -54,7 +54,7 @@ public class TotalMoneyCalculatorTest {
         table.registerMenu(menus.getMenu(22), 20);
         double testTotalMoney = 16000 * 10 + 17000 * 25 + 1000 * 20 - 30000;
 
-        PaymentWay paymentWay = new PaymentWay(2);
+        PaymentWay paymentWay = PaymentWay.CASH;
         testTotalMoney *= 0.95;
 
         assertThat(TotalMoneyCalculator.calculateTotalMoney(tables, tableNumber, paymentWay)).isEqualTo((int) testTotalMoney);

@@ -3,7 +3,6 @@ package domain;
 public class TotalMoneyCalculator {
     private static final int CHICKEN_DISCOUNT_MONEY = 10_000;
     private static final int CHICKEN_DISCOUNT_DIVIDER = 10;
-    private static final double CASH_DISCOUNT_RATIO = 0.95;
 
     public static int calculateTotalMoney(Tables tables, int tableNumber, PaymentWay paymentWay) {
         double totalMoney = tables.calculateTotalMoney(tableNumber);
@@ -19,9 +18,6 @@ public class TotalMoneyCalculator {
     }
 
     private static double applyPaymentWayDiscount(double totalMoney, PaymentWay paymentWay) {
-        if (paymentWay.isCash()) {
-            totalMoney = totalMoney * CASH_DISCOUNT_RATIO;
-        }
-        return totalMoney;
+        return paymentWay.applyPaymentWayDiscount(totalMoney);
     }
 }

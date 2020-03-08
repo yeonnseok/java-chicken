@@ -13,7 +13,7 @@ public class PaymentWayTest {
     @DisplayName("결제 수단으로 1과 2 외의 다른 값을 입력했을 때 예외 발생")
     void validatePayment() {
         assertThatThrownBy(() -> {
-            PaymentWay paymentWay = new PaymentWay(-1);
+            PaymentWay paymentWay = PaymentWay.getPayment(-1);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("결제 수단으로는 1 또는 2만 입력해야 합니다. 입력값 : %d", -1));
     }
@@ -22,7 +22,7 @@ public class PaymentWayTest {
     @CsvSource({"1,false", "2,true"})
     @DisplayName("현금으로 계산하는지 확인")
     void isCashTest(int payWay, boolean status) {
-        PaymentWay paymentWay = new PaymentWay(payWay);
+        PaymentWay paymentWay = PaymentWay.getPayment(payWay);
 
         assertThat(paymentWay.isCash()).isEqualTo(status);
     }

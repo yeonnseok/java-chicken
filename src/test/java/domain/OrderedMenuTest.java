@@ -19,7 +19,7 @@ public class OrderedMenuTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"2,3,5", "0,9,9", "10,10,20", "80,9,89", "50,30,80"})
+    @CsvSource({"2,3,5", "10,10,20", "80,9,89", "50,30,80"})
     @DisplayName("추가한 수량이 제대로 더해지는지 확인")
     void addQuantityTest(int nowQuantity, int addQuantity, int totalQuantity) {
         Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
@@ -30,7 +30,7 @@ public class OrderedMenuTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0,100", "1,99", "99,1", "98,2", "3,97", "50,50"})
+    @CsvSource({"1,99", "99,1", "98,2", "3,97", "50,50"})
     @DisplayName("한 메뉴에 대한 최대 주문량을 초과하면 예외 발생하는지 확인")
     void maxQuantityTest(int nowQuantity, int addQuantity) {
         Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
