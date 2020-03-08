@@ -25,18 +25,11 @@ public class Tables {
                 .anyMatch(o -> o.isMatchTableNumber(tableNumber));
     }
 
-    public void registerMenu(int tableNumber, int menuNumber, int quantity) {
-        Menu menu = matchMenu(menuNumber);
-        tables().stream()
-                .filter(o -> o.isMatchTableNumber(tableNumber))
-                .forEach(o -> o.registerMenu(menu, quantity));
-    }
-
     private Menu matchMenu(int menuNumber) {
         return Menus.getMenus().stream()
                 .filter(o -> o.isMatchMenu(menuNumber))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 테이블 번호입니다."));
     }
 
     public int calculateTotalMoney(int tableNumber) {
@@ -65,5 +58,12 @@ public class Tables {
                 .map(o -> o.getBill())
                 .findFirst()
                 .get();
+    }
+
+    public Table getTable(int inputTableNumber) {
+        return tables().stream()
+                .filter(t -> t.isMatchTableNumber(inputTableNumber))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 테이블번호입니다."));
     }
 }

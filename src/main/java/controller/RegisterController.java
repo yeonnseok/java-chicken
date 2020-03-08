@@ -1,6 +1,8 @@
 package controller;
 
+import domain.Menu;
 import domain.Menus;
+import domain.Table;
 import domain.Tables;
 import view.InputView;
 import view.OutputView;
@@ -13,50 +15,24 @@ public class RegisterController {
 
     private static void registerMenu(Tables tables, Menus menus) {
         try {
-            int tableNumber = inputTableNumber(tables);
+            Table table = getTable(tables, InputView.inputTableNumber());
             OutputView.printMenus(menus.getMenus());
 
-            int menuNumber = inputMenuNumber(menus);
+            Menu menu = getMenu(menus, InputView.inputRegisterMenu());
             int menuQuantity = inputMenuQuantity();
-            tables.registerMenu(tableNumber, menuNumber, menuQuantity);
+            table.registerMenu(menu, menuQuantity);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             registerMenu(tables, menus);
         }
     }
 
-    private static int inputTableNumber(Tables tables) {
-        try {
-            int tableNumber = InputView.inputTableNumber();
-            return validateTableNumber(tables, tableNumber);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputTableNumber(tables);
-        }
+    private static Table getTable(Tables tables, int inputTableNumber) {
+        return tables.getTable(inputTableNumber);
     }
 
-    private static int validateTableNumber(Tables tables, int tableNumber) {
-        if (!tables.isPresentTableNumber(tableNumber)) {
-            throw new IllegalArgumentException("존재하지 않는 테이블 번호입니다.");
-        }
-        return tableNumber;
-    }
-
-    private static int inputMenuNumber(Menus menus) {
-        try {
-            int menuNumber = InputView.inputRegisterMenu();
-            return validateMenuNumber(menus, menuNumber);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputMenuNumber(menus);
-        }
-    }
-
-    private static int validateMenuNumber(Menus menus, int menuNumber) {
-        if (!menus.isPresentMenu(menuNumber)) {
-            throw new IllegalArgumentException("존재하지 않는 음식 번호입니다.");
-        }
-        return menuNumber;
+    private static Menu getMenu(Menus menus, int inputRegisterMenu) {
+        return menus.getMenu(inputRegisterMenu);
     }
 
     private static int inputMenuQuantity() {

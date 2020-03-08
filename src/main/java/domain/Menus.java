@@ -26,4 +26,11 @@ public class Menus {
     public static List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public Menu getMenu(int inputRegisterMenu) {
+        return menus.stream()
+                .filter(m -> m.isMatchMenu(inputRegisterMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴번호입니다."));
+    }
 }

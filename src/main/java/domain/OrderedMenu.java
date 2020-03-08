@@ -3,34 +3,16 @@ package domain;
 import java.util.Objects;
 
 public class OrderedMenu {
-    private static final int MAX_QUANTITY = 99;
-
     private Menu menu;
-    private int quantity;
+    private Quantity quantity;
 
     public OrderedMenu(Menu menu, int quantity) {
         this.menu = menu;
-        this.quantity = validateMenuQuantity(quantity);
-        ;
-    }
-
-    private int validateMenuQuantity(int quantity) {
-        if (quantity > MAX_QUANTITY) {
-            throw new IllegalArgumentException("한 메뉴에 대해 최대 99개까지 주문가능합니다.");
-        }
-        return quantity;
+        this.quantity = new Quantity(quantity);
     }
 
     public void addQuantity(int quantity) {
-        checkMaxQuantity(quantity);
-        this.quantity += quantity;
-    }
-
-    private void checkMaxQuantity(int quantity) {
-        if (this.quantity + quantity > MAX_QUANTITY) {
-            throw new IllegalArgumentException(String.format("한 메뉴에 대해 최대 99개까지 주문가능합니다. " +
-                    "현재 주문량 : %d", this.quantity));
-        }
+        this.quantity.addQuantity(quantity);
     }
 
     public boolean isMatchMenu(Menu menu) {
@@ -38,11 +20,15 @@ public class OrderedMenu {
     }
 
     public int calculateMenuPriceSum() {
-        return menu.calculateMenuPriceSum(this.quantity);
+        return quantity.calculateMenuPriceSum(menu);
     }
 
     public int getQuantity() {
-        return this.quantity;
+        return quantity.getQuantity();
+    }
+
+    public int getChickenCategoryQuantity() {
+        return quantity.getChickenCategoryQuantity(menu);
     }
 
     @Override
@@ -55,21 +41,9 @@ public class OrderedMenu {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(menu, quantity);
-    }
-
-    public int getChickenCategoryQuantity() {
-        if (this.menu.isChickenCategory()) {
-            return quantity;
-        }
-        return 0;
-    }
-
-    @Override
     public String toString() {
         return menu.getName() + " " +
                 this.quantity + " " +
-                menu.calculateMenuPriceSum(this.quantity);
+                quantity.calculateMenuPriceSum(menu);
     }
 }

@@ -17,10 +17,9 @@ public class Bill {
             orderList.stream()
                     .filter(o -> o.isMatchMenu(menu))
                     .forEach(o -> o.addQuantity(quantity));
+            return;
         }
-        if (!hasSameMenu(menu)) {
-            orderList.add(new OrderedMenu(menu, quantity));
-        }
+        orderList.add(new OrderedMenu(menu, quantity));
     }
 
     private boolean hasSameMenu(Menu menu) {
