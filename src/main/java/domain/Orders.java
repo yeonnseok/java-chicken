@@ -8,11 +8,20 @@ public class Orders {
     private static final int DISCOUNT_CHICKEN_UNIT_PRICE = 10_000;
     private static final int DEFAULT_COUNT = 0;
     private static final int EMPTY_COUNT = 0;
+    private static final int MAX_ORDER_COUNT = 99;
 
     private Map<Menu, Integer> orders = new HashMap<>();
 
     public void addOrder(final Menu menu, final Count count) {
-        this.orders.put(menu, orders.getOrDefault(menu, DEFAULT_COUNT) + count.getCount());
+        int addedCount = orders.getOrDefault(menu, DEFAULT_COUNT) + count.getCount();
+        checkAddedCountRange(addedCount);
+        this.orders.put(menu, addedCount);
+    }
+
+    private void checkAddedCountRange(int addedCount) {
+        if (addedCount > MAX_ORDER_COUNT){
+            throw new IllegalArgumentException("한 메뉴당 최대 주문 수량은 99개 입니다.");
+        }
     }
 
     public int countChickenType() {
