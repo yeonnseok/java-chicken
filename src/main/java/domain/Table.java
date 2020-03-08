@@ -28,6 +28,14 @@ public class Table {
         return orders.hasOrders();
     }
 
+    public boolean isSameNumber(int tableNumber) {
+        return number == tableNumber;
+    }
+
+    public void clearOrders() {
+        orders = new Orders();
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);

@@ -31,6 +31,10 @@ public class Menu {
         return this.price;
     }
 
+    public boolean isSameNumber(int menuNumber) {
+        return number == menuNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

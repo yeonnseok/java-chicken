@@ -7,6 +7,7 @@ public class Orders {
     private static final int DISCOUNT_CHICKEN_UNIT_COUNT = 10;
     private static final int DISCOUNT_CHICKEN_UNIT_PRICE = 10_000;
     private static final int DEFAULT_COUNT = 0;
+    private static final int EMPTY_COUNT = 0;
 
     private Map<Menu, Integer> orders = new HashMap<>();
 
@@ -38,6 +39,6 @@ public class Orders {
     }
 
     public boolean hasOrders() {
-        return orders.size() > 0;
+        return orders.size() > EMPTY_COUNT;
     }
 }

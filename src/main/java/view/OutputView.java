@@ -96,6 +96,5 @@ public class OutputView {
     public static void printTotalPrice(final int totalPrice) {
         System.out.println(NEW_LINE + "## 최종 결제할 금액");
         System.out.println(String.format("%d원", totalPrice));
-        System.out.println();
     }
 }

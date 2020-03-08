@@ -19,6 +19,10 @@ public class PayController implements PosController {
         Payment payment = getPaymentWithValidation();
         int totalPrice = payment.totalPriceAfterPaymentDiscount(selectedTable.getTotalPrice());
         OutputView.printTotalPrice(totalPrice);
+
+        PayDecide payDecide = getPayDecideNumberWithValidation();
+        payDecide.finalAction(selectedTable);
+
     }
 
     private static void checkEmptyTableWhenPay(final Tables tables) {
@@ -30,18 +34,18 @@ public class PayController implements PosController {
     private static Table getPayTableWithInputValidation(Tables tables) {
         try {
             Table selectedTable = tables.getTableByNumber(InputView.inputPayTableNumber());
-            checkOrderingTable(selectedTable);
-            return selectedTable;
+            return checkOrderingTable(selectedTable);
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return getPayTableWithInputValidation(tables);
         }
     }
 
-    private static void checkOrderingTable(final Table table) {
+    private static Table checkOrderingTable(final Table table) {
         if (!table.hasOrders()) {
             throw new IllegalArgumentException("현재 주문 진행중인 테이블만 선택가능합니다.");
         }
+        return table;
     }
 
     private static Payment getPaymentWithValidation() {
@@ -50,6 +54,15 @@ public class PayController implements PosController {
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return getPaymentWithValidation();
+        }
+    }
+
+    private static PayDecide getPayDecideNumberWithValidation() {
+        try {
+            return PayDecide.getPayDecide(InputView.inputPayDecideNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return getPayDecideNumberWithValidation();
         }
     }
 }

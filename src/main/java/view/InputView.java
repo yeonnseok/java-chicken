@@ -66,6 +66,16 @@ public class InputView {
         }
     }
 
+    public static int inputPayDecideNumber() {
+        try {
+            System.out.println("## 결제를 계속 진행하시겠습니까? 1) 예 2) 아니오");
+            return inputIntegerWithValidation();
+        } catch (NumberFormatException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputPayDecideNumber();
+        }
+    }
+
     private static int inputIntegerWithValidation() {
         try {
             return Integer.parseInt(SCANNER.nextLine());

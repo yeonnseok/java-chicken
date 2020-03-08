@@ -15,7 +15,7 @@ public class Menus {
 
     public Menu getMenuByNumber(int menuNumber) {
         return menus.stream()
-                .filter(menu -> menu.getNumber() == menuNumber)
+                .filter(menu -> menu.isSameNumber(menuNumber))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
     }
