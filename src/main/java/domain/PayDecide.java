@@ -20,14 +20,10 @@ public enum PayDecide {
     }
 
     public static PayDecide getPayDecide(final int payDecide) {
-        try {
-            return Arrays.stream(PayDecide.values())
-                    .filter(pay -> pay.payDecide == payDecide)
-                    .findFirst()
-                    .orElseThrow(IllegalArgumentException::new);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("선택할 수 없는 번호 입니다.");
-        }
+        return Arrays.stream(PayDecide.values())
+                .filter(pay -> pay.payDecide == payDecide)
+                .findFirst()
+                .orElseThrow(() ->  new IllegalArgumentException("선택할 수 없는 번호 입니다."));
     }
 
     public abstract void finalAction(final Table table);

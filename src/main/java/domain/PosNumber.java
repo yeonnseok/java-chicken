@@ -21,14 +21,10 @@ public enum PosNumber {
     }
 
     public static PosNumber getPosNumber(final int posNumber) {
-        try {
-            return Arrays.stream(PosNumber.values())
-                    .filter(pos -> pos.posNumber == posNumber)
-                    .findFirst()
-                    .orElseThrow(IllegalArgumentException::new);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("선택할 수 없는 번호입니다.");
-        }
+        return Arrays.stream(PosNumber.values())
+                .filter(pos -> pos.posNumber == posNumber)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 번호입니다."));
     }
 
     public boolean isNotExit() {
