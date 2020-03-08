@@ -15,12 +15,10 @@ public class PayController implements PosController {
         OutputView.printPayProcessMessage(selectedTable);
 
         Payment payment = getPaymentWithValidation();
-        int totalPrice = payment.totalPriceAfterPaymentDiscount(selectedTable.getTotalPrice());
-        OutputView.printTotalPrice(totalPrice);
+        OutputView.printTotalPrice(payment.totalPriceAfterDiscount(selectedTable.getTotalPrice()));
 
         PayDecide payDecide = getPayDecideNumberWithValidation();
         payDecide.finalAction(selectedTable);
-
     }
 
     private static void checkEmptyTableWhenPay(final Tables tables) {

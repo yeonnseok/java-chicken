@@ -26,7 +26,7 @@ public enum Payment {
         }
     }
 
-    public int totalPriceAfterPaymentDiscount (final int totalPriceDiscountedByChickenCount) {
-        return (int) ((DISCOUNT_FROM - this.discountRatio) * totalPriceDiscountedByChickenCount);
+    public int totalPriceAfterDiscount(final int totalPrice) {
+        return (int) ((DISCOUNT_FROM - this.discountRatio) * totalPrice);
     }
 }
