@@ -22,34 +22,27 @@ public class Tables {
 
     public boolean isPresentTableNumber(int tableNumber) {
         return tables.stream()
-                .anyMatch(o -> o.isMatchTableNumber(tableNumber));
-    }
-
-    private Menu matchMenu(int menuNumber) {
-        return Menus.getMenus().stream()
-                .filter(o -> o.isMatchMenu(menuNumber))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 테이블 번호입니다."));
+                .anyMatch(t -> t.isMatchTableNumber(tableNumber));
     }
 
     public int calculateTotalMoney(int tableNumber) {
         return tables.stream()
-                .filter(o -> o.isMatchTableNumber(tableNumber))
-                .mapToInt(o -> o.calculateMenuPriceSum())
+                .filter(t -> t.isMatchTableNumber(tableNumber))
+                .mapToInt(t -> t.calculateMenuPriceSum())
                 .sum();
     }
 
     public int countChickenMenu(int tableNumber) {
         return tables.stream()
-                .filter(o -> o.isMatchTableNumber(tableNumber))
-                .mapToInt(o -> o.countChickenMenu())
+                .filter(t -> t.isMatchTableNumber(tableNumber))
+                .mapToInt(t -> t.countChickenMenu())
                 .sum();
     }
 
     public void initOrderList(int tableNumber) {
         tables.stream()
-                .filter(o -> o.isMatchTableNumber(tableNumber))
-                .forEach(o -> o.initOrderList());
+                .filter(t -> t.isMatchTableNumber(tableNumber))
+                .forEach(t -> t.initOrderList());
     }
 
     public Bill getOrderList(int tableNumber) {

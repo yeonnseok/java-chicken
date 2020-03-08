@@ -29,8 +29,8 @@ public class Application {
     }
 
     private static void runApplication(Tables tables, PosFunction posFunction) {
+        Menus menus = new Menus();
         if (posFunction.isRegister()) {
-            Menus menus = new Menus();
             RegisterController.startRegister(tables, menus);
         }
         if (posFunction.isPay()) {

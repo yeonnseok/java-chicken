@@ -33,17 +33,26 @@ public class OrderedMenu {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         OrderedMenu that = (OrderedMenu) o;
-        return quantity == that.quantity &&
-                Objects.equals(menu, that.menu);
+        return Objects.equals(menu, that.menu) &&
+                Objects.equals(quantity, that.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menu, quantity);
     }
 
     @Override
     public String toString() {
         return menu.getName() + " " +
-                this.quantity + " " +
+                this.quantity.getQuantity() + " " +
                 quantity.calculateMenuPriceSum(menu);
     }
 }

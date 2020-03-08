@@ -20,7 +20,7 @@ public class Menus {
 
     public boolean isPresentMenu(int menuNumber) {
         return menus.stream()
-                .anyMatch(o -> o.isMatchMenu(menuNumber));
+                .anyMatch(m -> m.isMatchMenu(menuNumber));
     }
 
     public static List<Menu> getMenus() {

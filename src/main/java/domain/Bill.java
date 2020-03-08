@@ -10,9 +10,6 @@ public class Bill {
     private final List<OrderedMenu> orderList = new ArrayList<>();
 
     public void registerMenu(Menu menu, int quantity) {
-        if (quantity == NO_QUANTITY) {
-            return;
-        }
         if (hasSameMenu(menu)) {
             orderList.stream()
                     .filter(o -> o.isMatchMenu(menu))
