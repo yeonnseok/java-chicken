@@ -1,5 +1,6 @@
 package domain;
 
+import controller.PosController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,5 +23,13 @@ public class FunctionTypeTest {
         Assertions.assertThatThrownBy(() -> {
             FunctionType.getFunctionType(input);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("기능에 대한 정상 컨트롤러를 호출하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void getControllerTest(int input) {
+        FunctionType functionType = FunctionType.getFunctionType(input);
+        Assertions.assertThat(functionType.getController()).isInstanceOf(PosController.class);
     }
 }
